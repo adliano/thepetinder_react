@@ -2,6 +2,10 @@ import React from 'react'
 
 import Navbar from 'react-bootstrap/Navbar'
 
+/**
+ * PetNavbar
+ * Navbar used for all pages
+ */
 function PetNavBar () {
   return (
     <Navbar bg='dark' variant='dark'>
