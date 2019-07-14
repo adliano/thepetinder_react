@@ -1,29 +1,45 @@
-# Create React Express App
+<!-- https://support.squarespace.com/hc/en-us/articles/206543587-Markdown-cheat-sheet -->
 
-## About This Boilerplate
+# **<h1 style="color:blue;"> 🐶 The PeTinder React </h1>**
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+> "The human-animal bond is a mutually beneficial and dynamic **relationship** between people and animals that is influenced by behaviors essential to the health and wellbeing or both.
+> This includes, among other things, emotional, psycological and physical interactions of people, animals and enviroment"
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+### Objective:
 
-## Starting the app locally
+- 🐷 This application will target people that are searching for a pet.
+- 🐵 It will help users to find a pet based on their profile through a questionary.
+- 🐴 Our goal its reduce the numbers of animals on shelters.
+- 🐹 It will also provide an API with all availables pet on the database.
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+### Motivation:
 
-```
-npm install
-```
+- We are building this app for anyone that likes animals and would like to find the best match.
+- The human-animal bond is a mutually beneficial and dynamic relationship between people and animals that is influenced by behaviors considered essential to the health and well-being of both. The bond includes, but is not limited emotional, psychological, and physical interactions of people, animals, and the environment.
 
-This should install node modules within the server and the client folder.
 
-After both installations complete, run the following command in your terminal:
+### Authors:
 
-```
-npm start
-```
+- [Adriano Alves](https://github.com/adliano)
+- [Jose Menis](https://github.com/josemenis)
+- [Karina Lowell](https://github.com/karilowell)
+- [Luis Villacorta](https://github.com/LuisERivas)
+- [Jaime Frausto](https://github.com/clavejin18)
 
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+### Technology Used:
 
-## Deployment (Heroku)
+- [react-bootstrap](https://react-bootstrap.github.io/)
+- [Nodejs](https://nodejs.org/en/)
+- [Expressjs](https://expressjs.com/)
+- [Mysql Database](https://www.mysql.com/)
+- [Knexjs](https://knexjs.org/)
+- [Heroku](https://www.heroku.com/)
+- [Multer](https://www.npmjs.com/package/multer)
+- [React](https://reactjs.org/)
 
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+<!-- # UI -->
+<!-- ![Home Page](app/public/images/homePage.png "Home Page") -->
+<!-- ![Add Page](app/public/images/addPage.png "Add page") -->
+<!-- ![Questions Page](public/images/questionsPage.png "Questions Page") -->
+<!-- ![About Page](public/images/aboutUsPage.png "About") -->
+
