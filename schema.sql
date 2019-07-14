@@ -1,0 +1,3 @@
+-- Be CArefull using `DROP`
+-- DROP DATABASE IF EXISTS pets_DB;
+CREATE DATABASE IF NOT EXISTS pets_DB;
