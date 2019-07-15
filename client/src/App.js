@@ -1,8 +1,8 @@
-<<<<<<< HEAD
-=======
-import React, { Component } from "react";
+import React, { Component } from 'react';
 // Import Pages
 import SplashPage from './pages/SplashPage'
+import ShelterLogin from './pages/Shelter_Login'
+import ShelterRegister from './pages/Shelter_Register'
 
 // import logo from "./logo.svg";
 // import "./App.css";
@@ -11,14 +11,15 @@ class App extends Component {
   /**
    * Render
    */
-  render() {
+  render () {
     return (
       <>
-      <SplashPage/>
+        <SplashPage />
+        <ShelterLogin />
+        <ShelterRegister />
       </>
-    );
+    )
   }
 }
 
-export default App;
->>>>>>> 6a15777f3816d2fde2f611fc37a8f2f9acf3dce7
+export default App

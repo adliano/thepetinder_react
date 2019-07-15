@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import "./App.css";
 import PetNavBar from '../components/PetNavBar'
 
-class shelterLogin extends Component {
+class ShelterLogin extends Component {
   render () {
     return (
       <>
@@ -13,4 +13,4 @@ class shelterLogin extends Component {
   }
 }
 
-export default shelterLogin
+export default ShelterLogin
