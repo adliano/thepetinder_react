@@ -42,8 +42,8 @@ class ShelterRegister extends Component {
         <PetNavBar />
         <PetinderLogo />
         <Container className='my-5 p-5 text-center'>
-        <Card className="text-left">
-        <Card.Header>Label</Card.Header>
+        <Card className="text-center">
+        <Card.Header></Card.Header>
         <Card.Body>
           <Card.Text>
           <Form>
