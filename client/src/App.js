@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 // Import Pages
 // import SplashPage from './pages/SplashPage'
 import ShelterLogin from './pages/ShelterLogin'
