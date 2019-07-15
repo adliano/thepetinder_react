@@ -1,15 +1,18 @@
 import React, { Component } from "react";
+// Import Pages
+import SplashPage from './pages/SplashPage'
+
 // import logo from "./logo.svg";
 // import "./App.css";
-import PetNavBar from './components/PetNavBar'
-import PetFooter from './components/PetFooter'
 
 class App extends Component {
+  /**
+   * Render
+   */
   render() {
     return (
       <>
-      <PetNavBar/>
-      <PetFooter/>
+      <SplashPage/>
       </>
     );
   }
