@@ -40,8 +40,9 @@ class ShelterRegister extends Component {
       <>
         <PetNavBar />
         <PetinderLogo />
-        <Container className='my-2 p-2 text-center'>
-          <Row className="justify-content-lg-center" >
+        <Container className='my-5 p-5 text-center'>
+          <Row>
+            <Col md>
           <Form>
             <Form.Group controlId="formGroupEmail">
               <Form.Control type="email" placeholder="Enter email" />
@@ -50,14 +51,15 @@ class ShelterRegister extends Component {
               <Form.Control type="password" placeholder="Password" />
             </Form.Group>
           </Form>
-          </Row>
-
-          <Row className='m-3 p-2'>
-            <Col md>
-              <Button className='w-25 m-2' variant='primary' onClick={this.onButtonClick}>Login</Button>
             </Col>
-            <Col md>
-              <Button className='w-25 m-2' variant='primary' onClick={this.onButtonClick}>Register</Button>
+          </Row>
+        
+          <Row className='m-3 p-2'>
+            <Col lg>
+              <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}>Login</Button>
+            </Col>
+            <Col lg>
+              <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}>Register</Button>
             </Col>
           </Row>
         </Container>
