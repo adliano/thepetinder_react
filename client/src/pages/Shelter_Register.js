@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import Card from 'react-bootstrap/Card'
 
 // Use Application Components
 import PetNavBar from '../components/PetNavBar'
@@ -40,34 +41,28 @@ class ShelterRegister extends Component {
       <>
         <PetNavBar />
         <PetinderLogo />
-        <br />
-        <br />
-        <br />
-        <br />
-
-        <Container className='my-2 p-2 text-center'>
-          <Row className="justify-content-md-center" >
-          <Col xs={12} md={8}>
+        <Container className='my-5 p-5 text-center'>
+        
+        <Card className="text-left">
+        <Card.Header>Label</Card.Header>
+        <Card.Body>
+          <Card.Text>
           <Form>
+            <br />
             <Form.Group controlId="formGroupEmail">
               <Form.Control size="lg" type="email" placeholder="Enter email" />
-            </Form.Group>
-            <Form.Group controlId="formGroupPassword">
               <Form.Control size="lg" type="password" placeholder="Password" />
+              <Form.Control size="lg" type="confirmPassword" placeholder="Confirm Password" />
+              {/* CITY / STATE / ZIP CODE */}
+              <Form.Control size="lg" type="phoneNumber" placeholder="Phone Number" />
             </Form.Group>
-          </Form>
-          </Col>
-          </Row>
-          <br />
-          <br />
-          <br />
-          <br />
-
-          <Row className='m-3 p-2'>
-            <Col md>
-              <Button className='w-25 m-2' variant='primary' onClick={this.onButtonClick}>Register</Button>
-            </Col>
-          </Row>
+          </Form>    
+            <br />
+        </Card.Text>
+              {/* CENTER BUTTON */}
+              <Button className='w-50 m-2 align-center' variant='primary' onClick={this.onButtonClick}>Register</Button>
+        </Card.Body>
+        </Card>
         </Container>
         <PetFooter />
       </>
