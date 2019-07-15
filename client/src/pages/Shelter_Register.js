@@ -42,7 +42,6 @@ class ShelterRegister extends Component {
         <PetNavBar />
         <PetinderLogo />
         <Container className='my-5 p-5 text-center'>
-        
         <Card className="text-left">
         <Card.Header>Label</Card.Header>
         <Card.Body>
@@ -53,14 +52,34 @@ class ShelterRegister extends Component {
               <Form.Control size="lg" type="email" placeholder="Enter email" />
               <Form.Control size="lg" type="password" placeholder="Password" />
               <Form.Control size="lg" type="confirmPassword" placeholder="Confirm Password" />
-              {/* CITY / STATE / ZIP CODE */}
-              <Form.Control size="lg" type="phoneNumber" placeholder="Phone Number" />
-            </Form.Group>
-          </Form>    
-            <br />
-        </Card.Text>
+              </Form.Group>
+            </Form>    
+              <Row>
+              <Col>
+              <Form>
+                <Form.Control size="lg" type="city" placeholder="City" />
+              </Form>
+              </Col>
+              <Col>
+              <Form>
+                <Form.Control size="lg" type="state" placeholder="State" />
+              </Form>
+              </Col>
+              <Col>
+              <Form>
+                <Form.Control size="lg" type="zipCode" placeholder="Zip Code" />
+              </Form>
+              </Col>
+              </Row>
+              <br />
+              <Form>
+            <Form.Group controlId="formGroupEmail">
+              <Form.Control size="lg" type="phoneNumber" placeholder="Phone Number" />              
+              </Form.Group>
+            </Form>    
+            </Card.Text>
               {/* CENTER BUTTON */}
-              <Button className='w-50 m-2 align-center' variant='primary' onClick={this.onButtonClick}>Register</Button>
+              <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}>Register</Button>
         </Card.Body>
         </Card>
         </Container>
