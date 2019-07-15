@@ -1,17 +1,16 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 // import logo from "./logo.svg";
 // import "./App.css";
-import PetNavBar from './components/PetNavBar'
-import ShelterLogin from './'
+import PetNavBar from '../components/PetNavBar'
 
-class App extends Component {
-  render() {
+class Splash extends Component {
+  render () {
     return (
       <>
-      <PetNavBar/>
+        <PetNavBar />
       </>
-    );
+    )
   }
 }
 
-export default App;
+export default Splash

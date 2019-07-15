@@ -4,9 +4,9 @@ import Splash from './pages/Splash';
 import shelterLogin from './pages/Shelter_Login';
 import shelterRegister from './pages/Shelter_Register';
 
-import Navbar from './components/Navbar';
+import Navbar from './components/PetNavBar';
 import Wrapper from './components/Wrapper';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 
 function App () {
   return (
@@ -18,7 +18,7 @@ function App () {
           <Route exact path='/Shelter_Login' component={shelterLogin} />
           <Route exact path='/Shelter_Register' component={shelterRegister} />
         </Wrapper>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   )
