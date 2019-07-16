@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // Use Bootstrap Components
 import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -44,40 +43,26 @@ class ShelterRegister extends Component {
         <Container className='my-5 p-5 text-center'>
         <Card className="text-center">
         <Card.Header></Card.Header>
-        <Card.Body>
-          <Card.Text>
+        <Card.Body> 
           <Form>
-            <br />
             <Form.Group controlId="formGroupEmail">
               <Form.Control size="lg" type="email" placeholder="Enter email" />
               <Form.Control size="lg" type="password" placeholder="Password" />
-              <Form.Control size="lg" type="confirmPassword" placeholder="Confirm Password" />
+              <Form.Control size="lg" type="password" placeholder="Confirm Password" />
+              <Form.Row>
+              <Col sm>
+                <Form.Control size="lg" type="text" placeholder="City" />
+              </Col>
+              <Col sm>
+              <Form.Control size="lg" type="text" placeholder="State" />
+              </Col>
+              <Col sm>
+                <Form.Control size="lg" type="number" placeholder="Zip Code" />
+              </Col>
+              </Form.Row>
+              <Form.Control size="lg" type="number" placeholder="Phone Number" />                
               </Form.Group>
             </Form>    
-              <Row>
-              <Col>
-              <Form>
-                <Form.Control size="lg" type="city" placeholder="City" />
-              </Form>
-              </Col>
-              <Col>
-              <Form>
-                <Form.Control size="lg" type="state" placeholder="State" />
-              </Form>
-              </Col>
-              <Col>
-              <Form>
-                <Form.Control size="lg" type="zipCode" placeholder="Zip Code" />
-              </Form>
-              </Col>
-              </Row>
-              <br />
-              <Form>
-            <Form.Group controlId="formGroupEmail">
-              <Form.Control size="lg" type="phoneNumber" placeholder="Phone Number" />              
-              </Form.Group>
-            </Form>    
-            </Card.Text>
               {/* CENTER BUTTON */}
               <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}>Register</Button>
         </Card.Body>
