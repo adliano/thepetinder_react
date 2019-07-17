@@ -47,16 +47,13 @@ class AddPet extends Component {
 
         <Form>
         <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Label>Name</Form.Label>
-          <Form.Control type="name" placeholder="name" />
+          <Form.Control className='my-2' type="name" placeholder="name" />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Label>Age</Form.Label>
-          <Form.Control type="age" placeholder="age" />
+          <Form.Control className='my-2' type="age" placeholder="age" />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlSelect1">
-          <Form.Label>Animal Type</Form.Label>
-          <Form.Control as="select">
+          <Form.Control className='my-2' as="select">
             <option>Dog</option>
             <option>Cat</option>
             <option>Fish</option>
@@ -65,8 +62,7 @@ class AddPet extends Component {
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlSelect2">
-          <Form.Label>Animal Atitude</Form.Label>
-          <Form.Control as="select" multiple>
+          <Form.Control className='my-2' as="select">
             <option>Frisky</option>
             <option>Shy</option>
             <option>Loud</option>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 // Import Pages
 import SplashPage from './pages/SplashPage'
+import AddPet from './pages/AddPet'
+import ShelterRegister from './pages/Shelter_Register'
 // import ShelterLogin from './pages/Shelter_Login'
 // import ShelterRegister from './pages/Shelter_Register'
 
@@ -14,9 +16,10 @@ class App extends Component {
   render () {
     return (
       <>
-        <SplashPage />
+        {/* <SplashPage /> */}
         {/* <ShelterLogin /> */}
         {/* <ShelterRegister /> */}
+        <AddPet/>
       </>
     )
   }

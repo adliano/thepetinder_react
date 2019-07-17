@@ -46,21 +46,21 @@ class ShelterRegister extends Component {
         <Card.Body> 
           <Form>
             <Form.Group controlId="formGroupEmail">
-              <Form.Control size="lg" type="email" placeholder="Enter email" />
-              <Form.Control size="lg" type="password" placeholder="Password" />
-              <Form.Control size="lg" type="password" placeholder="Confirm Password" />
+              <Form.Control className='my-2' size="lg" type="email" placeholder="Enter email" />
+              <Form.Control className='my-2' size="lg" type="password" placeholder="Password" />
+              <Form.Control className='my-2' size="lg" type="password" placeholder="Confirm Password" />
               <Form.Row>
               <Col sm>
-                <Form.Control size="lg" type="text" placeholder="City" />
+                <Form.Control className='my-2' size="lg" type="text" placeholder="City" />
               </Col>
               <Col sm>
-              <Form.Control size="lg" type="text" placeholder="State" />
+              <Form.Control className='my-2' size="lg" type="text" placeholder="State" />
               </Col>
               <Col sm>
-                <Form.Control size="lg" type="number" placeholder="Zip Code" />
+                <Form.Control className='my-2' size="lg" type="number" placeholder="Zip Code" />
               </Col>
               </Form.Row>
-              <Form.Control size="lg" type="number" placeholder="Phone Number" />                
+              <Form.Control className='my-2' size="lg" type="number" placeholder="Phone Number" />                
               </Form.Group>
             </Form>    
               {/* CENTER BUTTON */}
