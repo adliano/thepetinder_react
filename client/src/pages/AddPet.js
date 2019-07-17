@@ -47,10 +47,10 @@ class AddPet extends Component {
 
         <Form>
         <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Control className='my-2' type="name" placeholder="name" />
+          <Form.Control className='my-2' type="name" placeholder="Name" />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Control className='my-2' type="age" placeholder="age" />
+          <Form.Control className='my-2' type="age" placeholder="Age" />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Control className='my-2' as="select">
