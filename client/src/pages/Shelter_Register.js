@@ -49,6 +49,7 @@ class ShelterRegister extends Component {
               <Form.Control size="lg" type="email" placeholder="Enter email" />
               <Form.Control size="lg" type="password" placeholder="Password" />
               <Form.Control size="lg" type="password" placeholder="Confirm Password" />
+              <Form.Control size="lg" type="text" placeholder="Address" />
               <Form.Row>
               <Col sm>
                 <Form.Control size="lg" type="text" placeholder="City" />
