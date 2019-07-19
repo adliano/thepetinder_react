@@ -7,7 +7,7 @@ module.exports = {
     connection: {
       host: 'localhost',
       port: 3306,
-      user: 'nodeUser',
+      user: 'node_user',
       password: '',
       database: 'pets_DB',
       debug: ['ComQueryPacket', 'RowDataPacket']
@@ -19,7 +19,7 @@ module.exports = {
     connection: {
       host: 'localhost',
       port: 3306,
-      user: 'nodeUser',
+      user: 'node_user',
       password: '',
       database: 'testdb',
       debug: ['ComQueryPacket', 'RowDataPacket']
