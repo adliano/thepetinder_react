@@ -12,7 +12,7 @@ import PetinderLogo from '../components/PetinderLogo'
 import PetFooter from '../components/PetFooter'
 
 
-class ShelterRegister extends Component {
+class AddPet extends Component {
   /**
      * onButtonClick()
      * Event listener used for buttons
@@ -44,29 +44,36 @@ class ShelterRegister extends Component {
         <Card className="text-center">
         <Card.Header></Card.Header>
         <Card.Body> 
-          <Form>
-            <Form.Group controlId="formGroupEmail">
 
-              <Form.Control className='my-2' size="lg" type="email" placeholder="Enter email" />
-              <Form.Control className='my-2' size="lg" type="password" placeholder="Password" />
-              <Form.Control className='my-2' size="lg" type="password" placeholder="Confirm Password" />
-
-              <Form.Row>
-              <Col sm>
-                <Form.Control className='my-2' size="lg" type="text" placeholder="City" />
-              </Col>
-              <Col sm>
-              <Form.Control className='my-2' size="lg" type="text" placeholder="State" />
-              </Col>
-              <Col sm>
-                <Form.Control className='my-2' size="lg" type="number" placeholder="Zip Code" />
-              </Col>
-              </Form.Row>
-              <Form.Control className='my-2' size="lg" type="number" placeholder="Phone Number" />                
-              </Form.Group>
-            </Form>    
+        <Form>
+        <Form.Group controlId="exampleForm.ControlInput1">
+          <Form.Control className='my-2' type="name" placeholder="Name" />
+        </Form.Group>
+        <Form.Group controlId="exampleForm.ControlInput1">
+          <Form.Control className='my-2' type="age" placeholder="Age" />
+        </Form.Group>
+        <Form.Group controlId="exampleForm.ControlSelect1">
+          <Form.Control className='my-2' as="select">
+            <option>Dog</option>
+            <option>Cat</option>
+            <option>Fish</option>
+            <option>Bird</option>
+            <option>Horse</option>
+          </Form.Control>
+        </Form.Group>
+        <Form.Group controlId="exampleForm.ControlSelect2">
+          <Form.Control className='my-2' as="select">
+            <option>Frisky</option>
+            <option>Shy</option>
+            <option>Loud</option>
+            <option>Playful</option>
+          </Form.Control>
+          </Form.Group>
+    
+      </Form>
+          
               {/* CENTER BUTTON */}
-              <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}>Register</Button>
+              <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}>Choose a file</Button>
         </Card.Body>
         </Card>
         </Container>
@@ -76,5 +83,4 @@ class ShelterRegister extends Component {
   }
 }
 
-export default ShelterRegister
-
+export default AddPet
