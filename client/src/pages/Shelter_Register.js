@@ -46,9 +46,11 @@ class ShelterRegister extends Component {
         <Card.Body> 
           <Form>
             <Form.Group controlId="formGroupEmail">
+
               <Form.Control className='my-2' size="lg" type="email" placeholder="Enter email" />
               <Form.Control className='my-2' size="lg" type="password" placeholder="Password" />
               <Form.Control className='my-2' size="lg" type="password" placeholder="Confirm Password" />
+
               <Form.Row>
               <Col sm>
                 <Form.Control className='my-2' size="lg" type="text" placeholder="City" />

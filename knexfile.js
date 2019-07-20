@@ -1,4 +1,5 @@
 // Update with your config settings.
+require('dotenv').config()
 
 module.exports = {
 
@@ -7,9 +8,9 @@ module.exports = {
     connection: {
       host: 'localhost',
       port: 3306,
-      user: 'nodeUser',
-      password: '',
-      database: 'pets_DB',
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWD,
+      database: process.env.DATABASE,
       debug: ['ComQueryPacket', 'RowDataPacket']
     }
   },
@@ -19,8 +20,8 @@ module.exports = {
     connection: {
       host: 'localhost',
       port: 3306,
-      user: 'nodeUser',
-      password: '',
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWD,
       database: 'testdb',
       debug: ['ComQueryPacket', 'RowDataPacket']
     }
