@@ -36,6 +36,14 @@
 - [Heroku](https://www.heroku.com/)
 - [Multer](https://www.npmjs.com/package/multer)
 - [React](https://reactjs.org/)
+- [Passport JS](http://www.passportjs.org/)
+- [md5](https://www.npmjs.com/package/md5)
+
+## New Pages
+
+ ![Login Page](assets/images/shelterLogin.png)
+
+ ![Register Page](assets/images/shelterRegister.png) 
 
 <!-- # UI -->
 <!-- ![Home Page](app/public/images/homePage.png "Home Page") -->
