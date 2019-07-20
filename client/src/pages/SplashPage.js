@@ -68,7 +68,7 @@ class SplashPage extends Component {
               <Button className='w-25 m-2' variant='primary' onClick={this.onButtonClick}>User</Button>
               </Col>
               <Col md>
-              <Button className='w-25 m-2' variant='primary' onClick={this.onButtonClick}>Shelter</Button>
+              <Button className='w-25 m-2' variant='primary' onClick={this.onButtonClick}href='/ShelterLogin'>Shelter</Button>
               </Col>
           </Row>
         </Container>
