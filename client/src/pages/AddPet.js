@@ -69,11 +69,25 @@ class AddPet extends Component {
             <option>Playful</option>
           </Form.Control>
           </Form.Group>
+          
+
     
       </Form>
           
-              {/* CENTER BUTTON */}
-              <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}>Choose a file</Button>
+              {/* CENTER BUTTON 
+              <div class="form-group">*/}
+              <label for="pictureName">Animal's picture</label>
+              <div class="m-3">
+              <Form.Control className='my-2' type="file" name='#' accept='image/*' />
+
+            
+
+              </div>
+              {/*</div>*/}
+              <div>
+              <Button type='file' value='upload' name='imgPath' className='w-50 m-2' variant='primary' onClick={this.onButtonClick}>Upload</Button>
+              </div>
+              
         </Card.Body>
         </Card>
         </Container>
