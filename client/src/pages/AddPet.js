@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 // Use Bootstrap Components
 import Container from 'react-bootstrap/Container'
-import Col from 'react-bootstrap/Col'
+// import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Card from 'react-bootstrap/Card'

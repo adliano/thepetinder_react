@@ -60,8 +60,8 @@ class ShelterRegister extends Component {
           <Form>
               <Form.Control name='name' className='my-2' size="lg" type="text" placeholder="Name" onChange={this.onInputChange} />
               <Form.Control name='email' className='my-2' size="lg" type="email" placeholder="Enter email" onChange={this.onInputChange} />
-              <Form.Control name='password' className='my-2' size="lg" type="password" placeholder="Password" onChange={this.onInputChange} />
-              <Form.Control name='passwordConfirm' className='my-2' size="lg" type="password" placeholder="Confirm Password"  />
+              <Form.Control name='password' className='my-2' size="lg" type="password" placeholder="Password" onChange={this.onInputChange} autoComplete='password' />
+              <Form.Control name='passwordConfirm' className='my-2' size="lg" type="password" placeholder="Confirm Password" autoComplete='password' />
               <Form.Control name='address' className='my-2' size="lg" type="text" placeholder="Address" onChange={this.onInputChange} />
               <Form.Row>
               <Col sm>
