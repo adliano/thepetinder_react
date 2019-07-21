@@ -119,7 +119,7 @@ module.exports = function (app) {
 
     // Save Sheter info on database FIXME: send somethinf back to generate confirmation
     Shelter.create(req.body).then(function (dbExample) {
-      res.json(dbExample)
+      res.json({result: 'works'})
     })
     res.redirect('/')
   })
