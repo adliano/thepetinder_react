@@ -24,6 +24,7 @@ class ShelterRegister extends Component {
      */
     onButtonClick = (event) => {
        console.log('register the shelter');
+       
        API.registerShelter(this.state)
        .then(response => response.json())
        .then(results => console.log(results))
@@ -54,10 +55,11 @@ class ShelterRegister extends Component {
         <Card.Header></Card.Header>
         <Card.Body> 
           <Form>
-              <Form.Control name='name' className='my-2' size="lg" type="text" placeholder="Name" onChange={this.onInputChange} />
+              <Form.Control name='shelterName' className='my-2' size="lg" type="text" placeholder="Name" onChange={this.onInputChange} />
               <Form.Control name='email' className='my-2' size="lg" type="email" placeholder="Enter email" onChange={this.onInputChange} />
               <Form.Control name='password' className='my-2' size="lg" type="password" placeholder="Password" onChange={this.onInputChange} />
               <Form.Control name='passwordConfirm' className='my-2' size="lg" type="password" placeholder="Confirm Password" onChange={this.onInputChange} />
+              <Form.Control name='address' className='my-2' size="lg" type="text" placeholder="Address" onChange={this.onInputChange} />
               <Form.Row>
               <Col sm>
                 <Form.Control name='city' className='my-2' size="lg" type="text" placeholder="City" onChange={this.onInputChange} />
