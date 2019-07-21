@@ -11,6 +11,8 @@ import PetNavBar from '../components/PetNavBar'
 import PetinderLogo from '../components/PetinderLogo'
 import PetFooter from '../components/PetFooter'
 
+import API from '../utils/API'
+
 
 class ShelterRegister extends Component {
   /**
