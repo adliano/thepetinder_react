@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Card from 'react-bootstrap/Card'
+import Image from 'react-bootstrap/Image'
 
 import {
   CloudUpload as CloudUploadIcon,
@@ -16,6 +17,9 @@ import PetinderLogo from '../components/PetinderLogo'
 import PetFooter from '../components/PetFooter'
 
 class AddPet extends Component {
+  state = {
+    image: null,
+  }
   /**
    * onButtonClick()
    * Event listener used for buttons
@@ -31,6 +35,26 @@ class AddPet extends Component {
       // Place logic here later
     }
   }
+  /**
+   * 
+   * 
+   */
+  onImageSelected = event => {
+    console.log(event.target.value);
+    this.setState({image: URL.createObjectURL(event.target.files[0])})
+  }
+  /**
+   * 
+   * 
+   */
+  onInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    },
+    () => console.log(this.state));
+  };
+
   /**
    *
    * Render
@@ -55,6 +79,7 @@ class AddPet extends Component {
                     type='text'
                     placeholder='Name'
                     name='name'
+                    onChange={this.onInputChange}
                   />
                   {/* Get Animal's age */}
                   <Form.Control
@@ -62,9 +87,10 @@ class AddPet extends Component {
                     type='number'
                     placeholder='Age'
                     name='age'
+                    onChange={this.onInputChange}
                   />
                   {/* Get Animal's type */}
-                  <Form.Control className='my-2' as='select'>
+                  <Form.Control className='my-2' as='select' onChange={this.onInputChange}>
                     <option>Dog</option>
                     <option>Cat</option>
                     <option>Fish</option>
@@ -72,7 +98,7 @@ class AddPet extends Component {
                     <option>Horse</option>
                   </Form.Control>
                   {/* Get Animal's Attitude */}
-                  <Form.Control className='my-2' as='select'>
+                  <Form.Control className='my-2' as='select' onChange={this.onInputChange}>
                     <option>Frisky</option>
                     <option>Shy</option>
                     <option>Loud</option>
@@ -85,7 +111,12 @@ class AddPet extends Component {
                     type='file'
                     name='petPicture'
                     accept='image/*'
+                    // onChange={this.onInputChange}
+                    onChange={this.onImageSelected}
                   />
+                  {/* Image Preview */}
+                  <Image src={this.state.image} width={200} />
+                  <br/>
                   {/* Upload Button */}
                   <Button
                     type='file'
