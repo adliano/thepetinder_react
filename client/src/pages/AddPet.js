@@ -6,6 +6,10 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Card from 'react-bootstrap/Card'
 
+import {
+  CloudUpload as CloudUploadIcon,
+  Assignment as AssignmentIcon
+} from '@material-ui/icons/'
 // Use Application Components
 import PetNavBar from '../components/PetNavBar'
 import PetinderLogo from '../components/PetinderLogo'
@@ -39,7 +43,9 @@ class AddPet extends Component {
         <PetinderLogo />
         <Container className='my-5 p-5'>
           <Card>
-            <Card.Header><h3>Add Pet</h3></Card.Header>
+            <Card.Header>
+              <AssignmentIcon /> Add Pet
+            </Card.Header>
             <Card.Body>
               <Form>
                 {/* Get Animal's name */}
@@ -47,10 +53,16 @@ class AddPet extends Component {
                   <Form.Control
                     className='my-2'
                     type='text'
-                    placeholder='Name' name='name'
+                    placeholder='Name'
+                    name='name'
                   />
                   {/* Get Animal's age */}
-                  <Form.Control className='my-2' type='number' placeholder='Age' name='age'/>
+                  <Form.Control
+                    className='my-2'
+                    type='number'
+                    placeholder='Age'
+                    name='age'
+                  />
                   {/* Get Animal's type */}
                   <Form.Control className='my-2' as='select'>
                     <option>Dog</option>
@@ -68,7 +80,8 @@ class AddPet extends Component {
                   </Form.Control>
                   {/* Get Animal's picture */}
                   <Form.Label className='mt-3'>Animal's picture</Form.Label>
-                  <Form.Control className='mb-3'
+                  <Form.Control
+                    className='mb-3'
                     type='file'
                     name='petPicture'
                     accept='image/*'
@@ -78,11 +91,11 @@ class AddPet extends Component {
                     type='file'
                     value='upload'
                     name='imgPath'
-                    className='w-25 mt-3'
+                    className='px-5 mt-3'
                     variant='primary'
                     onClick={this.onButtonClick}
                   >
-                    Upload
+                    <CloudUploadIcon className='mx-2' /> Upload
                   </Button>
                 </Form.Group>
               </Form>
