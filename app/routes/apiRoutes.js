@@ -112,32 +112,12 @@ module.exports = function (app) {
 
   // Register Shelter
   app.post('/api/register', function (req, res, next) {
-    // DEBUG
-    console.log('='.repeat(80))
-    console.log(req.body)
-    console.log('='.repeat(80))
-
     // Save Sheter info on database 
-    //  FIXME: send something back to generate confirmation
+    // and send POST response
     Shelter.create(req.body).then(function (dbExample) {
       res.json(dbExample)
     })
-    res.redirect('/')
+    .catch(err => res.json(err))
   })
 }
 
-/*
-[Object: null prototype] {
-  animalName: '2wsx',
-  animalAge: '9876',
-  animalType: 'Lion',
-  animalAttitude: 'Playful' }
-{ fieldname: 'petPicture',
-  originalname: '20170526_191602.jpg',
-  encoding: '7bit',
-  mimetype: 'image/jpeg',
-  destination: 'app/public/uploads',
-  filename: 'thepetinder1560556105221.jpeg',
-  path: 'app/public/uploads/thepetinder1560556105221.jpeg',
-  size: 601159 }
-*/
