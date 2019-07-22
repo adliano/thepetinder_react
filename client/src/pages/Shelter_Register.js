@@ -13,6 +13,8 @@ import PetFooter from '../components/PetFooter'
 
 import API from '../utils/API'
 
+import md5 from 'md5'
+
 class ShelterRegister extends Component {
   state = {}
   /**
@@ -29,12 +31,18 @@ class ShelterRegister extends Component {
    * On Change listener used for inputs
    * TODO: Implement password confirmation check
    *
+     // if(name === 'password' || name === 'passwordConfirm'){        
    */
   onInputChange = event => {
-    const { name, value } = event.target
-    this.setState({
-      [name]: value
-    })
+
+    if(event.target.type === 'password'){
+      // FIXME: check for password and used md5 in here
+    } else {
+      const { name, value } = event.target
+      this.setState({
+        [name]: value
+      })
+    }
   }
   /**
    *
@@ -81,6 +89,7 @@ class ShelterRegister extends Component {
                   className='my-2'
                   size='lg'
                   type='password'
+                  onChange={this.onInputChange}
                   placeholder='Confirm Password'
                   autoComplete='password'
                 />
