@@ -3,6 +3,7 @@ let filePath = ''
 
 // Dependencies
 const Pet = require('../models/pets')
+const Shelter = require('../models/shelters')
 
 // require Multer
 const multer = require('multer')
@@ -21,7 +22,7 @@ let storage = multer.diskStorage({
   // Set Destination
   // Note: You are responsible for creating the directory when providing destination as a function.
   //  When passing a string, multer will make sure that the directory is created for you.
-  destination: 'app/public/uploads',
+  destination: 'app/public/uploads', // TODO: Need to change this line
   // Set File Name
   filename: function (req, file, cb) {
     // HERE is where we can decide the name of the file
@@ -51,12 +52,18 @@ let upload = multer({ storage: storage })
  *
  */
 module.exports = function (app) {
-  // Get all examples
+  // Get all Pets
   app.get('/api/findAll', function (req, res) {
-    Pet.findAll()
-      .then(function (dbExamples) {
-        res.json(dbExamples)
-      })
+    Pet.findAll().then(function (dbExamples) {
+      res.json(dbExamples)
+    })
+  })
+
+  // Get all Shelters
+  app.get('/api/shelters', function (req, res) {
+    Shelter.findAll().then(function (dbExamples) {
+      res.json(dbExamples)
+    })
   })
 
   // Change code to find a specific ID
@@ -80,30 +87,42 @@ module.exports = function (app) {
     console.log('='.repeat(80))
 
     // Save animal info on database
-    Pet.create(req.body)
-      .then(function (dbExample) {
-        res.json(dbExample)
-      })
+    Pet.create(req.body).then(function (dbExample) {
+      res.json(dbExample)
+    })
     res.redirect('/addPet')
   })
   // Delete an example by id
   app.delete('/api/delete/:id', function (req, res) {
-    Pet.destroy(req.params)
-      .then(function (dbExample) {
-        res.json(dbExample)
-      })
+    Pet.destroy(req.params).then(function (dbExample) {
+      res.json(dbExample)
+    })
   })
   // PUT route for updating. The updated example will be available in req.body
   app.put('/api/examples/:id', function (req, res) {
-    Pet.update(req.params, req.body)
-      .then(results => {
-        console.log(`
+    Pet.update(req.params, req.body).then(results => {
+      console.log(`
       *****
       Example.update():
       ${results}`)
 
-        res.json(results)
-      })
+      res.json(results)
+    })
+  })
+
+  // Register Shelter
+  app.post('/api/register', function (req, res, next) {
+    // DEBUG
+    console.log('='.repeat(80))
+    console.log(req.body)
+    console.log('='.repeat(80))
+
+    // Save Sheter info on database 
+    //  FIXME: send something back to generate confirmation
+    Shelter.create(req.body).then(function (dbExample) {
+      res.json(dbExample)
+    })
+    res.redirect('/')
   })
 }
 

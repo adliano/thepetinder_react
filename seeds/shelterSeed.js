@@ -5,7 +5,7 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('shelter_tb').insert([
-        {shelterName:'abc', address:'rainbow',phone:'17', city:'ramon', state:'AL', zipCode:'98'}
+        {name:'abc', email:'abc@edf.com', password: 'xxxxxxxxxxx', address:'rainbow',phone:'17', city:'ramon', state:'AL', zipCode:'98'}
       ]);
     });
 };

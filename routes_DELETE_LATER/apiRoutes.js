@@ -54,8 +54,8 @@ module.exports = function (app) {
   // Get all examples
   app.get('/api/findAll', function (req, res) {
     Pet.findAll()
-      .then(function (dbExamples) {
-        res.json(dbExamples)
+      .then(function (dbPets) {
+        res.json(dbPets)
       })
   })
 

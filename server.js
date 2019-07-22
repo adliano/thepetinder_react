@@ -3,7 +3,7 @@ require('dotenv').config()
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
-const routes = require("./routes");
+// const routes = require("./routes");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -14,10 +14,10 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Add routes, both API and view
-app.use(routes);
+// app.use(routes);
 
 // Define API routes here
-// require('./app/routes/apiRoutes')(app)
+require('./app/routes/apiRoutes')(app)
 // require('./app/routes/htmlRoutes')(app)
 
 // Send every other request to the React app

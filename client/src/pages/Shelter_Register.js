@@ -11,25 +11,38 @@ import PetNavBar from '../components/PetNavBar'
 import PetinderLogo from '../components/PetinderLogo'
 import PetFooter from '../components/PetFooter'
 
+import API from '../utils/API'
+
 
 class ShelterRegister extends Component {
+  state = {
+
+  }
   /**
      * onButtonClick()
      * Event listener used for buttons
      */
     onButtonClick = (event) => {
-          
-      let _element = event.target
-      
-      if(_element.textContent === 'User'){
-          console.log('send user to user home page')
-          //Place logic here later
-      }
-      else{
-          console.log('send Shelter to shelter home page')
-          //Place logic here later
-      }
+       console.log('register the shelter');
+       
+       console.log(this.state)
+       
+
+       API.registerShelter(this.state)
+       .then(response => response.json())
+       .then(results => console.log(results))
   }
+  /**
+   * 
+   * 
+   */
+  onInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    },
+    () => console.log(this.state));
+  };
   /**
   *   
   * Render
@@ -45,25 +58,23 @@ class ShelterRegister extends Component {
         <Card.Header></Card.Header>
         <Card.Body> 
           <Form>
-            <Form.Group controlId="formGroupEmail">
-
-              <Form.Control className='my-2' size="lg" type="email" placeholder="Enter email" />
-              <Form.Control className='my-2' size="lg" type="password" placeholder="Password" />
-              <Form.Control className='my-2' size="lg" type="password" placeholder="Confirm Password" />
-
+              <Form.Control name='name' className='my-2' size="lg" type="text" placeholder="Name" onChange={this.onInputChange} />
+              <Form.Control name='email' className='my-2' size="lg" type="email" placeholder="Enter email" onChange={this.onInputChange} />
+              <Form.Control name='password' className='my-2' size="lg" type="password" placeholder="Password" onChange={this.onInputChange} autoComplete='password' />
+              <Form.Control name='passwordConfirm' className='my-2' size="lg" type="password" placeholder="Confirm Password" autoComplete='password' />
+              <Form.Control name='address' className='my-2' size="lg" type="text" placeholder="Address" onChange={this.onInputChange} />
               <Form.Row>
               <Col sm>
-                <Form.Control className='my-2' size="lg" type="text" placeholder="City" />
+                <Form.Control name='city' className='my-2' size="lg" type="text" placeholder="City" onChange={this.onInputChange} />
               </Col>
               <Col sm>
-              <Form.Control className='my-2' size="lg" type="text" placeholder="State" />
+              <Form.Control name='state' className='my-2' size="lg" type="text" placeholder="State" onChange={this.onInputChange} />
               </Col>
               <Col sm>
-                <Form.Control className='my-2' size="lg" type="number" placeholder="Zip Code" />
+                <Form.Control name='zipCode' className='my-2' size="lg" type="number" placeholder="Zip Code" onChange={this.onInputChange} />
               </Col>
               </Form.Row>
-              <Form.Control className='my-2' size="lg" type="number" placeholder="Phone Number" />                
-              </Form.Group>
+              <Form.Control name='phone' className='my-2' size="lg" type="number" placeholder="Phone Number" onChange={this.onInputChange} />
             </Form>    
               {/* CENTER BUTTON */}
               <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}>Register</Button>
