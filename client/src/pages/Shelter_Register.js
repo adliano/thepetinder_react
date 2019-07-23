@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Card from 'react-bootstrap/Card'
 
+import { Assignment as AssignmentIcon } from '@material-ui/icons/'
+
 // Use Application Components
 import PetNavBar from '../components/PetNavBar'
 import PetinderLogo from '../components/PetinderLogo'
@@ -35,10 +37,13 @@ class ShelterRegister extends Component {
    */
   onInputChange = event => {
 
+    const { name, value } = event.target
+
     if(event.target.type === 'password'){
       // FIXME: check for password and used md5 in here
+      console.log(value)
+      
     } else {
-      const { name, value } = event.target
       this.setState({
         [name]: value
       })
@@ -56,7 +61,9 @@ class ShelterRegister extends Component {
         <PetinderLogo />
         <Container className='my-5 p-5 text-center'>
           <Card className='text-center'>
-            <Card.Header />
+            <Card.Header className='text-left'>
+              <AssignmentIcon/> Register
+            </Card.Header>
             <Card.Body>
               <Form>
                 <Form.Control
