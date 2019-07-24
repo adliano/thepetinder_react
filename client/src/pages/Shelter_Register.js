@@ -33,21 +33,14 @@ class ShelterRegister extends Component {
    * On Change listener used for inputs
    * TODO: Implement password confirmation check
    *
-     // if(name === 'password' || name === 'passwordConfirm'){        
    */
   onInputChange = event => {
 
     const { name, value } = event.target
 
-    if(event.target.type === 'password'){
-      // FIXME: check for password and used md5 in here
-      console.log(value)
-      
-    } else {
-      this.setState({
-        [name]: value
-      })
-    }
+    this.setState({
+      [name]: value
+    })
   }
   /**
    *
@@ -96,7 +89,7 @@ class ShelterRegister extends Component {
                   className='my-2'
                   size='lg'
                   type='password'
-                  onChange={this.onInputChange}
+                  // onChange={this.onInputChange}
                   placeholder='Confirm Password'
                   autoComplete='password'
                 />
