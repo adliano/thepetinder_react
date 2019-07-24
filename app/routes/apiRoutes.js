@@ -130,11 +130,11 @@ module.exports = function (app) {
       _error = _error.replace(/\'/g, '')
       // Check for unique name error
       if(_error === 'shelter_tb_name_unique'){
-        errObject = {error: 'Shelter Name Has Been Taken', ...err}
+        errObject = {error: `${req.body.name} has Been Taken`, ...err}
       }
       // Check for unique email error
       else if(_error === 'shelter_tb_email_unique'){
-        errObject = {error: 'Email has been Taken', ...err}
+        errObject = {error: `${req.body.email} has Been Taken`, ...err}
       }
       // In case of another error
       else{

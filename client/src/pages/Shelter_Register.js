@@ -10,33 +10,52 @@ import Card from 'react-bootstrap/Card'
 import PetNavBar from '../components/PetNavBar'
 import PetinderLogo from '../components/PetinderLogo'
 import PetFooter from '../components/PetFooter'
-import PetAlert from '../components/PetAlert'
+import Alert from 'react-bootstrap/Alert'
 
 import API from '../utils/API'
 
 class ShelterRegister extends Component {
-  state = {}
+  state = {
+    alert: {
+      visible: false,
+      header: '',
+      msg: '',
+      color: ''
+    }
+  }
   /**
    * onButtonClick()
    * Event listener used for buttons
    */
   onButtonClick = event => {
-    console.log('register the shelter')
-
-    // console.log(this.state)
-
-    API.registerShelter(this.state)
+    const { alert, ...shelterData } = this.state
+    // Send Request to server
+    API.registerShelter(shelterData)
       .then(response => response.json())
       .then(results => {
-        if(results.error){
-          console.log(results.error)
-          console.log('create alert in here')
-          // return(<Alert></Alert>)
+        // Check for error
+        if (results.error) {
+          // Error alert
+          this.setState({
+            alert: {
+              visible: true,
+              header: results.error,
+              msg: 'Please Try Again',
+              color: 'danger'
+            }
+          })
         }
-        else(
-          console.log('alert and send back to splash page')
-          
-        )
+        // If no error display welcome message
+        else {
+          this.setState({
+            alert: {
+              visible: true,
+              header: 'Welcome!',
+              msg: `Registration Completed for ${this.state.name}`,
+              color: 'success'
+            }
+          })
+        }
       })
       .catch(err => console.log(err))
   }
@@ -46,11 +65,27 @@ class ShelterRegister extends Component {
    */
   onInputChange = event => {
     const { name, value } = event.target
-    this.setState(
-      {
-        [name]: value
-      }
-      // ,() => console.log(this.state)
+    this.setState({ [name]: value })
+  }
+  /**
+   * renderAlert()
+   */
+  renderAlert = () => {
+    const { visible, header, msg, color } = this.state.alert
+
+    if (!visible) {
+      return null
+    }
+    return (
+      <Alert
+        className='text-center'
+        variant={color}
+        onClose={() => this.setState({ alert: { visible: false } })}
+        dismissible
+      >
+        <Alert.Heading>{header}</Alert.Heading>
+        <p>{msg}</p>
+      </Alert>
     )
   }
   /**
@@ -62,10 +97,7 @@ class ShelterRegister extends Component {
     return (
       <>
         <PetNavBar />
-        {/* // FIXME: */}
-      <PetAlert bg='danger' header='OMG!'>
-        Ops!
-      </PetAlert>
+        {this.renderAlert()}
         <PetinderLogo />
         <Container className='my-5 p-5 text-center'>
           <Card className='text-center'>
