@@ -120,6 +120,7 @@ module.exports = function (app) {
       res.json(dbExample)
     })
     .catch(err => {
+      console.log(chalk.bgRed(err))
       let errObject = {}
       // Get sqlMessage error to send error back from API
       // We have 2 unique col in MySQL and we will return 
@@ -140,7 +141,6 @@ module.exports = function (app) {
         errObject = {error: 'Unable to Complete Registration', ...err}
       }
       console.log(chalk.bgRed(_error))
-      
       res.json(errObject)
     })
   })

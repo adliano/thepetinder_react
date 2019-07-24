@@ -10,6 +10,7 @@ import Card from 'react-bootstrap/Card'
 import PetNavBar from '../components/PetNavBar'
 import PetinderLogo from '../components/PetinderLogo'
 import PetFooter from '../components/PetFooter'
+import PetAlert from '../components/PetAlert'
 
 import API from '../utils/API'
 
@@ -26,7 +27,18 @@ class ShelterRegister extends Component {
 
     API.registerShelter(this.state)
       .then(response => response.json())
-      .then(results => console.log(results))
+      .then(results => {
+        if(results.error){
+          console.log(results.error)
+          console.log('create alert in here')
+          // return(<Alert></Alert>)
+        }
+        else(
+          console.log('alert and send back to splash page')
+          
+        )
+      })
+      .catch(err => console.log(err))
   }
   /**
    *
@@ -50,6 +62,10 @@ class ShelterRegister extends Component {
     return (
       <>
         <PetNavBar />
+        {/* // FIXME: */}
+      <PetAlert bg='danger' header='OMG!'>
+        Ops!
+      </PetAlert>
         <PetinderLogo />
         <Container className='my-5 p-5 text-center'>
           <Card className='text-center'>
