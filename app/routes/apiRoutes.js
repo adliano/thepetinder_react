@@ -7,6 +7,7 @@ const Shelter = require('../models/shelters')
 
 // require Multer
 const multer = require('multer')
+const chalk = require('chalk');
 
 // TODO: remove if not in use
 const path = require('path')
@@ -112,17 +113,36 @@ module.exports = function (app) {
 
   // Register Shelter
   app.post('/api/register', function (req, res, next) {
-    // DEBUG
-    console.log('='.repeat(80))
-    console.log(req.body)
-    console.log('='.repeat(80))
-
+    
     // Save Sheter info on database 
-    //  FIXME: send something back to generate confirmation
     Shelter.create(req.body).then(function (dbExample) {
+      
       res.json(dbExample)
     })
-    res.redirect('/')
+    .catch(err => {
+      let errObject = {}
+      // Get sqlMessage error to send error back from API
+      // We have 2 unique col in MySQL and we will return 
+      // witch one its the duplicated
+      let sqlMsg =  err.sqlMessage.split(' ')
+      let _error = sqlMsg[sqlMsg.length - 1]
+      _error = _error.replace(/\'/g, '')
+      // Check for unique name error
+      if(_error === 'shelter_tb_name_unique'){
+        errObject = {error: 'Shelter Name Has Been Taken', ...err}
+      }
+      // Check for unique email error
+      else if(_error === 'shelter_tb_email_unique'){
+        errObject = {error: 'Email has been Taken', ...err}
+      }
+      // In case of another error
+      else{
+        errObject = {error: 'Unable to Complete Registration', ...err}
+      }
+      console.log(chalk.bgRed(_error))
+      
+      res.json(errObject)
+    })
   })
 }
 
