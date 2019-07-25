@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
-//////// Use Bootstrap Components //////
+/// ///// Use Bootstrap Components //////
 import { Container, Col, Button, Form, Card } from 'react-bootstrap'
-//////// MD5 //////
+/// /// Material UI Icons //////
+import { Assignment as AssignmentIcon } from '@material-ui/icons/'
+/// ///// MD5 //////
 import md5 from 'md5'
-/////// Use Application Components /////
+/// //// Use Application Components /////
 import PetNavBar from '../components/PetNavBar'
 import PetinderLogo from '../components/PetinderLogo'
 import PetFooter from '../components/PetFooter'
 import Alert from 'react-bootstrap/Alert'
-/////// API Utilities ///////
+/// //// API Utilities ///////
 import API from '../utils/API'
 
 class ShelterRegister extends Component {
@@ -109,7 +111,9 @@ class ShelterRegister extends Component {
         <PetinderLogo />
         <Container className='my-5 p-5 text-center'>
           <Card className='text-center'>
-            <Card.Header />
+            <Card.Header className='text-left'>
+              <AssignmentIcon /> Register
+            </Card.Header>
             <Card.Body>
               <Form>
                 <Form.Control
