@@ -78,9 +78,8 @@ class ShelterRegister extends Component {
    */
   onInputChange = event => {
     const { name, value } = event.target
-    // Hashing the password
-    if (event.target.type === 'password') {
-      // TODO: Compare passwords here 👇🏽⬇️🔽
+    // Hashing the password using MD5
+    if (event.target.name === 'password') {
       this.setState({ [name]: md5(value) })
     } else {
       this.setState({ [name]: value })
@@ -172,14 +171,14 @@ class ShelterRegister extends Component {
                   </InputGroup.Append>
                 </InputGroup>
 
-                <Form.Control
+                {/* <Form.Control
                   name='passwordConfirm'
                   className='my-2'
                   size='lg'
                   type='password'
                   placeholder='Confirm Password'
                   autoComplete='password'
-                />
+                /> */}
                 <Form.Control
                   name='address'
                   className='my-2'
@@ -229,7 +228,6 @@ class ShelterRegister extends Component {
                   onChange={this.onInputChange}
                 />
               </Form>
-              {/* CENTER BUTTON */}
               <Button
                 className='w-50 m-2'
                 variant='primary'
