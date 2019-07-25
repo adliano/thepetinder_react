@@ -1,8 +1,20 @@
 import React, { Component } from 'react'
 /// ///// Use Bootstrap Components //////
-import { Container, Col, Button, Form, Card } from 'react-bootstrap'
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+  Form,
+  Card,
+  InputGroup
+} from 'react-bootstrap'
 /// /// Material UI Icons //////
-import { Assignment as AssignmentIcon } from '@material-ui/icons/'
+import {
+  Assignment as AssignmentIcon,
+  Visibility,
+  VisibilityOff
+} from '@material-ui/icons/'
 /// ///// MD5 //////
 import md5 from 'md5'
 /// //// Use Application Components /////
@@ -15,6 +27,7 @@ import API from '../utils/API'
 
 class ShelterRegister extends Component {
   state = {
+    viewPassword: false,
     alert: {
       visible: false,
       header: '',
@@ -27,7 +40,7 @@ class ShelterRegister extends Component {
    * Event listener used for buttons
    */
   onButtonClick = event => {
-    const { alert, ...shelterData } = this.state
+    const { viewPassword, alert, ...shelterData } = this.state
     // Send Request to server
     API.registerShelter(shelterData)
       .then(response => response.json())
@@ -76,6 +89,13 @@ class ShelterRegister extends Component {
     } else {
       this.setState({ [name]: value })
     }
+  }
+  /**
+   * togglePasswordView()
+   * Used to change state of the view password input
+   */
+  togglePasswordView = () => {
+    this.setState({ viewPassword: !this.state.viewPassword })
   }
   /**
    * renderAlert()
@@ -132,15 +152,30 @@ class ShelterRegister extends Component {
                   placeholder='Enter email'
                   onChange={this.onInputChange}
                 />
-                <Form.Control
-                  name='password'
-                  className='my-2'
-                  size='lg'
-                  type='password'
-                  placeholder='Password'
-                  onChange={this.onInputChange}
-                  autoComplete='password'
-                />
+                <InputGroup className='my-2'>
+                  <Form.Control
+                    name='password'
+                    size='lg'
+                    type={ this.state.viewPassword ? 'text' : 'password' }
+                    placeholder='Password'
+                    onChange={this.onInputChange}
+                    autoComplete='password'
+                  />
+                  <InputGroup.Append>
+                    <Button
+                      onClick={() => this.togglePasswordView()}
+                      variant='outline-secondary'
+                      aria-label='view password'
+                    >
+                      {this.state.viewPassword ? (
+                        <Visibility />
+                      ) : (
+                        <VisibilityOff />
+                      )}
+                    </Button>
+                  </InputGroup.Append>
+                </InputGroup>
+
                 <Form.Control
                   name='passwordConfirm'
                   className='my-2'
