@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 /// ///// Use Bootstrap Components //////
 import {
   Container,
-  Row,
   Col,
   Button,
   Form,
@@ -67,9 +66,7 @@ class ShelterRegister extends Component {
                 msg: `Registration Completed for ${this.state.name}`,
                 color: 'success'
               }
-            },
-            () => console.log(this.state)
-          ) /// ////////////// TODO:
+            }) 
         }
       })
       .catch(err => console.log(err))
@@ -78,7 +75,6 @@ class ShelterRegister extends Component {
    * onInputChange()
    * This will handle onChange event from
    * inputs
-   *
    */
   onInputChange = event => {
     const { name, value } = event.target
@@ -156,7 +152,7 @@ class ShelterRegister extends Component {
                   <Form.Control
                     name='password'
                     size='lg'
-                    type={ this.state.viewPassword ? 'text' : 'password' }
+                    type={this.state.viewPassword ? 'text' : 'password'}
                     placeholder='Password'
                     onChange={this.onInputChange}
                     autoComplete='password'
