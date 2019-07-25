@@ -1,16 +1,14 @@
-// ********************** 🌏 GLOBALS 🌍 ********************** \\
-let filePath = ''
-
-// Dependencies
+//////// Dependencies /////////
 const Pet = require('../models/pets')
 const Shelter = require('../models/shelters')
-
-// require Multer
+/////////// Multer /////////
 const multer = require('multer')
+/////////// Chalk /////////
 const chalk = require('chalk');
-
-// TODO: remove if not in use
+/////////// Path /////////
 const path = require('path')
+///// 🌏 GLOBALS Variables 🌍 /////
+let filePath = ''
 
 /*
  ** Set Multer storage **
@@ -79,7 +77,7 @@ module.exports = function (app) {
   })
 
   // Create a new example ////////// ******* changed ******** \\\\\\
-  app.post('/api/create', upload.single('imgPath'), function (req, res, next) {
+  app.post('/api/addPet', upload.single('imgPath'), function (req, res, next) {
     // Set img URL
     req.body.imgPath = `http://${req.get('host')}/uploads/${req.file.filename}`
 
@@ -116,7 +114,6 @@ module.exports = function (app) {
     
     // Save Sheter info on database 
     Shelter.create(req.body).then(function (dbExample) {
-      
       res.json(dbExample)
     })
     .catch(err => {
