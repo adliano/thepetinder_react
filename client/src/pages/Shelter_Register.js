@@ -5,6 +5,8 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Card from 'react-bootstrap/Card'
+// MD5
+import md5 from 'md5'
 
 // Use Application Components
 import PetNavBar from '../components/PetNavBar'
@@ -60,12 +62,20 @@ class ShelterRegister extends Component {
       .catch(err => console.log(err))
   }
   /**
-   *
+   * onInputChange()
+   * This will handle onChange event from
+   * inputs
    *
    */
   onInputChange = event => {
     const { name, value } = event.target
-    this.setState({ [name]: value })
+    // Hashing the password
+    if(event.target.type === 'password'){
+      // TODO: Compare passwords here 👇🏽⬇️🔽
+      this.setState({ [name]: md5(value) })      
+    } else {
+      this.setState({ [name]: value })
+    }
   }
   /**
    * renderAlert()
