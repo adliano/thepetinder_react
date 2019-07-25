@@ -1,19 +1,14 @@
 import React, { Component } from 'react'
-// Use Bootstrap Components
-import Container from 'react-bootstrap/Container'
-import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import Card from 'react-bootstrap/Card'
-// MD5
+//////// Use Bootstrap Components //////
+import { Container, Col, Button, Form, Card } from 'react-bootstrap'
+//////// MD5 //////
 import md5 from 'md5'
-
-// Use Application Components
+/////// Use Application Components /////
 import PetNavBar from '../components/PetNavBar'
 import PetinderLogo from '../components/PetinderLogo'
 import PetFooter from '../components/PetFooter'
 import Alert from 'react-bootstrap/Alert'
-
+/////// API Utilities ///////
 import API from '../utils/API'
 
 class ShelterRegister extends Component {
@@ -44,19 +39,22 @@ class ShelterRegister extends Component {
               header: results.error,
               msg: 'Please Try Again',
               color: 'danger'
-            },
+            }
           })
         }
         // If no error display welcome message
         else {
-          this.setState({
-            alert: {
-              visible: true,
-              header: 'Welcome!',
-              msg: `Registration Completed for ${this.state.name}`,
-              color: 'success'
-            }
-          }, () => console.log(this.state)) ///////////////// TODO:
+          this.setState(
+            {
+              alert: {
+                visible: true,
+                header: 'Welcome!',
+                msg: `Registration Completed for ${this.state.name}`,
+                color: 'success'
+              }
+            },
+            () => console.log(this.state)
+          ) /// ////////////// TODO:
         }
       })
       .catch(err => console.log(err))
@@ -70,9 +68,9 @@ class ShelterRegister extends Component {
   onInputChange = event => {
     const { name, value } = event.target
     // Hashing the password
-    if(event.target.type === 'password'){
+    if (event.target.type === 'password') {
       // TODO: Compare passwords here 👇🏽⬇️🔽
-      this.setState({ [name]: md5(value) })      
+      this.setState({ [name]: md5(value) })
     } else {
       this.setState({ [name]: value })
     }
