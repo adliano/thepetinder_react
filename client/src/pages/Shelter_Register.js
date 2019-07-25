@@ -44,7 +44,7 @@ class ShelterRegister extends Component {
               header: results.error,
               msg: 'Please Try Again',
               color: 'danger'
-            }
+            },
           })
         }
         // If no error display welcome message
@@ -56,7 +56,7 @@ class ShelterRegister extends Component {
               msg: `Registration Completed for ${this.state.name}`,
               color: 'success'
             }
-          })
+          }, () => console.log(this.state)) ///////////////// TODO:
         }
       })
       .catch(err => console.log(err))
