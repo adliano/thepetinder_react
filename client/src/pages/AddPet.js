@@ -26,14 +26,7 @@ class AddPet extends Component {
    */
   onButtonClick = event => {
     let _element = event.target
-
-    if (_element.textContent === 'User') {
-      console.log('send user to user home page')
-      // Place logic here later
-    } else {
-      console.log('send Shelter to shelter home page')
-      // Place logic here later
-    }
+    
   }
   /**
    * 
@@ -41,7 +34,7 @@ class AddPet extends Component {
    */
   onImageSelected = event => {
     console.log(event.target.value);
-    this.setState({image: URL.createObjectURL(event.target.files[0])})
+    this.setState({imagePreview: URL.createObjectURL(event.target.files[0])})
   }
   /**
    * 
@@ -71,7 +64,9 @@ class AddPet extends Component {
               <AssignmentIcon /> Add Pet
             </Card.Header>
             <Card.Body>
-              <Form>
+              {/*<Form>*/}
+              <form enctype="multipart/form-data" action="/api/addPet" method="POST">
+
                 {/* Get Animal's name */}
                 <Form.Group controlId='exampleForm.ControlInput1'>
                   <Form.Control
@@ -109,27 +104,28 @@ class AddPet extends Component {
                   <Form.Control
                     className='mb-3'
                     type='file'
-                    name='petPicture'
+                    name="imgPath"
                     accept='image/*'
+                    
                     // onChange={this.onInputChange}
                     onChange={this.onImageSelected}
                   />
                   {/* Image Preview */}
-                  <Image src={this.state.image} width={200} />
+                  <Image src={this.state.imagePreview} width={200} />
                   <br/>
                   {/* Upload Button */}
                   <Button
-                    type='file'
-                    value='upload'
-                    name='imgPath'
+                    type='submit'
                     className='px-5 mt-3'
                     variant='primary'
-                    onClick={this.onButtonClick}
+                    
+                    // onClick={this.onButtonClick}
                   >
                     <CloudUploadIcon className='mx-2' /> Upload
                   </Button>
                 </Form.Group>
-              </Form>
+    {/*</Form>*/}
+    </form>
             </Card.Body>
           </Card>
         </Container>
