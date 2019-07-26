@@ -10,20 +10,20 @@ import Button from 'react-bootstrap/Button'
 function PetFooter () {
   return (
     <Navbar bg='light' variant='dark' fixed='bottom'>
-        <Button
-          variant='outline-secondary'
-          className='mx-auto'
-          href='https://github.com/adliano/thepetinder_react'
-          target='_blank'
-        >
-          <img
-            className='d-inline-block'
-            alt=''
-            src={process.env.PUBLIC_URL + '/assets/images/github.svg'}
-            width='30'
-            height='30'
-          />
-        </Button>
+      <Button
+        variant='outline-secondary'
+        className='mx-auto'
+        href='https://github.com/adliano/thepetinder_react'
+        target='_blank'
+      >
+        <img
+          className='d-inline-block'
+          alt=''
+          src={process.env.PUBLIC_URL + '/assets/images/github.svg'}
+          width='30'
+          height='30'
+        />
+      </Button>
     </Navbar>
   )
 }
