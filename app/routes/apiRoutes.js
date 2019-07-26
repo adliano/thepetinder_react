@@ -21,7 +21,7 @@ let storage = multer.diskStorage({
   // Set Destination
   // Note: You are responsible for creating the directory when providing destination as a function.
   //  When passing a string, multer will make sure that the directory is created for you.
-  destination: 'app/public/uploads', // TODO: Need to change this line
+  destination: 'client/public/uploads', // TODO: Need to change this line
   // Set File Name
   filename: function (req, file, cb) {
     // HERE is where we can decide the name of the file
