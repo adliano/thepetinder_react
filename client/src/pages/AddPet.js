@@ -21,14 +21,6 @@ class AddPet extends Component {
     image: null,
   }
   /**
-   * onButtonClick()
-   * Event listener used for buttons
-   */
-  onButtonClick = event => {
-    let _element = event.target
-    
-  }
-  /**
    * 
    * 
    */
@@ -65,7 +57,7 @@ class AddPet extends Component {
             </Card.Header>
             <Card.Body>
               {/*<Form>*/}
-              <form enctype="multipart/form-data" action="/api/addPet" method="POST">
+              <form encType="multipart/form-data" action="/api/addPet" method="POST">
 
                 {/* Get Animal's name */}
                 <Form.Group controlId='exampleForm.ControlInput1'>
