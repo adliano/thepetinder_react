@@ -65,8 +65,17 @@ class ShelterRegister extends Component {
                 header: 'Welcome!',
                 msg: `Registration Completed for ${this.state.name}`,
                 color: 'success'
-              }
+              },  
+                name: "",
+                email: "",
+                password: "",
+                address: "",
+                city: "",
+                state: "",
+                zipCode: "",
+                phone: ""
             }) 
+            console.log(this.state)
         }
       })
       .catch(err => console.log(err))
@@ -79,11 +88,12 @@ class ShelterRegister extends Component {
   onInputChange = event => {
     const { name, value } = event.target
     // Hashing the password using MD5
-    if (event.target.name === 'password') {
-      this.setState({ [name]: md5(value) })
-    } else {
+    // if (event.target.name === 'password') {
+    //   this.setState({ [name]: md5(value) })
+    // } else {
       this.setState({ [name]: value })
-    }
+    // }
+    console.log(this.state)
   }
   /**
    * togglePasswordView()
@@ -138,6 +148,7 @@ class ShelterRegister extends Component {
                   type='text'
                   placeholder='Name'
                   onChange={this.onInputChange}
+                  value={this.state.name}
                 />
                 <Form.Control
                   name='email'
@@ -146,6 +157,7 @@ class ShelterRegister extends Component {
                   type='email'
                   placeholder='Enter email'
                   onChange={this.onInputChange}
+                  value={this.state.email}
                 />
                 <InputGroup className='my-2'>
                   <Form.Control
@@ -155,6 +167,7 @@ class ShelterRegister extends Component {
                     placeholder='Password'
                     onChange={this.onInputChange}
                     autoComplete='password'
+                    value={this.state.password}
                   />
                   <InputGroup.Append>
                     <Button
@@ -186,6 +199,7 @@ class ShelterRegister extends Component {
                   type='text'
                   placeholder='Address'
                   onChange={this.onInputChange}
+                  value={this.state.address}
                 />
                 <Form.Row>
                   <Col sm>
@@ -196,6 +210,7 @@ class ShelterRegister extends Component {
                       type='text'
                       placeholder='City'
                       onChange={this.onInputChange}
+                      value={this.state.city}
                     />
                   </Col>
                   <Col sm>
@@ -206,6 +221,7 @@ class ShelterRegister extends Component {
                       type='text'
                       placeholder='State'
                       onChange={this.onInputChange}
+                      value={this.state.state}
                     />
                   </Col>
                   <Col sm>
@@ -216,6 +232,7 @@ class ShelterRegister extends Component {
                       type='number'
                       placeholder='Zip Code'
                       onChange={this.onInputChange}
+                      value={this.state.zipCode}
                     />
                   </Col>
                 </Form.Row>
@@ -226,6 +243,7 @@ class ShelterRegister extends Component {
                   type='number'
                   placeholder='Phone Number'
                   onChange={this.onInputChange}
+                  value={this.state.phone}
                 />
               </Form>
               <Button
