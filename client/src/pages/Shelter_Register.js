@@ -40,7 +40,11 @@ class ShelterRegister extends Component {
    */
   onButtonClick = event => {
     const { viewPassword, alert, ...shelterData } = this.state
+    const { password, ...shelter } = shelterData
     // Send Request to server
+    let hasHPassword = md5(password)
+    shelterData.password = hasHPassword
+
     API.registerShelter(shelterData)
       .then(response => response.json())
       .then(results => {
@@ -87,12 +91,8 @@ class ShelterRegister extends Component {
    */
   onInputChange = event => {
     const { name, value } = event.target
-    // Hashing the password using MD5
-    // if (event.target.name === 'password') {
-    //   this.setState({ [name]: md5(value) })
-    // } else {
-      this.setState({ [name]: value })
-    // }
+    this.setState({ [name]: value })
+
     console.log(this.state)
   }
   /**
