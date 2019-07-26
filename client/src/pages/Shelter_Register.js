@@ -1,21 +1,32 @@
 import React, { Component } from 'react'
-// Use Bootstrap Components
-import Container from 'react-bootstrap/Container'
-import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import Card from 'react-bootstrap/Card'
-
-// Use Application Components
+/// ///// Use Bootstrap Components //////
+import {
+  Container,
+  Col,
+  Button,
+  Form,
+  Card,
+  InputGroup
+} from 'react-bootstrap'
+/// /// Material UI Icons //////
+import {
+  Assignment as AssignmentIcon,
+  Visibility,
+  VisibilityOff
+} from '@material-ui/icons/'
+/// ///// MD5 //////
+import md5 from 'md5'
+/// //// Use Application Components /////
 import PetNavBar from '../components/PetNavBar'
 import PetinderLogo from '../components/PetinderLogo'
 import PetFooter from '../components/PetFooter'
 import Alert from 'react-bootstrap/Alert'
-
+/// //// API Utilities ///////
 import API from '../utils/API'
 
 class ShelterRegister extends Component {
   state = {
+    viewPassword: false,
     alert: {
       visible: false,
       header: '',
@@ -28,7 +39,7 @@ class ShelterRegister extends Component {
    * Event listener used for buttons
    */
   onButtonClick = event => {
-    const { alert, ...shelterData } = this.state
+    const { viewPassword, alert, ...shelterData } = this.state
     // Send Request to server
     API.registerShelter(shelterData)
       .then(response => response.json())
@@ -47,25 +58,39 @@ class ShelterRegister extends Component {
         }
         // If no error display welcome message
         else {
-          this.setState({
-            alert: {
-              visible: true,
-              header: 'Welcome!',
-              msg: `Registration Completed for ${this.state.name}`,
-              color: 'success'
-            }
-          })
+          this.setState(
+            {
+              alert: {
+                visible: true,
+                header: 'Welcome!',
+                msg: `Registration Completed for ${this.state.name}`,
+                color: 'success'
+              }
+            }) 
         }
       })
       .catch(err => console.log(err))
   }
   /**
-   *
-   *
+   * onInputChange()
+   * This will handle onChange event from
+   * inputs
    */
   onInputChange = event => {
     const { name, value } = event.target
-    this.setState({ [name]: value })
+    // Hashing the password using MD5
+    if (event.target.name === 'password') {
+      this.setState({ [name]: md5(value) })
+    } else {
+      this.setState({ [name]: value })
+    }
+  }
+  /**
+   * togglePasswordView()
+   * Used to change state of the view password input
+   */
+  togglePasswordView = () => {
+    this.setState({ viewPassword: !this.state.viewPassword })
   }
   /**
    * renderAlert()
@@ -101,7 +126,9 @@ class ShelterRegister extends Component {
         <PetinderLogo />
         <Container className='my-5 p-5 text-center'>
           <Card className='text-center'>
-            <Card.Header />
+            <Card.Header className='text-left'>
+              <AssignmentIcon /> Register
+            </Card.Header>
             <Card.Body>
               <Form>
                 <Form.Control
@@ -120,23 +147,38 @@ class ShelterRegister extends Component {
                   placeholder='Enter email'
                   onChange={this.onInputChange}
                 />
-                <Form.Control
-                  name='password'
-                  className='my-2'
-                  size='lg'
-                  type='password'
-                  placeholder='Password'
-                  onChange={this.onInputChange}
-                  autoComplete='password'
-                />
-                <Form.Control
+                <InputGroup className='my-2'>
+                  <Form.Control
+                    name='password'
+                    size='lg'
+                    type={this.state.viewPassword ? 'text' : 'password'}
+                    placeholder='Password'
+                    onChange={this.onInputChange}
+                    autoComplete='password'
+                  />
+                  <InputGroup.Append>
+                    <Button
+                      onClick={() => this.togglePasswordView()}
+                      variant='outline-secondary'
+                      aria-label='view password'
+                    >
+                      {this.state.viewPassword ? (
+                        <Visibility />
+                      ) : (
+                        <VisibilityOff />
+                      )}
+                    </Button>
+                  </InputGroup.Append>
+                </InputGroup>
+
+                {/* <Form.Control
                   name='passwordConfirm'
                   className='my-2'
                   size='lg'
                   type='password'
                   placeholder='Confirm Password'
                   autoComplete='password'
-                />
+                /> */}
                 <Form.Control
                   name='address'
                   className='my-2'
@@ -186,7 +228,6 @@ class ShelterRegister extends Component {
                   onChange={this.onInputChange}
                 />
               </Form>
-              {/* CENTER BUTTON */}
               <Button
                 className='w-50 m-2'
                 variant='primary'
