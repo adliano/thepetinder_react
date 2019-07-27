@@ -21,13 +21,13 @@ let storage = multer.diskStorage({
   // Set Destination
   // Note: You are responsible for creating the directory when providing destination as a function.
   //  When passing a string, multer will make sure that the directory is created for you.
-  destination: 'client/public/uploads', // TODO: Need to change this line
+  destination: 'client/public/uploads', 
   // Set File Name
   filename: function (req, file, cb) {
     // HERE is where we can decide the name of the file
     // We will name as thepetinder + current time im miliseconds + minetype of original file
     // filePath = `thepetinder${Date.now()}.${file.mimetype.split('/')[1]}`
-    filePath = `thepetinder${Date.now()}.${path.extname(file.originalname)}`
+    filePath = `thepetinder${Date.now()}${path.extname(file.originalname)}`
 
     cb(null, filePath)
 
@@ -87,7 +87,7 @@ module.exports = function (app) {
 
     // Save animal info on database
     Pet.create(req.body).then(function (dbExample) {
-      res.json(dbExample)
+      // res.json(dbExample)
     })
     res.redirect('/addPet')
   })

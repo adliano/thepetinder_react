@@ -13,7 +13,7 @@ exports.up = function (knex, Promise) {
   }).then(function(){
       return knex.schema.createTable('pets_tb', table => {
         table.increments('id');
-        table.string('petName');
+        table.string('name');
         table.string('type');
         table.string('attitude').notNullable();
         table.boolean('isAdopted').defaultTo(false);

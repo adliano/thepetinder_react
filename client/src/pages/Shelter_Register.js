@@ -40,7 +40,7 @@ class ShelterRegister extends Component {
    */
   onButtonClick = event => {
     const { viewPassword, alert, ...shelterData } = this.state
-    const { password, ...shelter } = shelterData
+    const { password } = shelterData
     // Send Request to server
     let hasHPassword = md5(password)
     shelterData.password = hasHPassword
