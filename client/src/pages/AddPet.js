@@ -77,7 +77,7 @@ class AddPet extends Component {
                     onChange={this.onInputChange}
                   />
                   {/* Get Animal's type */}
-                  <Form.Control className='my-2' as='select' onChange={this.onInputChange}>
+                  <Form.Control name='type' className='my-2' as='select' onChange={this.onInputChange}>
                     <option>Dog</option>
                     <option>Cat</option>
                     <option>Fish</option>
@@ -85,7 +85,7 @@ class AddPet extends Component {
                     <option>Horse</option>
                   </Form.Control>
                   {/* Get Animal's Attitude */}
-                  <Form.Control className='my-2' as='select' onChange={this.onInputChange}>
+                  <Form.Control name='attitude' className='my-2' as='select' onChange={this.onInputChange}>
                     <option>Frisky</option>
                     <option>Shy</option>
                     <option>Loud</option>

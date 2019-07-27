@@ -5,11 +5,11 @@ exports.seed = function (knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('pets_tb').insert([
-        { petName: 'abc', type: 'abd', attitude: 'abd', isAdopted: true, age: 11, imgPath: 'dkdkdkd' },
-        { petName: 'ddd', type: 'abd', attitude: 'abd', isAdopted: true, age: 11, imgPath: 'dkdkdkd' },
-        { petName: 'ccc', type: 'abd', attitude: 'abd', age: 11, imgPath: 'dkdkdkd' },
-        { petName: 'ggg', type: 'abd', attitude: 'abd', isAdopted: true, age: 11, imgPath: 'dkdkdkd' },
-        { petName: 'fff', type: 'abd', attitude: 'abd', age: 11, imgPath: 'dkdkdkd' }
+        { name: 'abc', type: 'abd', attitude: 'abd', isAdopted: true, age: 11, imgPath: 'dkdkdkd' },
+        { name: 'ddd', type: 'abd', attitude: 'abd', isAdopted: true, age: 11, imgPath: 'dkdkdkd' },
+        { name: 'ccc', type: 'abd', attitude: 'abd', age: 11, imgPath: 'dkdkdkd' },
+        { name: 'ggg', type: 'abd', attitude: 'abd', isAdopted: true, age: 11, imgPath: 'dkdkdkd' },
+        { name: 'fff', type: 'abd', attitude: 'abd', age: 11, imgPath: 'dkdkdkd' }
       ])
     })
 }

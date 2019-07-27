@@ -87,7 +87,7 @@ module.exports = function (app) {
 
     // Save animal info on database
     Pet.create(req.body).then(function (dbExample) {
-      res.json(dbExample)
+      // res.json(dbExample)
     })
     res.redirect('/addPet')
   })
