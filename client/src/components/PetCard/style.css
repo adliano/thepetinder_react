@@ -2,3 +2,9 @@
     max-width: 250px;
     max-height: 250px;
 }
+.cardDimensions{
+    max-width: 275px;
+    max-height: 550px;
+    float: left;
+    margin-top: 10px;
+}
