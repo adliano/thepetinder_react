@@ -1,15 +1,14 @@
-// ********************** 🌏 GLOBALS 🌍 ********************** \\
-let filePath = ''
-
-// Dependencies
+//////// Dependencies /////////
 const Pet = require('../models/pets')
 const Shelter = require('../models/shelters')
-
-// require Multer
+/////////// Multer /////////
 const multer = require('multer')
-
-// TODO: remove if not in use
+/////////// Chalk /////////
+const chalk = require('chalk');
+/////////// Path /////////
 const path = require('path')
+///// 🌏 GLOBALS Variables 🌍 /////
+let filePath = ''
 
 /*
  ** Set Multer storage **
@@ -22,7 +21,7 @@ let storage = multer.diskStorage({
   // Set Destination
   // Note: You are responsible for creating the directory when providing destination as a function.
   //  When passing a string, multer will make sure that the directory is created for you.
-  destination: 'app/public/uploads', // TODO: Need to change this line
+  destination: 'client/public/uploads', // TODO: Need to change this line
   // Set File Name
   filename: function (req, file, cb) {
     // HERE is where we can decide the name of the file
@@ -78,7 +77,7 @@ module.exports = function (app) {
   })
 
   // Create a new example ////////// ******* changed ******** \\\\\\
-  app.post('/api/create', upload.single('imgPath'), function (req, res, next) {
+  app.post('/api/addPet', upload.single('imgPath'), function (req, res, next) {
     // Set img URL
     req.body.imgPath = `http://${req.get('host')}/uploads/${req.file.filename}`
 
@@ -112,17 +111,35 @@ module.exports = function (app) {
 
   // Register Shelter
   app.post('/api/register', function (req, res, next) {
-    // DEBUG
-    console.log('='.repeat(80))
-    console.log(req.body)
-    console.log('='.repeat(80))
-
+    
     // Save Sheter info on database 
-    //  FIXME: send something back to generate confirmation
     Shelter.create(req.body).then(function (dbExample) {
       res.json(dbExample)
     })
-    res.redirect('/')
+    .catch(err => {
+      console.log(chalk.bgRed(err))
+      let errObject = {}
+      // Get sqlMessage error to send error back from API
+      // We have 2 unique col in MySQL and we will return 
+      // witch one its the duplicated
+      let sqlMsg =  err.sqlMessage.split(' ')
+      let _error = sqlMsg[sqlMsg.length - 1]
+      _error = _error.replace(/\'/g, '')
+      // Check for unique name error
+      if(_error === 'shelter_tb_name_unique'){
+        errObject = {error: `${req.body.name} has Been Taken`, ...err}
+      }
+      // Check for unique email error
+      else if(_error === 'shelter_tb_email_unique'){
+        errObject = {error: `${req.body.email} has Been Taken`, ...err}
+      }
+      // In case of another error
+      else{
+        errObject = {error: 'Unable to Complete Registration', ...err}
+      }
+      console.log(chalk.bgRed(_error))
+      res.json(errObject)
+    })
   })
 }
 

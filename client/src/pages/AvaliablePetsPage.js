@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 // Use Bootstrap Components
 import Container from 'react-bootstrap/Container'
+
 /*import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 */
+
 // Use Application Components
 import PetNavbar from '../components/PetNavBar'
 import PetFooter from '../components/PetFooter'
