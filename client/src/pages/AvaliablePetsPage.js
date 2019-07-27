@@ -32,6 +32,7 @@ gettingData = () => {fetch('/api/findAll')
   componentDidMount () {
     this.gettingData()
   }
+  
   /**
      * onButtonClick()
      * Event listener used for buttons
@@ -55,16 +56,50 @@ gettingData = () => {fetch('/api/findAll')
    * Render
    *
    */
+  renderPets = petsArray => {
+    // Some books doesn't have `imageLinks` available
+    // Therefor default img was set to void application to crash
+    let _petsElements = petsArray.map(petInfo => {
+      // Destructing object
+      const {
+        id,
+        petName,
+        type,
+        attitude,
+        imgPath
+      } = petInfo
+      console.log(petInfo)
+      // each Book available in the JSON will be
+      // Added as <Book> element in _booksElements array
+      return (
+        <PetCard
+          key={id}
+          id={id}
+          petName={petName}
+          type={type}
+          attitude={attitude}
+          imgPath={imgPath}
+        />
+      )
+    })
+
+    // Return Array of <Book> elements
+    return _petsElements
+  }  
+
+
   render () {
     /*this.gettingData()
     *this.componentDidMount()
     */
+
+    
     return (
       <>
         <PetNavbar />
         <PetinderLogo />
         <Container className='my-2 p-2 text-center'>
-          <PetCard />
+          {this.renderPets(this.state.pets)}
         </Container>
         <PetFooter />
       </>
