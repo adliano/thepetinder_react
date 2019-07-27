@@ -27,7 +27,7 @@ let storage = multer.diskStorage({
     // HERE is where we can decide the name of the file
     // We will name as thepetinder + current time im miliseconds + minetype of original file
     // filePath = `thepetinder${Date.now()}.${file.mimetype.split('/')[1]}`
-    filePath = `thepetinder${Date.now()}.${path.extname(file.originalname)}`
+    filePath = `thepetinder${Date.now()}${path.extname(file.originalname)}`
 
     cb(null, filePath)
 
