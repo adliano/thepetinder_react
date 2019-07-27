@@ -56,7 +56,7 @@ class ShelterRegister extends Component {
         
           <Row className='m-3 p-2'>
             <Col lg>
-              <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}>Login</Button>
+              <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}href='/ShelterHome'>Login</Button>
             </Col>
             <Col lg>
               <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}href='/ShelterRegister'>Register</Button>

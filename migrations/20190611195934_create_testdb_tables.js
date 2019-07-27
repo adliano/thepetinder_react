@@ -1,9 +1,9 @@
 /* eslint-disable semi, no-unreachable */
 exports.up = function (knex, Promise) {
-  knex.schema.withSchema('testdb').hasTable('pets_tb')
+  knex.schema.withSchema('testdb').hasTable('test_pets_tb')
     .then(function (exists) {
       if (!exists) {
-        return knex.schema.createTable('pets_tb', table => {
+        return knex.schema.createTable('test_pets_tb', table => {
           table.increments('id');
           table.string('petName');
           table.string('type');
@@ -18,6 +18,6 @@ exports.up = function (knex, Promise) {
 
 exports.down = function (knex, Promise) {
   return knex.withSchema('testdb').schema
-    .dropTable('pets_tb')
+    .dropTable('test_pets_tb')
 }
 /* eslint-enable semi, no-unreachable */
