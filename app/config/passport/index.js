@@ -14,7 +14,7 @@ const _strategy = new LocalStrategy(
         Shelter.find({ name: name })
         .then(results => {
             if(!results){
-                return done(null, false, { message: `User ${username} not available` })
+                return done(null, false, { message: `User ${name} not available` })
             }
             else if(results[0].password !== password){
                 return done(null, false, { message: 'Wrong Password' })

@@ -146,6 +146,7 @@ module.exports = function (app) {
       res.json(errObject)
     })
   })
+  // FIXME: Not working
   // Login route
   app.post('/login', 
   passport.authenticate('local', 
@@ -163,7 +164,6 @@ module.exports = function (app) {
   )
 
 
-
   // Created to test my endpoint
   // TODO: Delete after application its complete done
   app.post('/find', function(req, res, next) {
@@ -173,11 +173,6 @@ module.exports = function (app) {
     .catch(err => res.json(err))
     
   });
-
-
-
-
-
 }
 
 /*
