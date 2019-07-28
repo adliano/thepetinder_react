@@ -1,6 +1,9 @@
 //////// Dependencies /////////
 const Pet = require('../models/pets')
 const Shelter = require('../models/shelters')
+/////////// passport //////////
+const passport = require('passport')
+require('../config/passport')
 /////////// Multer /////////
 const multer = require('multer')
 /////////// Chalk /////////
@@ -109,6 +112,7 @@ module.exports = function (app) {
     })
   })
 
+  // TODO: Change this routes later
   // Register Shelter
   app.post('/api/register', function (req, res, next) {
     
@@ -141,6 +145,11 @@ module.exports = function (app) {
       res.json(errObject)
     })
   })
+  // Login route
+  app.post('/login', 
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  (request, response) => response.redirect('/ShelterHome')
+  )
 }
 
 /*

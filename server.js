@@ -3,10 +3,11 @@ require('dotenv').config()
 const path = require('path')
 // Session used to save user's info on cookie
 const session = require('express-session')
-const passport = require('./app/config/passport');
+// Get passport config to this application
+const passport = require('passport')
+require('./app/config/passport');
 const PORT = process.env.PORT || 3001
 const app = express()
-// const routes = require("./routes");
 
 /// ////////// Define middleware here ////////////
 // NOTE: cookie: `{ secure: false }` used because my server does not
@@ -38,12 +39,12 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
 }
 
-// Add routes, both API and view
-// app.use(routes);
+// Passport
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Define API routes here
 require('./app/routes/apiRoutes')(app)
-// require('./app/routes/htmlRoutes')(app)
 
 // Send every other request to the React app
 // Define any API routes before this runs
