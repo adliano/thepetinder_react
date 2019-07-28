@@ -81,12 +81,6 @@ function PrivateRoute ({ component: Component,  gotUser, ...rest }) {
 /// //////////////////////////////////////////////////////////////////////////
 /// //////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-
-
 class App extends Component {
 
   state = {
@@ -105,8 +99,8 @@ class App extends Component {
             <Route exact path='/login' component={ShelterLogin} />
             <Route exact path='/register' component={ShelterRegister} />
             <Route exact path='/AvaliablePetsPage' component={AvaliablePetsPage} />
-            <PrivateRoute path='/AddPet' component={AddPet} />
-            <PrivateRoute  path='/ShelterHome' component={ShelterHome} gotUser={this.state.user}/>
+            <PrivateRoute path='/AddPet' component={AddPet} gotUser={this.state.user} />
+            <PrivateRoute  path='/ShelterHome' component={ShelterHome} gotUser={this.state.user} />
           </Switch>
         </div>
       </BrowserRouter>
