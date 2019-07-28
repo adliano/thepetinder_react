@@ -44,10 +44,15 @@ class ShelterRegister extends Component {
     // Send Request to server
     let hasHPassword = md5(password)
     shelterData.password = hasHPassword
-
+    // What I want is when the register button is pressed w/o any input, form validation
+    if (hasHPassword = null) {
+      alert('something')
+    }
     API.registerShelter(shelterData)
       .then(response => response.json())
       .then(results => {
+        console.log('---------------12')
+        console.log(results)
         // Check for error
         if (results.error) {
           // Error alert
@@ -57,9 +62,17 @@ class ShelterRegister extends Component {
               header: results.error,
               msg: 'Please Try Again',
               color: 'danger'
-            }
+            },  
+            name: "",
+            email: "",
+            password: "",
+            address: "",
+            city: "",
+            state: "",
+            zipCode: "",
+            phone: ""
           })
-        }
+        } 
         // If no error display welcome message
         else {
           this.setState(
