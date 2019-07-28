@@ -9,11 +9,97 @@ import PetNavbar from '../components/PetNavBar'
 import PetFooter from '../components/PetFooter'
 import PetinderLogo from '../components/PetinderLogo'
 
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+  withRouter
+} from 'react-router-dom'
+
+
+
+
+
+
+/**
+ * PrivateRoute() used to make routes private
+ * @param {json} json object with components
+ * @param {objec} user from backend
+ */
+function PrivateRoute ({ component: Component, ...rest }, user) {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        fakeAuth.isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/ShelterLogin',
+              state: { from: props.location }
+            }}
+          />
+        )
+      }
+    />
+  )
+}
+/**
+ * 
+ * 
+ */
+const AuthButton = withRouter(
+  ({ history }) =>
+    fakeAuth.isAuthenticated ? (
+      <p>
+        Welcome!{" "}
+        <button
+          onClick={() => {
+            fakeAuth.signout(() => history.push("/"));
+          }}
+        >
+          Sign out
+        </button>
+      </p>
+    ) : (
+      <p>You are not logged in.</p>
+    )
+);
+
+const fakeAuth = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    this.isAuthenticated = true;
+    setTimeout(cb, 100); // fake async
+  },
+  signout(cb) {
+    this.isAuthenticated = false;
+    setTimeout(cb, 100);
+  }
+};
+/////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
 /**
  * Page used for splash, it will have two buttons to 
  * route user || shelter to espesific page
  */
-class ShelterHome extends Component {
+class SplashPage extends Component {
     /**
      * onButtonClick()
      * Event listener used for buttons
@@ -72,4 +158,4 @@ class ShelterHome extends Component {
   }
 }
 
-export default ShelterHome
+export default SplashPage

@@ -12,7 +12,11 @@ import PetinderLogo from '../components/PetinderLogo'
 import PetFooter from '../components/PetFooter'
 
 
-class ShelterRegister extends Component {
+
+
+
+
+class ShelterLogin extends Component {
   /**
      * onButtonClick()
      * Event listener used for buttons
@@ -69,5 +73,4 @@ class ShelterRegister extends Component {
   }
 }
 
-export default ShelterRegister
-
+export default ShelterLogin
