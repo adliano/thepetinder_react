@@ -6,7 +6,7 @@ const LocalStrategy = require('passport-local').Strategy
  * strategy configuration
  */
 const _strategy = new LocalStrategy(
-    // {usernameField: 'username'},
+    {usernameField: 'name'},
 	function(name, password, done) {
         
         console.log('called from LocalStrategy at app/config/passport/index.js');

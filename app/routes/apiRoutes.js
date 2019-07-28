@@ -157,11 +157,28 @@ module.exports = function (app) {
   ),
   (request, response) => {
 
+    console.log('called from "login" route')
     console.log(request.body)
     
     response.redirect('/ShelterHome')
   }
   )
+
+
+  // app.get('/login', function(req, res, next) {
+  //   passport.authenticate('local', function(err, user, info) {
+  //     if (err) { return next(err); }
+  //     if (!user) { return res.redirect('/login'); }
+  //     req.logIn(user, function(err) {
+  //       if (err) { return next(err); }
+  //       return res.redirect('/ShelterHome');
+  //     });
+  //   })(req, res, next);
+  // });
+
+
+
+
 
 
   // Created to test my endpoint
