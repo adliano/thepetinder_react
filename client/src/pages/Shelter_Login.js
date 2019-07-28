@@ -11,11 +11,6 @@ import PetNavBar from '../components/PetNavBar'
 import PetinderLogo from '../components/PetinderLogo'
 import PetFooter from '../components/PetFooter'
 
-
-
-
-
-
 class ShelterLogin extends Component {
   /**
      * onButtonClick()
@@ -60,10 +55,10 @@ class ShelterLogin extends Component {
         
           <Row className='m-3 p-2'>
             <Col lg>
-              <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}href='/ShelterHome'>Login</Button>
+              <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}>Login</Button>
             </Col>
             <Col lg>
-              <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}href='/ShelterRegister'>Register</Button>
+              <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}href='/register'>Register</Button>
             </Col>
           </Row>
         </Container>
