@@ -44,6 +44,6 @@ passport.deserializeUser((id, done) => {
 })
 
 //  Use Strategies 
-passport.use(LocalStrategy)
+passport.use(strategy)
 
 module.export = passport

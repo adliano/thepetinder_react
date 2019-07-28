@@ -3,6 +3,7 @@ const Pet = require('../models/pets')
 const Shelter = require('../models/shelters')
 /////////// passport //////////
 const passport = require('passport')
+const local = require('passport-local')
 require('../config/passport')
 /////////// Multer /////////
 const multer = require('multer')

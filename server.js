@@ -5,7 +5,6 @@ const path = require('path')
 const session = require('express-session')
 // Get passport config to this application
 const passport = require('passport')
-require('./app/config/passport');
 const PORT = process.env.PORT || 3001
 const app = express()
 
@@ -32,17 +31,19 @@ app.use(
       maxAge: oneHour,
     }
   })
-)
-/// /////////////////////////////////////////////
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'))
-}
-
-// Passport
-app.use(passport.initialize())
-app.use(passport.session())
-
+  )
+  /// /////////////////////////////////////////////
+  // Serve up static assets (usually on heroku)
+  if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'))
+  }
+  
+  // Passport
+  app.use(passport.initialize())
+  app.use(passport.session())
+  // Load passport config
+  require('./app/config/passport');
+  
 // Define API routes here
 require('./app/routes/apiRoutes')(app)
 
