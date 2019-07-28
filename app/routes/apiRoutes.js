@@ -161,6 +161,23 @@ module.exports = function (app) {
     response.redirect('/ShelterHome')
   }
   )
+
+
+
+  // Created to test my endpoint
+  // TODO: Delete after application its complete done
+  app.post('/find', function(req, res, next) {
+    console.log('==========================');
+    Shelter.find(req.body)
+    .then(results => res.json(results))
+    .catch(err => res.json(err))
+    
+  });
+
+
+
+
+
 }
 
 /*

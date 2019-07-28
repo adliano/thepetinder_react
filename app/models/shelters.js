@@ -82,7 +82,8 @@ class Shelter {
 
     return knex(this.table)
       .where(where)
-      .orderBy([mergedOrder]) // object must be wrapped in an array: https://knexjs.org/#Builder-orderBy
+      // .select('name', 'pasword')
+      //.orderBy([mergedOrder]) // object must be wrapped in an array: https://knexjs.org/#Builder-orderBy
   }
 
   /**

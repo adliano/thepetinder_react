@@ -5,6 +5,9 @@ const path = require('path')
 const session = require('express-session')
 // Get passport config to this application
 const passport = require('passport')
+// Used thr flash message
+const flash = require('connect-flash');
+
 const PORT = process.env.PORT || 3001
 const app = express()
 
@@ -32,6 +35,11 @@ app.use(
     }
   })
   )
+
+  app.use(flash());
+
+
+
   /// /////////////////////////////////////////////
   // Serve up static assets (usually on heroku)
   if (process.env.NODE_ENV === 'production') {

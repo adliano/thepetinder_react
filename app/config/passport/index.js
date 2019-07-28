@@ -6,12 +6,12 @@ const LocalStrategy = require('passport-local').Strategy
  * strategy configuration
  */
 const _strategy = new LocalStrategy(
-    // {usernameField: 'name'},
-	function(username, password, done) {
+    // {usernameField: 'username'},
+	function(name, password, done) {
         
         console.log('called from LocalStrategy at app/config/passport/index.js');
         
-        Shelter.find({ name: username })
+        Shelter.find({ name: name })
         .then(results => {
             if(!results){
                 return done(null, false, { message: `User ${username} not available` })
