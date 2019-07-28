@@ -5,8 +5,12 @@ const LocalStrategy = require('passport-local').Strategy
 /**
  * strategy configuration
  */
-const strategy = new LocalStrategy(
+const _strategy = new LocalStrategy(
+    // {usernameField: 'name'},
 	function(username, password, done) {
+        
+        console.log('called from LocalStrategy at app/config/passport/index.js');
+        
         Shelter.find({ name: username })
         .then(results => {
             if(!results){
@@ -26,6 +30,8 @@ const strategy = new LocalStrategy(
  * serializeUser()
  */
 passport.serializeUser((user, done) => {
+    console.log('called from serializeUser at app/config/passport/index.js');
+
 	done(null, { id: user.id })
 })
 /**
@@ -33,6 +39,9 @@ passport.serializeUser((user, done) => {
  * user object attaches to the request as req.user
  */
 passport.deserializeUser((id, done) => {
+
+    console.log('called from deserializeUser at app/config/passport/index.js');
+
     Shelter.find({ id: id })
     .then( ([user]) => {
         if (!user) {
@@ -44,6 +53,6 @@ passport.deserializeUser((id, done) => {
 })
 
 //  Use Strategies 
-passport.use(strategy)
+passport.use(_strategy)
 
 module.export = passport

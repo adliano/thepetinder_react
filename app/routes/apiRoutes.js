@@ -148,8 +148,18 @@ module.exports = function (app) {
   })
   // Login route
   app.post('/login', 
-  passport.authenticate('local', { failureRedirect: '/login' }),
-  (request, response) => response.redirect('/ShelterHome')
+  passport.authenticate('local', 
+  { 
+    failureRedirect: '/login',
+    failureFlash: true,
+  }
+  ),
+  (request, response) => {
+
+    console.log(request.body)
+    
+    response.redirect('/ShelterHome')
+  }
   )
 }
 

@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 // Import Pages
 import SplashPage from './pages/SplashPage'
 import ShelterLogin from './pages/Shelter_Login'
-import Shelter from './pages/Shelter'
+// import Shelter from './pages/Shelter'
 import ShelterRegister from './pages/Shelter_Register'
-import ShelterHome from './pages/Shelter-Homepage'
-import AddPet from './pages/AddPet'
+// import ShelterHome from './pages/Shelter-Homepage'
+// import AddPet from './pages/AddPet'
 import AvaliablePetsPage from './pages/AvaliablePetsPage'
+import md5 from 'md5'
 
 /// //////////////////////////////////////////////////////////////////////////
 /// //////////////////////////////////////////////////////////////////////////
@@ -17,7 +18,7 @@ import {
   Route,
   Switch,
   Redirect,
-  withRouter
+  // withRouter
 } from 'react-router-dom'
 
 /**
@@ -85,9 +86,24 @@ function PrivateRoute ({ component: Component,  gotUser, ...rest }) {
 class App extends Component {
 
   state = {
-    user: false,
+    user: null,
   }
-  
+
+  componentDidMount(){
+    console.log(md5('123'));
+    
+  }
+  // Logout if close window
+  componentWillUnmount(){
+    this.state({user: null})
+  }
+  /**
+   * 
+   * 
+   */
+
+
+
   /**
    * Render
    */
@@ -97,11 +113,12 @@ class App extends Component {
         <div>
           <Switch>
             <Route exact path='/' component={SplashPage} />
-            <Route exact path='/login' component={ShelterLogin} />
-            <Route exact path='/register' component={ShelterRegister} />
+            {/* <Route exact path='/login' component={ShelterLogin} /> */}
+            {/* <Route exact path='/register' component={ShelterRegister} /> */}
             <Route exact path='/AvaliablePetsPage' component={AvaliablePetsPage} />
-            <PrivateRoute path='/AddPet' component={AddPet} gotUser={this.state.user} />
-            <PrivateRoute  path='/ShelterHome' component={ShelterHome} gotUser={this.state.user} />
+            <Route exact path='/ShelterHome' component={AvaliablePetsPage} />
+            {/* <PrivateRoute path='/AddPet' component={AddPet} gotUser={this.state.user} />
+            <PrivateRoute  path='/ShelterHome' component={ShelterHome} gotUser={this.state.user} /> */}
           </Switch>
         </div>
       </BrowserRouter>

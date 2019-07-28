@@ -14,6 +14,23 @@ import PetinderLogo from '../components/PetinderLogo'
  * route user || shelter to espesific page
  */
 class ShelterHome extends Component {
+
+
+  state = {
+    user: null,
+  }
+
+  componentDidMount(){
+
+  }
+  // Logout if close window
+  componentWillUnmount(){
+    // this.state({user: null})
+    console.log('will unmount called');
+    
+  }
+
+
     /**
      * onButtonClick()
      * Event listener used for buttons
