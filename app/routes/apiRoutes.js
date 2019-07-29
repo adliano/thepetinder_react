@@ -157,14 +157,14 @@ module.exports = function (app) {
       console.log('called from "login" route')
       console.log(req.user)
 
-      res.json({ works: 'works' })
-      // res.redirect('/ShelterHome')
+      // res.json({ works: 'works' })
+      res.redirect('/ShelterHome')
     }
   )
 
   /*
-  I will use this approach later, for now i need to 
-  make sure my routr its getting hit by client
+  // I will use this approach later, for now i need to 
+  // make sure my routr its getting hit by client
   // This approach will display the message set on 
   // app/config/passport
   // It's a better approch because it can be more especific
@@ -173,7 +173,7 @@ module.exports = function (app) {
   passport.authenticate('local',{
     successRedirect: '/ShelterHome',
     failureRedirect: '/ShelterLogin',
-    failureFlash: true }
+    failureFlash: true,
   }))
 
   */

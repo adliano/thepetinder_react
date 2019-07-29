@@ -93,24 +93,20 @@ class App extends Component {
     fetch('/login',{
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({"name":"adliano"})
+      body: JSON.stringify({"name":"adriano","password": "827ccb0eea8a706c4c34a16891f84e7b"})
     })
     .then( response => {
       console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
-      console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
       console.log(response)
       console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
-      console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
 
 
-      return response.json()
+      return response
       
     })
     .then(results => {
       console.log('==========================================')
-      console.log('==========================================')
       console.log(results)
-      console.log('==========================================')
       console.log('==========================================')
 
     })
