@@ -20,7 +20,7 @@ const _strategy = new LocalStrategy(
                 return done(null, false, { message: 'Wrong Password' })
             }
             // else{
-                return done(null, results[0])
+                return done(null, results[0], {message: 'Sucessful logedin'})
             // }
         })
         .catch(err => done(err))

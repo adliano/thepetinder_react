@@ -44,6 +44,9 @@ app.use(
   })
   )
 
+  // used for passport
+  // This will allow the passport to use 
+  // the message set on app/config/passport
   app.use(flash());
 
 

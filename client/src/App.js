@@ -135,8 +135,8 @@ class App extends Component {
         <div>
           <Switch>
             <Route exact path='/' component={SplashPage} />
-            {/* <Route exact path='/login' component={ShelterLogin} /> */}
-            <Route exact path='/register' component={ShelterRegister} />
+            {/* <Route exact path='/ShelterLogin' component={ShelterLogin} /> */}
+            <Route exact path='/ShelterRegister' component={ShelterRegister} />
             <Route exact path='/AvaliablePetsPage' component={AvaliablePetsPage} />
             <Route exact path='/ShelterHome' component={ShelterHome} />
             {/* <PrivateRoute path='/AddPet' component={AddPet} gotUser={this.state.user} />

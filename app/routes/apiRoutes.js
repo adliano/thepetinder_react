@@ -1,17 +1,16 @@
-//////// Dependencies /////////
+/// ///// Dependencies /////////
 const Pet = require('../models/pets')
 const Shelter = require('../models/shelters')
-/////////// passport //////////
-const passport = require('passport')
+/// //////// passport //////////
+const passport = require('../config/passport')
 const local = require('passport-local')
-require('../config/passport')
-/////////// Multer /////////
+/// //////// Multer /////////
 const multer = require('multer')
-/////////// Chalk /////////
-const chalk = require('chalk');
-/////////// Path /////////
+/// //////// Chalk /////////
+const chalk = require('chalk')
+/// //////// Path /////////
 const path = require('path')
-///// 🌏 GLOBALS Variables 🌍 /////
+/// // 🌏 GLOBALS Variables 🌍 /////
 let filePath = ''
 
 /*
@@ -25,7 +24,7 @@ let storage = multer.diskStorage({
   // Set Destination
   // Note: You are responsible for creating the directory when providing destination as a function.
   //  When passing a string, multer will make sure that the directory is created for you.
-  destination: 'client/public/uploads', 
+  destination: 'client/public/uploads',
   // Set File Name
   filename: function (req, file, cb) {
     // HERE is where we can decide the name of the file
@@ -116,96 +115,66 @@ module.exports = function (app) {
   // TODO: Change this routes later
   // Register Shelter
   app.post('/api/register', function (req, res, next) {
-    
-    // Save Sheter info on database 
-    Shelter.create(req.body).then(function (dbExample) {
-      res.json(dbExample)
-    })
-    .catch(err => {
-      console.log(chalk.bgRed(err))
-      let errObject = {}
-      // Get sqlMessage error to send error back from API
-      // We have 2 unique col in MySQL and we will return 
-      // witch one its the duplicated
-      let sqlMsg =  err.sqlMessage.split(' ')
-      let _error = sqlMsg[sqlMsg.length - 1]
-      _error = _error.replace(/\'/g, '')
-      // Check for unique name error
-      if(_error === 'shelter_tb_name_unique'){
-        errObject = {error: `${req.body.name} has Been Taken`, ...err}
-      }
-      // Check for unique email error
-      else if(_error === 'shelter_tb_email_unique'){
-        errObject = {error: `${req.body.email} has Been Taken`, ...err}
-      }
-      // In case of another error
-      else{
-        errObject = {error: 'Unable to Complete Registration', ...err}
-      }
-      console.log(chalk.bgRed(_error))
-      res.json(errObject)
-    })
+    // Save Sheter info on database
+    Shelter.create(req.body)
+      .then(function (dbExample) {
+        res.json(dbExample)
+      })
+      .catch(err => {
+        console.log(chalk.bgRed(err))
+        let errObject = {}
+        // Get sqlMessage error to send error back from API
+        // We have 2 unique col in MySQL and we will return
+        // witch one its the duplicated
+        let sqlMsg = err.sqlMessage.split(' ')
+        let _error = sqlMsg[sqlMsg.length - 1]
+        _error = _error.replace(/\'/g, '')
+        // Check for unique name error
+        if (_error === 'shelter_tb_name_unique') {
+          errObject = { error: `${req.body.name} has Been Taken`, ...err }
+        }
+        // Check for unique email error
+        else if (_error === 'shelter_tb_email_unique') {
+          errObject = { error: `${req.body.email} has Been Taken`, ...err }
+        }
+        // In case of another error
+        else {
+          errObject = { error: 'Unable to Complete Registration', ...err }
+        }
+        console.log(chalk.bgRed(_error))
+        res.json(errObject)
+      })
   })
   // FIXME: Not working
   // Login route
-  app.post('/login', 
-  passport.authenticate('local',
-  { 
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true,
-  }
-  ),
-  function(req, res) {
+  // local strategy
+  app.post(
+    '/login',
+    // middleware
+    passport.authenticate('local'),
+    // callback
+    function (req, res) {
+      console.log('called from "login" route')
+      console.log(req.user)
 
-    console.log('called from "login" route')
-    console.log(req.body)
-    
-    res.json({works:"works"})
-    // res.redirect('/ShelterHome')
-  }
+      res.json({ works: 'works' })
+      // res.redirect('/ShelterHome')
+    }
   )
 
+  /*
+  I will use this approach later, for now i need to 
+  make sure my routr its getting hit by client
+  // This approach will display the message set on 
+  // app/config/passport
+  // It's a better approch because it can be more especific
+  app.post('/login',
+  // middleware
+  passport.authenticate('local',{
+    successRedirect: '/ShelterHome',
+    failureRedirect: '/ShelterLogin',
+    failureFlash: true }
+  }))
 
-  // app.get('/login', function(req, res, next) {
-  //   passport.authenticate('local', function(err, user, info) {
-  //     if (err) { return next(err); }
-  //     if (!user) { return res.redirect('/login'); }
-  //     req.logIn(user, function(err) {
-  //       if (err) { return next(err); }
-  //       return res.redirect('/ShelterHome');
-  //     });
-  //   })(req, res, next);
-  // });
-
-
-
-
-
-
-  // Created to test my endpoint
-  // TODO: Delete after application its complete done
-  app.post('/find', function(req, res, next) {
-    console.log('==========================');
-    Shelter.find(req.body)
-    .then(results => res.json(results))
-    .catch(err => res.json(err))
-    
-  });
+  */
 }
-
-/*
-[Object: null prototype] {
-  animalName: '2wsx',
-  animalAge: '9876',
-  animalType: 'Lion',
-  animalAttitude: 'Playful' }
-{ fieldname: 'petPicture',
-  originalname: '20170526_191602.jpg',
-  encoding: '7bit',
-  mimetype: 'image/jpeg',
-  destination: 'app/public/uploads',
-  filename: 'thepetinder1560556105221.jpeg',
-  path: 'app/public/uploads/thepetinder1560556105221.jpeg',
-  size: 601159 }
-*/
