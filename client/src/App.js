@@ -90,6 +90,8 @@ class App extends Component {
   }
 
   componentDidMount(){
+    console.log(document.cookie)
+    
     fetch('/login',{
       method: 'POST',
       headers: {'Content-Type':'application/json'},
