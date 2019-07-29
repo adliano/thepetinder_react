@@ -1,25 +1,33 @@
 const express = require('express')
-require('dotenv').config()
-const path = require('path')
 // Session used to save user's info on cookie
 const session = require('express-session')
+const path = require('path')
 // Get passport config to this application
-const passport = require('passport')
+const passport = require('./app/config/passport')
 // Used thr flash message
 const flash = require('connect-flash');
+const morgan = require('morgan')
 
+require('dotenv').config()
 const PORT = process.env.PORT || 3001
 const app = express()
+
+/// /////////////////////////////////////////////
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'))
+}
 
 /// ////////// Define middleware here ////////////
 // NOTE: cookie: `{ secure: false }` used because my server does not
 // have any SSL set yet
+app.use(morgan('dev'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 // Used for Heroku
 if (app.get('env') === 'production') {
-  // trust first proxy
-  // Used for HTTPS
+//   // trust first proxy
+//   // Used for HTTPS
   app.set('trust proxy', 1) 
 }
 // Time are minutes x seconds x 1000 (milliseconds)
@@ -40,17 +48,12 @@ app.use(
 
 
 
-  /// /////////////////////////////////////////////
-  // Serve up static assets (usually on heroku)
-  if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'))
-  }
   
   // Passport
   app.use(passport.initialize())
   app.use(passport.session())
   // Load passport config
-  require('./app/config/passport');
+  // require('./app/config/passport');
   
 // Define API routes here
 require('./app/routes/apiRoutes')(app)

@@ -4,7 +4,7 @@ import SplashPage from './pages/SplashPage'
 import ShelterLogin from './pages/Shelter_Login'
 // import Shelter from './pages/Shelter'
 import ShelterRegister from './pages/Shelter_Register'
-// import ShelterHome from './pages/Shelter-Homepage'
+import ShelterHome from './pages/Shelter-Homepage'
 // import AddPet from './pages/AddPet'
 import AvaliablePetsPage from './pages/AvaliablePetsPage'
 import md5 from 'md5'
@@ -90,8 +90,30 @@ class App extends Component {
   }
 
   componentDidMount(){
-    console.log(md5('123'));
-    
+    fetch('/login',{
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({"name":"adliano"})
+    })
+    .then( response => {
+      console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
+      console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
+      console.log(response)
+      console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
+      console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
+
+
+      return response.json()
+      
+    })
+    .then(results => {
+      console.log('==========================================')
+      console.log('==========================================')
+      console.log(results)
+      console.log('==========================================')
+      console.log('==========================================')
+
+    })
   }
   // Logout if close window
   componentWillUnmount(){
@@ -114,9 +136,9 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={SplashPage} />
             {/* <Route exact path='/login' component={ShelterLogin} /> */}
-            {/* <Route exact path='/register' component={ShelterRegister} /> */}
+            <Route exact path='/register' component={ShelterRegister} />
             <Route exact path='/AvaliablePetsPage' component={AvaliablePetsPage} />
-            <Route exact path='/ShelterHome' component={AvaliablePetsPage} />
+            <Route exact path='/ShelterHome' component={ShelterHome} />
             {/* <PrivateRoute path='/AddPet' component={AddPet} gotUser={this.state.user} />
             <PrivateRoute  path='/ShelterHome' component={ShelterHome} gotUser={this.state.user} /> */}
           </Switch>

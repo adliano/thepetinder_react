@@ -149,18 +149,20 @@ module.exports = function (app) {
   // FIXME: Not working
   // Login route
   app.post('/login', 
-  passport.authenticate('local', 
+  passport.authenticate('local',
   { 
+    successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true,
   }
   ),
-  (request, response) => {
+  function(req, res) {
 
     console.log('called from "login" route')
-    console.log(request.body)
+    console.log(req.body)
     
-    response.redirect('/ShelterHome')
+    res.json({works:"works"})
+    // res.redirect('/ShelterHome')
   }
   )
 

@@ -6,7 +6,7 @@ const LocalStrategy = require('passport-local').Strategy
  * strategy configuration
  */
 const _strategy = new LocalStrategy(
-    {usernameField: 'name'},
+    // {usernameField: 'name'},
 	function(name, password, done) {
         
         console.log('called from LocalStrategy at app/config/passport/index.js');
@@ -19,9 +19,9 @@ const _strategy = new LocalStrategy(
             else if(results[0].password !== password){
                 return done(null, false, { message: 'Wrong Password' })
             }
-            else{
+            // else{
                 return done(null, results[0])
-            }
+            // }
         })
         .catch(err => done(err))
 	}
@@ -55,4 +55,4 @@ passport.deserializeUser((id, done) => {
 //  Use Strategies 
 passport.use(_strategy)
 
-module.export = passport
+module.exports = passport
