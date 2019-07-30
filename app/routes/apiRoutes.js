@@ -157,8 +157,8 @@ module.exports = function (app) {
       console.log('called from "login" route')
       console.log(req.user)
 
-      // res.json({ works: 'works' })
-      res.redirect('/ShelterHome')
+      res.json({ works: 'works' })
+      // res.redirect('/ShelterHome')
     }
   )
 

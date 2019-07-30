@@ -77,13 +77,10 @@ class Shelter {
    * @returns Promise
    * @memberof Shelter
    */
-  find (where, orderBy = {}) {
-    let mergedOrder = Object.assign({}, this.defaultOrder, orderBy)
-
+  find (where) {
     return knex(this.table)
-      .where(where)
-      // .select('name', 'pasword')
-      //.orderBy([mergedOrder]) // object must be wrapped in an array: https://knexjs.org/#Builder-orderBy
+    .select('id', 'name', 'password')
+    .where(where)
   }
 
   /**

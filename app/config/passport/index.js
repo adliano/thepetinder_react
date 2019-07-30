@@ -24,7 +24,7 @@ passport.deserializeUser((id, done) => {
         if (!user) {
             done(new Error(`User not found ${id}`))
         } else {
-            done(null, user)
+            done(null, user[0])
         }
     })
 })
@@ -45,8 +45,17 @@ passport.use(new LocalStrategy({
 
 
           if (!results) {
+
+            console.log('user not available')
+            
             return done(null, false, { message: `User ${username} not available` })
-          } else if (results.password !== password) {
+          } else if (results[0].password !== password) {
+
+            console.log(password)
+            console.log(results[0].password)
+            console.log('invalid password')
+
+
             return done(null, false, { message: 'Wrong Password' })
           }
           return done(null, results[0], { message: 'Sucessful login' })

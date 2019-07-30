@@ -103,7 +103,7 @@ class App extends Component {
       console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
 
 
-      return response
+      return response.json()
       
     })
     .then(results => {
