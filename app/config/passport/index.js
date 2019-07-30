@@ -13,36 +13,23 @@ passport.serializeUser((user, done) => {
  * deserializeUser()
  * user object attaches to the request as req.user
  */
-passport.deserializeUser((id, done) => {    
-    Shelter.find({ id: id }).then(user => {
-        if (!user) {
-            done(new Error(`User not found ${id}`))
-        } else {
-            done(null, user[0])
-        }
-    })
+passport.deserializeUser((id, done) => {  
+  Shelter.find({ id: id})
+  .asCallback(function(err, users){
+      done(err,user)
+  })
 })
 /**
  * Local strategy configuration
+ * The usernameField (Parameter) define the name of the properties in the 
+ * POST body that are sent to the server.
  */
-passport.use(new LocalStrategy({
-    // This field define the name of the properties in the 
-    // POST body that are sent to the server.
-    usernameField: 'name',
-  },
+passport.use(new LocalStrategy({usernameField: 'name'},
     function (username, password, done) {  
-      Shelter.find({ name: username })
-        .then(results => {
-          if (!results) {            
-            return done(null, false)
-          } else if (results[0].password !== password) {
-            return done(null, false)
-          }
-          return done(null, results[0])
-        })
-        .catch(err => {
-            done(err)
-        })
+      Shelter.find({name: username, password: password})
+      .asCallback(function(err, users){
+        return done(err,users[0])
+      })
     }
   ))
 
