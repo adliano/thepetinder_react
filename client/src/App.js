@@ -1,18 +1,5 @@
 import React, { Component } from 'react'
-// Import Pages
-import SplashPage from './pages/SplashPage'
-import ShelterLogin from './pages/Shelter_Login'
-// import Shelter from './pages/Shelter'
-import ShelterRegister from './pages/Shelter_Register'
-import ShelterHome from './pages/Shelter-Homepage'
-// import AddPet from './pages/AddPet'
-import AvaliablePetsPage from './pages/AvaliablePetsPage'
 import md5 from 'md5'
-
-/// //////////////////////////////////////////////////////////////////////////
-/// //////////////////////////////////////////////////////////////////////////
-/// //////////////////////////////////////////////////////////////////////////
-/// //////////////////////////////////////////////////////////////////////////
 import {
   BrowserRouter,
   Route,
@@ -21,6 +8,18 @@ import {
   // withRouter
 } from 'react-router-dom'
 
+// Import Pages
+import SplashPage from './pages/SplashPage'
+import ShelterLogin from './pages/Shelter_Login'
+import ShelterRegister from './pages/Shelter_Register'
+import ShelterHome from './pages/Shelter-Homepage'
+import AvaliablePetsPage from './pages/AvaliablePetsPage'
+// import AddPet from './pages/AddPet'
+// import Shelter from './pages/Shelter'
+
+
+/////////////////////////////////////////////////////////////////
+// TODO: move this to another file
 /**
  * PrivateRoute() used to make routes private
  * @param {json} json object with components
@@ -46,43 +45,8 @@ function PrivateRoute ({ component: Component,  gotUser, ...rest }) {
     />
   )
 }
-/**
- *
- *
- */
-// const AuthButton = withRouter(({ history }) =>
-//   fakeAuth.isAuthenticated ? (
-//     <p>
-//       Welcome!{' '}
-//       <button
-//         onClick={() => {
-//           fakeAuth.signout(() => history.push('/'))
-//         }}
-//       >
-//         Sign out
-//       </button>
-//     </p>
-//   ) : (
-//     <p>You are not logged in.</p>
-//   )
-// )
+/////////////////////////////////////////////////////////////////
 
-// const fakeAuth = {
-//   isAuthenticated: false,
-//   authenticate (cb) {
-//     this.isAuthenticated = true
-//     setTimeout(cb, 100) // fake async
-//   },
-//   signout (cb) {
-//     this.isAuthenticated = false
-//     setTimeout(cb, 100)
-//   }
-// }
-/// //////////////////////////////////////////////////////////////////////////
-/// //////////////////////////////////////////////////////////////////////////
-/// //////////////////////////////////////////////////////////////////////////
-// TODO: hit the api routes with user and password
-// try abcd password 123
 class App extends Component {
 
   state = {
@@ -98,32 +62,18 @@ class App extends Component {
       body: JSON.stringify({"name":"adriano","password": "827ccb0eea8a706c4c34a16891f84e7b"})
     })
     .then( response => {
-      console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
       console.log(response)
-      console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
-
-
       return response.json()
-      
     })
     .then(results => {
-      console.log('==========================================')
       console.log(results)
-      console.log('==========================================')
-
     })
+    .catch(err => console.log(err))
   }
   // Logout if close window
   componentWillUnmount(){
     this.state({user: null})
   }
-  /**
-   * 
-   * 
-   */
-
-
-
   /**
    * Render
    */

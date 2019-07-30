@@ -2,7 +2,7 @@ const express = require('express')
 // Session used to save user's info on cookie
 const session = require('express-session')
 // Used for flash message
-const flash = require('connect-flash')
+// const flash = require('connect-flash')
 const morgan = require('morgan')
 const app = express()
 
@@ -24,7 +24,7 @@ app.use(morgan('dev'))
 // used for passport
 // This will allow the passport to use
 // the message set on app/config/passport
-app.use(flash())
+// app.use(flash()) removed
 app.use(session({secret: process.env.SECRET, resave: false, saveUninitialized: true,}))
 // This object will contain key-value pairs, where the value can be a string or array (when extended is false), or any type (when extended is true).
 // This middleware is available in Express v4.16.0 onwards
