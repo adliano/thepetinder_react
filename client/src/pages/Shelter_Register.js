@@ -34,6 +34,7 @@ class ShelterRegister extends Component {
       color: ''
     }
   }
+  
   /**
    * onButtonClick()
    * Event listener used for buttons
@@ -42,9 +43,15 @@ class ShelterRegister extends Component {
     const { viewPassword, alert, ...shelterData } = this.state
     const { password } = shelterData
     // Send Request to server
-    let hasHPassword = (password)
+    let hasHPassword = md5(password)
     shelterData.password = (hasHPassword)
+
+    //!11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
     // What I want is when the register button is pressed w/o any input, form validation
+    if(!password){
+      this.validateForm()
+    }
+    //!11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 
 
     API.registerShelter(shelterData)
@@ -96,15 +103,25 @@ class ShelterRegister extends Component {
       })
       .catch(err => console.log(err))
   }
+  
+  //!1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+    validateForm() {
+    var isFormValid = true;
+    if (!shelterData.password || !hasHPassword || !password) {
+        isFormValid = false;
+    }
+  }
+  //!11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+
   /**
    * onInputChange()
    * This will handle onChange event from
    * inputs
-   */
+   */  
+  
   onInputChange = event => {
     const { name, value } = event.target
     this.setState({ [name]: value })
-    checkValidity()
 
     console.log(this.state)
   }
