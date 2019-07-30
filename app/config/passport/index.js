@@ -15,7 +15,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {  
   Shelter.find({ id: id})
   .asCallback(function(err, users){
-      done(err,user)
+      done(err,users[0])
   })
 })
 /**
