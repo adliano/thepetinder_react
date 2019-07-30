@@ -145,36 +145,19 @@ module.exports = function (app) {
         res.json(errObject)
       })
   })
-  // FIXME: Not working
-  // Login route
-  // local strategy
+ 
+  /**
+   * loging route
+   */
   app.post(
     '/login',
     // middleware
     passport.authenticate('local'),
     // callback
     function (req, res) {
-      console.log('called from "login" route')
       console.log(req.user)
-
       res.json({ works: 'works' })
       // res.redirect('/ShelterHome')
     }
   )
-
-  /*
-  // I will use this approach later, for now i need to 
-  // make sure my routr its getting hit by client
-  // This approach will display the message set on 
-  // app/config/passport
-  // It's a better approch because it can be more especific
-  app.post('/login',
-  // middleware
-  passport.authenticate('local',{
-    successRedirect: '/ShelterHome',
-    failureRedirect: '/ShelterLogin',
-    failureFlash: true,
-  }))
-
-  */
 }

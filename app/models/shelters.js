@@ -73,7 +73,6 @@ class Shelter {
    * Finds 1 or more todos based on search criteria
    *
    * @param {Object} where The where clause in the form of {column: value}
-   * @default {Object} [orderBy={}] Optional Direction to order `created_at` column
    * @returns Promise
    * @memberof Shelter
    */
