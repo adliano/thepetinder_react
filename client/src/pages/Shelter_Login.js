@@ -17,17 +17,8 @@ class ShelterLogin extends Component {
      * Event listener used for buttons
      */
     onButtonClick = (event) => {
-          
-      let _element = event.target
-      
-      if(_element.textContent === 'User'){
-          console.log('send user to user home page')
-          //Place logic here later
-      }
-      else{
-          console.log('send Shelter to shelter home page')
-          //Place logic here later
-      }
+      // TODO:
+      alert('Need to implement login\n Remove this Alert after you done')     
   }
   /**
   *   
@@ -58,7 +49,7 @@ class ShelterLogin extends Component {
               <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}>Login</Button>
             </Col>
             <Col lg>
-              <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}href='/register'>Register</Button>
+              <Button className='w-50 m-2' variant='primary' href='/ShelterRegister'>Register</Button>
             </Col>
           </Row>
         </Container>

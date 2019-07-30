@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     Route,
     Redirect,
@@ -19,7 +19,7 @@ function PrivateRoute ({ component: Component,  gotUser, ...rest }) {
           ) : (
             <Redirect
               to={{
-                pathname: '/login',
+                pathname: '/ShelterLogin',
                 state: { from: props.location }
               }}
             />

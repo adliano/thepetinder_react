@@ -153,8 +153,9 @@ module.exports = function (app) {
     passport.authenticate('local'),
     // callback
     function (req, res) {
-      console.log(req.user)
-      res.json({ works: 'works' })
+      // Remove password from object befor send it back
+      const { password, ...userInfo } = req.user
+      res.json(userInfo)
       // res.redirect('/ShelterHome')
     }
   )
