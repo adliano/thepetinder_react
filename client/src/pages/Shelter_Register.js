@@ -42,12 +42,11 @@ class ShelterRegister extends Component {
     const { viewPassword, alert, ...shelterData } = this.state
     const { password } = shelterData
     // Send Request to server
-    let hasHPassword = md5(password)
-    shelterData.password = hasHPassword
+    let hasHPassword = (password)
+    shelterData.password = (hasHPassword)
     // What I want is when the register button is pressed w/o any input, form validation
-    if (hasHPassword = null) {
-      alert('something')
-    }
+
+
     API.registerShelter(shelterData)
       .then(response => response.json())
       .then(results => {
@@ -105,6 +104,7 @@ class ShelterRegister extends Component {
   onInputChange = event => {
     const { name, value } = event.target
     this.setState({ [name]: value })
+    checkValidity()
 
     console.log(this.state)
   }
