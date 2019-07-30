@@ -1,7 +1,6 @@
 const passport = require('passport')
 const Shelter = require('../../models/shelters')
 const LocalStrategy = require('passport-local').Strategy
-const chalk = require('chalk')
 
 /**
  * serializeUser()
@@ -24,9 +23,9 @@ passport.deserializeUser((id, done) => {
  * The usernameField (Parameter) define the name of the properties in the 
  * POST body that are sent to the server.
  */
-passport.use(new LocalStrategy({usernameField: 'name'},
+passport.use(new LocalStrategy({usernameField: 'email'},
     function (username, password, done) {  
-      Shelter.find({name: username, password: password})
+      Shelter.find({email: username, password: password})
       .asCallback(function(err, users){
         return done(err,users[0])
       })

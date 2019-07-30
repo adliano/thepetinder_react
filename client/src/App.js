@@ -11,7 +11,7 @@ import SplashPage from './pages/SplashPage'
 import ShelterRegister from './pages/Shelter_Register'
 import ShelterHome from './pages/Shelter-Homepage'
 import AvaliablePetsPage from './pages/AvaliablePetsPage'
-// import ShelterLogin from './pages/Shelter_Login'
+import ShelterLogin from './pages/Shelter_Login'
 // import AddPet from './pages/AddPet'
 // import Shelter from './pages/Shelter'
 
@@ -56,7 +56,7 @@ class App extends Component {
     fetch('/login',{
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({"name":"adriano","password": "827ccb0eea8a706c4c34a16891f84e7b"})
+      body: JSON.stringify({"email":"adriano@email.com","password": "827ccb0eea8a706c4c34a16891f84e7b"})
     })
     .then( response => {
       console.log(response)
@@ -80,7 +80,7 @@ class App extends Component {
         <div>
           <Switch>
             <Route exact path='/' component={SplashPage} />
-            {/* <Route exact path='/ShelterLogin' component={ShelterLogin} /> */}
+            <Route exact path='/ShelterLogin' component={ShelterLogin} />
             <Route exact path='/ShelterRegister' component={ShelterRegister} />
             <Route exact path='/AvaliablePetsPage' component={AvaliablePetsPage} />
             <Route exact path='/ShelterHome' component={ShelterHome} />
