@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
-import md5 from 'md5'
 import {
   BrowserRouter,
   Route,
   Switch,
   Redirect,
-  // withRouter
 } from 'react-router-dom'
 
 // Import Pages
 import SplashPage from './pages/SplashPage'
-import ShelterLogin from './pages/Shelter_Login'
 import ShelterRegister from './pages/Shelter_Register'
 import ShelterHome from './pages/Shelter-Homepage'
 import AvaliablePetsPage from './pages/AvaliablePetsPage'
+// import ShelterLogin from './pages/Shelter_Login'
 // import AddPet from './pages/AddPet'
 // import Shelter from './pages/Shelter'
 
@@ -30,7 +28,6 @@ function PrivateRoute ({ component: Component,  gotUser, ...rest }) {
     <Route
       {...rest}
       render={props =>
-        // fakeAuth.isAuthenticated ? (
           gotUser ? (
           <Component {...props} />
         ) : (
