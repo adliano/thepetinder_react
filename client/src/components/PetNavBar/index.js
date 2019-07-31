@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 
 import { Navbar, Button } from 'react-bootstrap'
 
-import { Link, BrowserRouter } from 'react-router-dom'
-
 /**
  * PetNavbar
  * Navbar used for all pages
@@ -22,7 +20,7 @@ class PetNavBar extends Component {
     return (
         <Navbar bg='dark' variant='dark'>
           <Navbar.Brand>
-            <a>
+            <>
               <img
                 alt=''
                 src={process.env.PUBLIC_URL + '/assets/images/feather_purr.svg'}
@@ -30,7 +28,7 @@ class PetNavBar extends Component {
                 height='30'
                 className='d-inline-block align-top'
               />
-            </a>
+            </>
             {this.props.homeLink}
           </Navbar.Brand>
           {/* Buttons */}

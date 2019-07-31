@@ -49,7 +49,7 @@ class ShelterLogin extends Component {
         console.log(results)
         // TODO: remove the alert
         // alert(`Welcome ${results.name} your id is ${results.id}`)
-        this.setState({ user: results }, () => console.log(this.state) )
+        this.setState({ user: results }/*, () => console.log(this.state) */)
       })
       .catch(err => console.log(err))     
   }
@@ -83,7 +83,6 @@ class ShelterLogin extends Component {
           <Row className='m-3 p-2'>
             <Col lg>
               <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick} disabled={!this.isEnable()} >Login</Button>
-              {/* <Button className='w-50 m-2' variant='primary' onClick={this.props.onLoginClick} disabled={!this.isEnable()} >Login</Button> */}
             </Col>
             <Col lg>
               <Button className='w-50 m-2' variant='primary' href='/ShelterRegister'>Register</Button>

@@ -6,12 +6,13 @@ import PetinderLogo from './components/PetinderLogo'
 import PetFooter from './components/PetFooter'
 import SplashPage from './pages/SplashPage'
 import ShelterRegister from './pages/Shelter_Register'
-import ShelterHome from './pages/Shelter-Homepage'
+// import ShelterHome from './pages/Shelter-Homepage'
 import AvaliablePetsPage from './pages/AvaliablePetsPage'
 import ShelterLogin from './pages/Shelter_Login'
 import AddPet from './pages/AddPet'
 import PrivateRoute from './components/PrivateRoute'
-import md5 from 'md5'
+
+// import md5 from 'md5'
 
 class App extends Component {
   state = {
@@ -23,11 +24,7 @@ class App extends Component {
   componentDidMount () {
     fetch('/auth', { method: 'GET' })
       .then(response => response.json())
-      .then(results => {
-        console.log('=============================')
-        console.log(results)
-        console.log('=============================')
-      })
+      .then(results => this.setState({user: results}, () => console.log(this.state)))
       .catch(err => console.log(err))
   }
   /**
