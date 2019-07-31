@@ -81,7 +81,7 @@ class ShelterLogin extends Component {
               <Form.Control name='email' size="lg" type="email" placeholder="Enter email" onChange={this.onInputChange} />
             </Form.Group>
             <Form.Group controlId="formGroupPassword">
-              <Form.Control name='password' size="lg" type="password" placeholder="Password" onChange={this.onInputChange} />
+              <Form.Control name='password' size="lg" type="password" placeholder="Password" onChange={this.onInputChange} autoComplete='password' />
             </Form.Group>
           </Form>
             </Col>

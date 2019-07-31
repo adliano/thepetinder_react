@@ -54,20 +54,20 @@ class App extends Component {
   }
 
   componentDidMount(){    
-    fetch('/login',{
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({"email":"adriano@email.com","password": "827ccb0eea8a706c4c34a16891f84e7b"})
-    })
-    .then( response => {
-      console.log(response)
-      return response.json()
-    })
-    .then(results => {
-      console.log(results)
-      this.setState({ user: results })
-    })
-    .catch(err => console.log(err))
+    // fetch('/login',{
+    //   method: 'POST',
+    //   headers: {'Content-Type':'application/json'},
+    //   body: JSON.stringify({"email":"adriano@email.com","password": "827ccb0eea8a706c4c34a16891f84e7b"})
+    // })
+    // .then( response => {
+    //   console.log(response)
+    //   return response.json()
+    // })
+    // .then(results => {
+    //   console.log(results)
+    //   this.setState({ user: results })
+    // })
+    // .catch(err => console.log(err))
   }
   // Logout if close window
   componentWillUnmount(){
