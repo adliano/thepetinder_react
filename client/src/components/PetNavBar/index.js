@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Navbar, Button, Container } from 'react-bootstrap'
+import { Navbar, Button } from 'react-bootstrap'
 
 import { Link, BrowserRouter } from 'react-router-dom'
 
@@ -22,7 +22,7 @@ class PetNavBar extends Component {
     return (
         <Navbar bg='dark' variant='dark'>
           <Navbar.Brand>
-            <a href='/'>
+            <a>
               <img
                 alt=''
                 src={process.env.PUBLIC_URL + '/assets/images/feather_purr.svg'}
@@ -31,10 +31,9 @@ class PetNavBar extends Component {
                 className='d-inline-block align-top'
               />
             </a>
-            Petinder
+            {this.props.homeLink}
           </Navbar.Brand>
-          {/* Logout button */}
-
+          {/* Buttons */}
           <div className='mr-2 ml-auto'>
             <Button className='mx-1'>
               {this.props.loginButton}
