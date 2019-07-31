@@ -93,7 +93,7 @@ class App extends Component {
             <Route exact path='/ShelterRegister' component={ShelterRegister} />
             <Route exact path='/AvaliablePetsPage' component={AvaliablePetsPage} />
             <PrivateRoute path='/AddPet' component={AddPet} gotUser={this.state.user} />
-            <PrivateRoute  path='/ShelterHome' component={ShelterHome} gotUser={this.state.user} />
+            {/* <PrivateRoute  path='/ShelterHome' component={ShelterHome} gotUser={this.state.user} /> */}
           </Switch>
         </div>
       </BrowserRouter>

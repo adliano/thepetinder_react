@@ -168,9 +168,14 @@ module.exports = function (app) {
       const { password, ...userData } = req.user
       res.json(userData)
     } else {
-
       res.json({msg: 'no user'})
     }
   })
+
+
+  app.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/login');
+  });
 
 }

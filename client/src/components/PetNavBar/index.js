@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Navbar from 'react-bootstrap/Navbar'
+import { Navbar, Button, Form } from 'react-bootstrap'
 
 /**
  * PetNavbar
@@ -21,6 +21,12 @@ function PetNavBar () {
         </a>
         Petinder
       </Navbar.Brand>
+      {/* Logout button */}
+      <Form action='/logout' method='GET' className='mr-2 ml-auto'>
+        <Button type='submit' >
+          logout
+        </Button>
+      </Form>
     </Navbar>
   )
 }
