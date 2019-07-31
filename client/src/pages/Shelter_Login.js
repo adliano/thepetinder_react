@@ -48,7 +48,7 @@ class ShelterLogin extends Component {
       .then(results => {
         console.log(results)
         // TODO: remove the alert
-        alert(`Welcome ${results.name} your id is ${results.id}`)
+        // alert(`Welcome ${results.name} your id is ${results.id}`)
         this.setState({ user: results }, () => console.log(this.state) )
       })
       .catch(err => console.log(err))     

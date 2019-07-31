@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { Component} from 'react'
 
-import { Navbar, Button, Form } from 'react-bootstrap'
+import { Navbar, Button } from 'react-bootstrap'
 
 /**
  * PetNavbar
  * Navbar used for all pages
  */
-function PetNavBar () {
+class PetNavBar extends Component {
+  /**
+   * onLogoutClick()
+   */
+  onLogoutClick = (event) => {
+    fetch('/logout')
+    .then(response => console.log(response))
+  }
+  /**
+   * Render
+   */
+  render(){
   return (
     <Navbar bg='dark' variant='dark'>
       <Navbar.Brand>
@@ -22,14 +33,17 @@ function PetNavBar () {
         Petinder
       </Navbar.Brand>
       {/* Logout button */}
-      <Form className='mr-2 ml-auto' action='/logout' method='GET' >
-        <Button className='mx-1' href='/ShelterLogin'>Login</Button>
-        <Button className='mx-1' type='submit' >
+      <div className='mr-2 ml-auto'>
+        <Button className='mx-1' href='/ShelterLogin'>
+          Login
+          </Button>
+        <Button className='mx-1' onClick={this.onLogoutClick} >
           logout
         </Button>
-      </Form>
+      </div>
     </Navbar>
   )
+}
 }
 
 export default PetNavBar
