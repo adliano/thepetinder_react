@@ -177,8 +177,10 @@ module.exports = function (app) {
    * 
    */
   app.get('/logout', function(req, res){
-    req.logout();
-    res.redirect('/');
+    if (req.isAuthenticated()){
+      req.logOut();
+      res.redirect('/');
+    }
   });
 
 }
