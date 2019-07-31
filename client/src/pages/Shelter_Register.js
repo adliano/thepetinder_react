@@ -32,7 +32,15 @@ class ShelterRegister extends Component {
       header: '',
       msg: '',
       color: ''
-    }
+    },
+    name: "",
+    email: "",
+    password: "",
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    phone: ""
   }
 
   /**
@@ -43,12 +51,7 @@ class ShelterRegister extends Component {
     const { viewPassword, alert, ...shelterData } = this.state
     const { password } = shelterData
     // Send Request to server
-    let hasHPassword
-
-    if (password) {
-      hasHPassword = md5(password)
-    }
-
+    shelterData.password = md5(password)
     API.registerShelter(shelterData)
       .then(response => response.json())
       .then(results => {
@@ -97,6 +100,20 @@ class ShelterRegister extends Component {
         }
       })
       .catch(err => console.log(err))
+  }
+
+  isEnable = () => {
+    const { name, email, password, address, city, state, zipCode, phone } = this.state
+    return (
+      name.length > 0 &&
+      email.length > 0 &&
+      password.length > 0 &&
+      address.length > 0 &&
+      city.length > 0 &&
+      state.length > 0 &&
+      zipCode.length > 0 &&
+      phone.length > 0
+    )
   }
 
   /**
@@ -266,6 +283,7 @@ class ShelterRegister extends Component {
                 className='w-50 m-2'
                 variant='primary'
                 onClick={this.onButtonClick}
+                disabled={!this.isEnable()}
               >
                 Register
               </Button>
