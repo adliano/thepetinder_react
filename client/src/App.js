@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 
 import PetNavBar from './components/PetNavBar'
+import LogoutButton from './components/LogoutButton'
 import PetinderLogo from './components/PetinderLogo'
 import PetFooter from './components/PetFooter'
 import SplashPage from './pages/SplashPage'
@@ -11,6 +12,7 @@ import AvaliablePetsPage from './pages/AvaliablePetsPage'
 import ShelterLogin from './pages/Shelter_Login'
 import AddPet from './pages/AddPet'
 import PrivateRoute from './components/PrivateRoute'
+
 
 // import md5 from 'md5'
 
@@ -24,7 +26,9 @@ class App extends Component {
   componentDidMount () {
     fetch('/auth', { method: 'GET' })
       .then(response => response.json())
-      .then(results => this.setState({user: results}, () => console.log(this.state)))
+      .then(results =>
+        this.setState({ user: results }, () => console.log(this.state))
+      )
       .catch(err => console.log(err))
   }
   /**
@@ -41,10 +45,7 @@ class App extends Component {
     return (
       <>
         <BrowserRouter>
-          <PetNavBar 
-          // loginButton={<Link className='text-light' to='/ShelterLogin'>Login</Link>} 
-          // homeLink={<Link className='text-light' to='/'>Petinder</Link>}
-          />
+          <PetNavBar actionButtons={<LogoutButton/>}/>
           <PetinderLogo />
           <div>
             <Switch>

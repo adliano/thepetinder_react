@@ -13,9 +13,9 @@ class PetNavBar extends Component {
   /**
    * onLogoutClick()
    */
-  onLogoutClick = event => {
-    fetch('/logout').then(response => console.log(response))
-  }
+  // onLogoutClick = event => {
+  //   fetch('/logout').then(response => console.log(response))
+  // }
   /**
    * Render
    */
@@ -33,13 +33,13 @@ class PetNavBar extends Component {
               />
               Petinder
             </Link>
-            {/* {this.props.homeLink} */}
           </Navbar.Brand>
           {/* Buttons */}
           <div className='mr-2 ml-auto'>
-            <Button className='mx-1' onClick={this.onLogoutClick}>
+            {this.props.actionButtons}
+            {/* <Button className='mx-1' onClick={this.onLogoutClick}>
               logout
-            </Button>
+            </Button> */}
           </div>
         </Navbar>
     )
