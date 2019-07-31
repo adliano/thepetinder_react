@@ -31,8 +31,8 @@ class ShelterLogin extends Component {
    * validate forms
    */
   isEnable = () => {
-    // const { email, password } = this.state
-    return (this.state.email.length > 0 && this.state.password.length > 0)
+    const { email, password } = this.state
+    return (email.length > 0 && password.length > 0)
   }
   /**
      * onButtonClick()
@@ -65,10 +65,6 @@ class ShelterLogin extends Component {
   * 
   */
   render () {
-    // const { email, password } = this.state
-    // let isEnable =  (email.length > 0 && password.length > 0)
-    // console.log(isEnable);
-    
     return (
       <>
         <PetNavBar />
