@@ -33,22 +33,11 @@ By default, LocalStrategy expects to find credentials in parameters named userna
     passwordField: 'password'
   },....`
 
-  
 
-  // // this doesn't work
-    // console.log(chalk.bgYellow(`inside LocalStrategy`))
-    // Shelter.find({ email: username }).then((err, user) => {
-    //   if (err) {
-    //     console.log(chalk.bgRed(`Error: if (err) ${JSON.stringify(err)}`))
-    //     return done(err)
-    //   }
-    //   if (!user) {
-    //     console.log(chalk.bgRed(`Error: !user`))
-    //     return done(null, false)
-    //   }
-    //   if (user.password !== password) {
-    //     console.log(chalk.bgRed(`Error: ${user.password} !== ${password}`))
-    //     return done(null, flase)
-    //   }
-    //   return done(null, user[0])
-    // })
+    /   Shelter.find({ email: username }) // , password: password})
+  //   .asCallback(function(err, users){
+  //     if(err) { return done(err) }
+  //     if(!users[0]) { return done(null, false) }
+  //     if(users[0].password !== password) { return done(null, false) }
+  //     return done(null,users[0])
+  //   })

@@ -15,14 +15,9 @@ passport.serializeUser((user, done) => {
  */
 passport.deserializeUser((id, done) => {
   console.log(chalk.bgYellow(`inside deserializeUser`))
-  Shelter.find({ id: id})
-  .asCallback(function(err, users){
-      done(err,users[0])
+  Shelter.find({ id: id }).then((users, err) => {
+    done(err, users[0])
   })
-  // this doesn't work
-  // Shelter.find({ id: id }).then((err, users) => {
-  //   done(err, users[0])
-  // })
 })
 /**
  * Local strategy configuration
@@ -31,12 +26,21 @@ passport.deserializeUser((id, done) => {
  */
 passport.use(
   new LocalStrategy({ usernameField: 'email' }, function (username,password,done) {
-    Shelter.find({ email: username }) // , password: password})
-    .asCallback(function(err, users){
-      if(err) { return done(err) }
-      if(!users[0]) { return done(null, false) }
-      if(users[0].password !== password) { return done(null, false) }
-      return done(null,users[0])
+    //console.log(chalk.bgYellow(`inside LocalStrategy`))
+    Shelter.find({ email: username }).then((user, err) => {
+      if (err) {
+        //console.log(chalk.bgRed(`Error: if (err) ${JSON.stringify(err)}`))
+        return done(err)
+      }
+      if (!user) {
+        //console.log(chalk.bgRed(`Error: !user`))
+        return done(null, false)
+      }
+      if (user[0].password !== password) {
+        //console.log(chalk.bgRed(`Error: ${user.password} !== ${password}`))
+        return done(null, false)
+      }
+      return done(null, user[0])
     })
   })
 )
