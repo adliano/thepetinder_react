@@ -1,21 +1,11 @@
 import React, { Component } from 'react'
-
-import { Navbar, Button } from 'react-bootstrap'
-
+import { Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-
-
 /**
  * PetNavbar
  * Navbar used for all pages
  */
 class PetNavBar extends Component {
-  /**
-   * onLogoutClick()
-   */
-  // onLogoutClick = event => {
-  //   fetch('/logout').then(response => console.log(response))
-  // }
   /**
    * Render
    */
@@ -37,9 +27,6 @@ class PetNavBar extends Component {
           {/* Buttons */}
           <div className='mr-2 ml-auto'>
             {this.props.actionButtons}
-            {/* <Button className='mx-1' onClick={this.onLogoutClick}>
-              logout
-            </Button> */}
           </div>
         </Navbar>
     )
