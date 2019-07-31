@@ -1,10 +1,16 @@
 .imgSize{
     max-width: 250px;
     max-height: 250px;
+    margin: auto;
+    width: 100%;
 }
 .cardDimensions{
     max-width: 275px;
     max-height: 550px;
     float: left;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
+    /*padding-top: 5px;*/
+   margin: auto;
+    /*margin-left:5px;*/
+    /*align-items: center;*/
 }
