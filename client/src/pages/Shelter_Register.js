@@ -34,7 +34,7 @@ class ShelterRegister extends Component {
       color: ''
     }
   }
-  
+
   /**
    * onButtonClick()
    * Event listener used for buttons
@@ -48,9 +48,9 @@ class ShelterRegister extends Component {
 
     //!11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
     // What I want is when the register button is pressed w/o any input, form validation
-    if(!password){
-      this.validateForm()
-    }
+    // if (!password) {
+    //   this.validateForm()
+    // }
     //!11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 
 
@@ -68,7 +68,7 @@ class ShelterRegister extends Component {
               header: results.error,
               msg: 'Please Try Again',
               color: 'danger'
-            },  
+            },
             name: "",
             email: "",
             password: "",
@@ -78,7 +78,7 @@ class ShelterRegister extends Component {
             zipCode: "",
             phone: ""
           })
-        } 
+        }
         // If no error display welcome message
         else {
           this.setState(
@@ -88,37 +88,35 @@ class ShelterRegister extends Component {
                 header: 'Welcome!',
                 msg: `Registration Completed for ${this.state.name}`,
                 color: 'success'
-              },  
-                name: "",
-                email: "",
-                password: "",
-                address: "",
-                city: "",
-                state: "",
-                zipCode: "",
-                phone: ""
-            }) 
-            console.log(this.state)
+              },
+              name: "",
+              email: "",
+              password: "",
+              address: "",
+              city: "",
+              state: "",
+              zipCode: "",
+              phone: ""
+            })
+          console.log(this.state)
         }
       })
       .catch(err => console.log(err))
   }
-  
+
   //!1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-    validateForm() {
-    var isFormValid = true;
-    if (!shelterData.password || !hasHPassword || !password) {
-        isFormValid = false;
-    }
-  }
+  // disableFormButton () {
+  //   return(this.s)
+  //   }
+  // }
   //!11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 
   /**
    * onInputChange()
    * This will handle onChange event from
    * inputs
-   */  
-  
+   */
+
   onInputChange = event => {
     const { name, value } = event.target
     this.setState({ [name]: value })
@@ -158,7 +156,7 @@ class ShelterRegister extends Component {
    * Render
    *
    */
-  render () {
+  render() {
     return (
       <>
         <PetNavBar />
@@ -208,8 +206,8 @@ class ShelterRegister extends Component {
                       {this.state.viewPassword ? (
                         <Visibility />
                       ) : (
-                        <VisibilityOff />
-                      )}
+                          <VisibilityOff />
+                        )}
                     </Button>
                   </InputGroup.Append>
                 </InputGroup>
