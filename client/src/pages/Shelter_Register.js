@@ -46,14 +46,6 @@ class ShelterRegister extends Component {
     let hasHPassword = md5(password)
     shelterData.password = (hasHPassword)
 
-    //!11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-    // What I want is when the register button is pressed w/o any input, form validation
-    // if (!password) {
-    //   this.validateForm()
-    // }
-    //!11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-
-
     API.registerShelter(shelterData)
       .then(response => response.json())
       .then(results => {
@@ -103,13 +95,6 @@ class ShelterRegister extends Component {
       })
       .catch(err => console.log(err))
   }
-
-  //!1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-  // disableFormButton () {
-  //   return(this.s)
-  //   }
-  // }
-  //!11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 
   /**
    * onInputChange()
