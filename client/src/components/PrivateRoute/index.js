@@ -9,7 +9,7 @@ import {
  * @param {gotUser} boolean used as flag to give 
  * access to component
  */
-function PrivateRoute ({ component: Component,  gotUser, ...rest }) {
+function PrivateRoute ({ component: Component,  gotUser, redirect, ...rest }) {
     return (
       <Route
         {...rest}
@@ -19,7 +19,7 @@ function PrivateRoute ({ component: Component,  gotUser, ...rest }) {
           ) : (
             <Redirect
               to={{
-                pathname: '/ShelterLogin',
+                pathname: redirect,
                 state: { from: props.location }
               }}
             />

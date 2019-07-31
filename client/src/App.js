@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 
 import PetNavBar from './components/PetNavBar'
 import LogoutButton from './components/LogoutButton'
@@ -14,7 +14,9 @@ import PrivateRoute from './components/PrivateRoute'
 
 class App extends Component {
   state = {
-    user: null
+    user: {
+      id: ''
+    }
   }
   /**
    * componentDidMount()
@@ -34,28 +36,17 @@ class App extends Component {
     return (
       <>
         <BrowserRouter>
-          <PetNavBar actionButtons={<LogoutButton/>}/>
+          <PetNavBar actionButtons={
+            this.state.user.id ? <LogoutButton/> : <Link to='/ShelterLogin'>Login</Link>
+          }/>
           <PetinderLogo />
           <div>
             <Switch>
               <Route exact path='/' component={SplashPage} />
-              <Route exact path='/ShelterLogin' component={ShelterLogin} />
-              <Route
-                exact
-                path='/ShelterRegister'
-                component={ShelterRegister}
-              />
-              <Route
-                exact
-                path='/AvaliablePetsPage'
-                component={AvaliablePetsPage}
-              />
-              <PrivateRoute
-                path='/AddPet'
-                component={AddPet}
-                gotUser={this.state.user}
-              />
-              {/* <PrivateRoute  path='/ShelterHome' component={ShelterHome} gotUser={this.state.user} /> */}
+              <Route exact path='/ShelterRegister' component={ShelterRegister} />
+              <Route exact path='/AvaliablePetsPage' component={AvaliablePetsPage} />
+              <PrivateRoute redirect='/' exact path='/ShelterLogin' component={ShelterLogin} gotUser={!this.state.user} />
+              <PrivateRoute redirect='/ShelterLogin' path='/AddPet' component={AddPet} gotUser={this.state.user} />
             </Switch>
           </div>
         </BrowserRouter>
