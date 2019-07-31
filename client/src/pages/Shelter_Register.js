@@ -43,8 +43,11 @@ class ShelterRegister extends Component {
     const { viewPassword, alert, ...shelterData } = this.state
     const { password } = shelterData
     // Send Request to server
-    let hasHPassword = md5(password)
-    shelterData.password = (hasHPassword)
+    let hasHPassword
+
+    if (password) {
+      hasHPassword = md5(password)
+    }
 
     API.registerShelter(shelterData)
       .then(response => response.json())
