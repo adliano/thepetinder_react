@@ -1,16 +1,5 @@
 import React, { Component } from 'react';
-// Use Bootstrap Components
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-
-// Use Application Components
-import PetNavBar from '../components/PetNavBar'
-import PetinderLogo from '../components/PetinderLogo'
-import PetFooter from '../components/PetFooter'
-
+import { Container, Row, Col, Button, Form } from 'react-bootstrap/'
 import md5 from 'md5'
 
 class ShelterLogin extends Component {
@@ -34,6 +23,11 @@ class ShelterLogin extends Component {
     const { email, password } = this.state
     return (email.length > 0 && password.length > 0)
   }
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
   /**
      * onButtonClick()
      * Event listener used for buttons
@@ -59,6 +53,12 @@ class ShelterLogin extends Component {
       })
       .catch(err => console.log(err))     
   }
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+
   /**
   *   
   * Render
@@ -67,8 +67,6 @@ class ShelterLogin extends Component {
   render () {
     return (
       <>
-        <PetNavBar />
-        <PetinderLogo />
         <Container className='my-5 p-5 text-center'>
           <Row>
             <Col md>
@@ -82,17 +80,16 @@ class ShelterLogin extends Component {
           </Form>
             </Col>
           </Row>
-        
           <Row className='m-3 p-2'>
             <Col lg>
               <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick} disabled={!this.isEnable()} >Login</Button>
+              {/* <Button className='w-50 m-2' variant='primary' onClick={this.props.onLoginClick} disabled={!this.isEnable()} >Login</Button> */}
             </Col>
             <Col lg>
               <Button className='w-50 m-2' variant='primary' href='/ShelterRegister'>Register</Button>
             </Col>
           </Row>
         </Container>
-        <PetFooter />
       </>
     )
   }

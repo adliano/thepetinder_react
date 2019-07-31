@@ -155,8 +155,22 @@ module.exports = function (app) {
     function (req, res) {
       // Remove password from object befor send it back
       const { password, ...userInfo } = req.user
-      res.json(userInfo)
+      res.json(userInfo)//.redirect('/')
       // res.redirect('/ShelterHome')
     }
   )
+
+  app.get('/auth', function(req, res){
+    
+    console.log(chalk.bgBlue(JSON.stringify(req.session)))
+  
+    if(req.user){
+      const { password, ...userData } = req.user
+      res.json(userData)
+    } else {
+
+      res.json({msg: 'no user'})
+    }
+  })
+
 }

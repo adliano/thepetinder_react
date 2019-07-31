@@ -5,9 +5,9 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 // Use Application Components
-import PetNavbar from '../components/PetNavBar'
-import PetFooter from '../components/PetFooter'
-import PetinderLogo from '../components/PetinderLogo'
+// import PetNavbar from '../components/PetNavBar'
+// import PetFooter from '../components/PetFooter'
+// import PetinderLogo from '../components/PetinderLogo'
 
 /**
  * Page used for splash, it will have two buttons to 
@@ -56,8 +56,8 @@ class ShelterHome extends Component {
   render () {
     return (
       <>
-        <PetNavbar />
-        <PetinderLogo />
+        {/* <PetNavbar /> */}
+        {/* <PetinderLogo /> */}
         <Container className='my-2 p-2 text-center'>
           <Row>
             <h1 className='p-2 row mt-3 mx-auto text-center mx-3'>
@@ -83,7 +83,7 @@ class ShelterHome extends Component {
               </Col>
           </Row>
         </Container>
-        <PetFooter />
+        {/* <PetFooter /> */}
       </>
     )
   }

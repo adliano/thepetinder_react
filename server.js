@@ -25,7 +25,8 @@ app.use(morgan('dev'))
 // This will allow the passport to use
 // the message set on app/config/passport
 // app.use(flash()) removed
-app.use(session({secret: process.env.SECRET, resave: false, saveUninitialized: true,}))
+app.use(session({secret: process.env.SECRET, resave: false, saveUninitialized: false,cookie: { maxAge: 60 * 60 * 1000 }}))
+// app.use(session({secret: process.env.SECRET, resave: false, saveUninitialized: true}))
 // This object will contain key-value pairs, where the value can be a string or array (when extended is false), or any type (when extended is true).
 // This middleware is available in Express v4.16.0 onwards
 app.use(express.urlencoded({ extended: true }))
@@ -34,6 +35,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // Used for Heroku
+// Trust the reverse proxy when setting secure cookies (via the "X-Forwarded-Proto" header).
 if (app.get('env') === 'production') {
   // trust first proxy Used for HTTPS
   app.set('trust proxy', 1)

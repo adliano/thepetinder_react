@@ -3,61 +3,64 @@ import {
   BrowserRouter,
   Route,
   Switch,
-  // Redirect,
 } from 'react-router-dom'
 
-// Import Pages
+import PetNavBar from './components/PetNavBar'
+import PetinderLogo from './components/PetinderLogo'
+import PetFooter from './components/PetFooter'
 import SplashPage from './pages/SplashPage'
 import ShelterRegister from './pages/Shelter_Register'
 import ShelterHome from './pages/Shelter-Homepage'
 import AvaliablePetsPage from './pages/AvaliablePetsPage'
 import ShelterLogin from './pages/Shelter_Login'
 import AddPet from './pages/AddPet'
-// import Shelter from './pages/Shelter'
-
 import PrivateRoute from './components/PrivateRoute'
+import md5 from 'md5'
 
-
-
-/////////////////////////////////////////////////////////////////
-// // TODO: move this to another file
-// /**
-//  * PrivateRoute() used to make routes private
-//  * @param {json} json object with components
-//  * @param {objec} user from backend
-//  */
-// function PrivateRoute ({ component: Component,  gotUser, ...rest }) {
-//   return (
-//     <Route
-//       {...rest}
-//       render={props =>
-//           gotUser ? (
-//           <Component {...props} />
-//         ) : (
-//           <Redirect
-//             to={{
-//               pathname: '/login',
-//               state: { from: props.location }
-//             }}
-//           />
-//         )
-//       }
-//     />
-//   )
-// }
-/////////////////////////////////////////////////////////////////
 
 class App extends Component {
-
   state = {
     user: null,
   }
+  /**
+     * loginEventHandler()
+     * Event listener used for buttons
+     */
+    loginEventHandler = (event) => {
+
+      const { email, password } = this.state
+
+      fetch('/login',{
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({email: email, password: md5(password)})
+      })
+      .then( response => {
+        console.log(response)
+        return response.json()
+      })
+      .then(results => {
+        console.log(results)
+        // TODO: remove the alert
+        alert(`Welcome ${results.name} your id is ${results.id}`)
+        this.setState({ user: results }, () => console.log(this.state) )
+      })
+      .catch(err => console.log(err))     
+  }
 
   componentDidMount(){    
+    fetch('/auth',{ method: 'GET'})
+    .then(response => response.json())
+    .then(results => {
+      console.log('=============================')
+      console.log(results)
+      console.log('=============================')
+
+    }).catch(err => console.log(err))
     // fetch('/login',{
     //   method: 'POST',
     //   headers: {'Content-Type':'application/json'},
-    //   body: JSON.stringify({"email":"adriano@email.com","password": "827ccb0eea8a706c4c34a16891f84e7b"})
+    //   body: JSON.stringify({"email":"adriano@email.com","password": "81dc9bdb52d04dc20036dbd8313ed055"})
     // })
     // .then( response => {
     //   console.log(response)
@@ -71,6 +74,7 @@ class App extends Component {
   }
   // Logout if close window
   componentWillUnmount(){
+    // TODO: Logout user here
     // this.state({user: null})
   }
   /**
@@ -78,6 +82,9 @@ class App extends Component {
    */
   render () {
     return (
+    <>
+    <PetNavBar />
+    <PetinderLogo />
       <BrowserRouter>
         <div>
           <Switch>
@@ -90,6 +97,8 @@ class App extends Component {
           </Switch>
         </div>
       </BrowserRouter>
+      <PetFooter />
+      </>
     )
   }
 }
