@@ -100,7 +100,7 @@ gettingData = () => {fetch('/api/findAll')
       <>
         <PetNavbar />
         <PetinderLogo />
-        <Container className='my-2 p-2 text-center'>
+        <Container className='my-2 p-2 container'>
           {this.renderPets(this.state.pets)}
         </Container>
         <PetFooter />
