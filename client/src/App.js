@@ -42,8 +42,8 @@ class App extends Component {
       <>
         <BrowserRouter>
           <PetNavBar 
-          loginButton={<Link className='text-light' to='/ShelterLogin'>Login</Link>} 
-          homeLink={<Link className='text-light' to='/'>Petinder</Link>}
+          // loginButton={<Link className='text-light' to='/ShelterLogin'>Login</Link>} 
+          // homeLink={<Link className='text-light' to='/'>Petinder</Link>}
           />
           <PetinderLogo />
           <div>
