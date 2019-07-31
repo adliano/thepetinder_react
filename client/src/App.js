@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 
+import { Button } from 'react-bootstrap'
+
+
 import PetNavBar from './components/PetNavBar'
 import LogoutButton from './components/LogoutButton'
 import PetinderLogo from './components/PetinderLogo'
@@ -37,7 +40,14 @@ class App extends Component {
       <>
         <BrowserRouter>
           <PetNavBar actionButtons={
-            this.state.user.id ? <LogoutButton/> : <Link to='/ShelterLogin'>Login</Link>
+            this.state.user.id ? 
+            <>
+            <LogoutButton/>
+            <Link to='/AddPet'><Button>Add Pet</Button></Link>
+            </> : 
+            <>
+            <Link to='/ShelterLogin'>Login</Link>
+            </>
           }/>
           <PetinderLogo />
           <div>
@@ -45,8 +55,8 @@ class App extends Component {
               <Route exact path='/' component={SplashPage} />
               <Route exact path='/ShelterRegister' component={ShelterRegister} />
               <Route exact path='/AvaliablePetsPage' component={AvaliablePetsPage} />
-              <PrivateRoute redirect='/' exact path='/ShelterLogin' component={ShelterLogin} gotUser={!this.state.user} />
-              <PrivateRoute redirect='/ShelterLogin' path='/AddPet' component={AddPet} gotUser={this.state.user} />
+              <PrivateRoute exact redirect='/' path='/ShelterLogin' component={ShelterLogin} gotUser={!this.state.user.id} />
+              <PrivateRoute exact redirect='/ShelterLogin' path='/AddPet' component={AddPet} gotUser={this.state.user.id} />
             </Switch>
           </div>
         </BrowserRouter>
