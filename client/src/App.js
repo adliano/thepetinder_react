@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-} from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 
 import PetNavBar from './components/PetNavBar'
 import PetinderLogo from './components/PetinderLogo'
@@ -17,52 +13,63 @@ import AddPet from './pages/AddPet'
 import PrivateRoute from './components/PrivateRoute'
 import md5 from 'md5'
 
-
 class App extends Component {
   state = {
-    user: null,
+    user: null
   }
   /**
    * componentDidMount()
    */
-  componentDidMount(){    
-    fetch('/auth',{ method: 'GET'})
-    .then(response => response.json())
-    .then(results => {
-      console.log('=============================')
-      console.log(results)
-      console.log('=============================')
-
-    }).catch(err => console.log(err))
+  componentDidMount () {
+    fetch('/auth', { method: 'GET' })
+      .then(response => response.json())
+      .then(results => {
+        console.log('=============================')
+        console.log(results)
+        console.log('=============================')
+      })
+      .catch(err => console.log(err))
   }
   /**
    * componentWillUnmount()
    */
-  componentWillUnmount(){
+  componentWillUnmount () {
     // Logout if close window
     // TODO: logout here
-    }
+  }
   /**
    * Render
    */
   render () {
     return (
-    <>
-    <PetNavBar />
-    <PetinderLogo />
-      <BrowserRouter>
-        <div>
-          <Switch>
-            <Route exact path='/' component={SplashPage} />
-            <Route exact path='/ShelterLogin' component={ShelterLogin} />
-            <Route exact path='/ShelterRegister' component={ShelterRegister} />
-            <Route exact path='/AvaliablePetsPage' component={AvaliablePetsPage} />
-            <PrivateRoute path='/AddPet' component={AddPet} gotUser={this.state.user} />
-            {/* <PrivateRoute  path='/ShelterHome' component={ShelterHome} gotUser={this.state.user} /> */}
-          </Switch>
-        </div>
-      </BrowserRouter>
-      <PetFooter />
+      <>
+        <BrowserRouter>
+          <PetNavBar loginButton={<Link className='text-light' to='/ShelterLogin'>Login</Link>} />
+          <PetinderLogo />
+          <div>
+            <Switch>
+              <Route exact path='/' component={SplashPage} />
+              <Route exact path='/ShelterLogin' component={ShelterLogin} />
+              <Route
+                exact
+                path='/ShelterRegister'
+                component={ShelterRegister}
+              />
+              <Route
+                exact
+                path='/AvaliablePetsPage'
+                component={AvaliablePetsPage}
+              />
+              <PrivateRoute
+                path='/AddPet'
+                component={AddPet}
+                gotUser={this.state.user}
+              />
+              {/* <PrivateRoute  path='/ShelterHome' component={ShelterHome} gotUser={this.state.user} /> */}
+            </Switch>
+          </div>
+        </BrowserRouter>
+        <PetFooter />
       </>
     )
   }
