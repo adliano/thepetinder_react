@@ -22,8 +22,9 @@ function PetNavBar () {
         Petinder
       </Navbar.Brand>
       {/* Logout button */}
-      <Form action='/logout' method='GET' className='mr-2 ml-auto'>
-        <Button type='submit' >
+      <Form className='mr-2 ml-auto' action='/logout' method='GET' >
+        <Button className='mx-1' href='/ShelterLogin'>Login</Button>
+        <Button className='mx-1' type='submit' >
           logout
         </Button>
       </Form>

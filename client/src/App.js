@@ -23,31 +23,8 @@ class App extends Component {
     user: null,
   }
   /**
-     * loginEventHandler()
-     * Event listener used for buttons
-     */
-    loginEventHandler = (event) => {
-
-      const { email, password } = this.state
-
-      fetch('/login',{
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({email: email, password: md5(password)})
-      })
-      .then( response => {
-        console.log(response)
-        return response.json()
-      })
-      .then(results => {
-        console.log(results)
-        // TODO: remove the alert
-        alert(`Welcome ${results.name} your id is ${results.id}`)
-        this.setState({ user: results }, () => console.log(this.state) )
-      })
-      .catch(err => console.log(err))     
-  }
-
+   * componentDidMount()
+   */
   componentDidMount(){    
     fetch('/auth',{ method: 'GET'})
     .then(response => response.json())
@@ -57,26 +34,14 @@ class App extends Component {
       console.log('=============================')
 
     }).catch(err => console.log(err))
-    // fetch('/login',{
-    //   method: 'POST',
-    //   headers: {'Content-Type':'application/json'},
-    //   body: JSON.stringify({"email":"adriano@email.com","password": "81dc9bdb52d04dc20036dbd8313ed055"})
-    // })
-    // .then( response => {
-    //   console.log(response)
-    //   return response.json()
-    // })
-    // .then(results => {
-    //   console.log(results)
-    //   this.setState({ user: results })
-    // })
-    // .catch(err => console.log(err))
   }
-  // Logout if close window
+  /**
+   * componentWillUnmount()
+   */
   componentWillUnmount(){
-    // TODO: Logout user here
-    // this.state({user: null})
-  }
+    // Logout if close window
+    // TODO: logout here
+    }
   /**
    * Render
    */

@@ -159,7 +159,9 @@ module.exports = function (app) {
       // res.redirect('/ShelterHome')
     }
   )
-
+  /**
+   * 
+   */
   app.get('/auth', function(req, res){
     
     console.log(chalk.bgBlue(JSON.stringify(req.session)))
@@ -171,11 +173,12 @@ module.exports = function (app) {
       res.json({msg: 'no user'})
     }
   })
-
-
+  /**
+   * 
+   */
   app.get('/logout', function(req, res){
     req.logout();
-    res.redirect('/login');
+    res.redirect('/');
   });
 
 }
