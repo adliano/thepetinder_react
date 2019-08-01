@@ -6,7 +6,8 @@ import {
   Button,
   Form,
   Card,
-  InputGroup
+  InputGroup,
+  Alert
 } from 'react-bootstrap'
 /// /// Material UI Icons //////
 import {
@@ -16,11 +17,6 @@ import {
 } from '@material-ui/icons/'
 /// ///// MD5 //////
 import md5 from 'md5'
-/// //// Use Application Components /////
-import PetNavBar from '../components/PetNavBar'
-import PetinderLogo from '../components/PetinderLogo'
-import PetFooter from '../components/PetFooter'
-import Alert from 'react-bootstrap/Alert'
 /// //// API Utilities ///////
 import API from '../utils/API'
 
@@ -131,11 +127,11 @@ class ShelterRegister extends Component {
   render () {
     return (
       <>
-        <PetNavBar />
-        {this.renderAlert()}
-        <PetinderLogo />
+        {/* <PetNavBar /> */}
+        {/* <PetinderLogo /> */}
         <Container className='my-5 p-5 text-center'>
-          <Card className='text-center'>
+        {this.renderAlert()}
+          <Card className=' my-3 text-center'>
             <Card.Header className='text-left'>
               <AssignmentIcon /> Register
             </Card.Header>
@@ -256,7 +252,7 @@ class ShelterRegister extends Component {
             </Card.Body>
           </Card>
         </Container>
-        <PetFooter />
+        {/* <PetFooter /> */}
       </>
     )
   }

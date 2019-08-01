@@ -73,16 +73,13 @@ class Shelter {
    * Finds 1 or more todos based on search criteria
    *
    * @param {Object} where The where clause in the form of {column: value}
-   * @default {Object} [orderBy={}] Optional Direction to order `created_at` column
    * @returns Promise
    * @memberof Shelter
    */
-  find (where, orderBy = {}) {
-    let mergedOrder = Object.assign({}, this.defaultOrder, orderBy)
-
+  find (where) {
     return knex(this.table)
-      .where(where)
-      .orderBy([mergedOrder]) // object must be wrapped in an array: https://knexjs.org/#Builder-orderBy
+    .select('id', 'name', 'password')
+    .where(where)
   }
 
   /**

@@ -1,34 +1,67 @@
 import React, { Component } from 'react'
-// Import Pages
-import SplashPage from './pages/SplashPage'
-import ShelterLogin from './pages/Shelter_Login'
-import ShelterRegister from './pages/Shelter_Register'
-import ShelterHome from './pages/Shelter-Homepage'
-import AddPet from './pages/AddPet'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import AvaliablePetsPage from './pages/AvaliablePetsPage';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 
-// import logo from "./logo.svg";
-// import "./App.css";
+import { Button } from 'react-bootstrap'
+
+
+import PetNavBar from './components/PetNavBar'
+import LogoutButton from './components/LogoutButton'
+import PetinderLogo from './components/PetinderLogo'
+import PetFooter from './components/PetFooter'
+import SplashPage from './pages/SplashPage'
+import ShelterRegister from './pages/Shelter_Register'
+import AvaliablePetsPage from './pages/AvaliablePetsPage'
+import ShelterLogin from './pages/Shelter_Login'
+import AddPet from './pages/AddPet'
+import PrivateRoute from './components/PrivateRoute'
 
 class App extends Component {
+  state = {
+    user: {
+      id: ''
+    }
+  }
+  /**
+   * componentDidMount()
+   */
+  componentDidMount () {
+    fetch('/auth', { method: 'GET' })
+      .then(response => response.json())
+      .then(results =>
+        this.setState({ user: results }, () => console.log(this.state))
+      )
+      .catch(err => console.log(err))
+  }
   /**
    * Render
    */
   render () {
     return (
-      <Router>
-        <div>
-          <Switch>
-            <Route exact path='/' component={SplashPage} />
-            <Route exact path='/ShelterLogin' component={ShelterLogin} />
-            <Route exact path='/ShelterRegister' component={ShelterRegister} />
-            <Route exact path='/ShelterHome' component={ShelterHome} />
-            <Route exace path='/AddPet' component={AddPet} />
-            <Route exace path='/AvaliablePetsPage' component={AvaliablePetsPage} />
-          </Switch>
-        </div>
-      </Router>
+      <>
+        <BrowserRouter>
+          <PetNavBar actionButtons={
+            this.state.user.id ? 
+            <>
+            <LogoutButton/>
+            <Link to='/AddPet'><Button>Add Pet</Button></Link>
+            </> : 
+            <>
+            <Link to='/ShelterLogin'>Login</Link>
+            </>
+          }/>
+          <PetinderLogo />
+          <div>
+            <Switch>
+              <Route exact path='/' component={SplashPage} />
+              <Route exact path='/ShelterRegister' component={ShelterRegister} />
+              <Route exact path='/AvaliablePetsPage' component={AvaliablePetsPage} />
+              <PrivateRoute exact redirect='/' path='/ShelterLogin' component={ShelterLogin} gotUser={!this.state.user.id} />
+              <PrivateRoute exact redirect='/ShelterLogin' path='/AddPet' component={AddPet} gotUser={this.state.user.id} />
+            </Switch>
+          </div>
+        </BrowserRouter>
+        <PetFooter />
+      </>
     )
   }
 }

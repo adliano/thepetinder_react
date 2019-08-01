@@ -1,35 +1,64 @@
 import React, { Component } from 'react';
-// Use Bootstrap Components
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
+import { Container, Row, Col, Button, Form } from 'react-bootstrap/'
+import md5 from 'md5'
 
-// Use Application Components
-import PetNavBar from '../components/PetNavBar'
-import PetinderLogo from '../components/PetinderLogo'
-import PetFooter from '../components/PetFooter'
-
-
-class ShelterRegister extends Component {
+class ShelterLogin extends Component {
+  state = {
+    email: '', password: ''
+  }
+  /**
+   * onInputChange()
+   * This will handle onChange event from
+   * inputs
+   */
+  // TODO: remove the console log
+  onInputChange = event => {
+    const { name, value } = event.target
+    this.setState({ [name]: value },() => console.log(this.state))
+  }
+  /**
+   * validate forms
+   */
+  isEnable = () => {
+    const { email, password } = this.state
+    return (email.length > 0 && password.length > 0)
+  }
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
   /**
      * onButtonClick()
      * Event listener used for buttons
      */
     onButtonClick = (event) => {
-          
-      let _element = event.target
-      
-      if(_element.textContent === 'User'){
-          console.log('send user to user home page')
-          //Place logic here later
-      }
-      else{
-          console.log('send Shelter to shelter home page')
-          //Place logic here later
-      }
+
+      const { email, password } = this.state
+
+      fetch('/login',{
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({email: email, password: md5(password)})
+      })
+      .then( response => {
+        console.log(response)
+        return response.json()
+      })
+      .then(results => {
+        console.log(results)
+        // TODO: remove the alert
+        // alert(`Welcome ${results.name} your id is ${results.id}`)
+        this.setState({ user: results }/*, () => console.log(this.state) */)
+      })
+      .catch(err => console.log(err))     
   }
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+
   /**
   *   
   * Render
@@ -38,36 +67,31 @@ class ShelterRegister extends Component {
   render () {
     return (
       <>
-        <PetNavBar />
-        <PetinderLogo />
         <Container className='my-5 p-5 text-center'>
           <Row>
             <Col md>
           <Form>
             <Form.Group controlId="formGroupEmail">
-              <Form.Control size="lg" type="email" placeholder="Enter email" />
+              <Form.Control name='email' size="lg" type="email" placeholder="Enter email" onChange={this.onInputChange} />
             </Form.Group>
             <Form.Group controlId="formGroupPassword">
-              <Form.Control size="lg" type="password" placeholder="Password" />
+              <Form.Control name='password' size="lg" type="password" placeholder="Password" onChange={this.onInputChange} autoComplete='password' />
             </Form.Group>
           </Form>
             </Col>
           </Row>
-        
           <Row className='m-3 p-2'>
             <Col lg>
-              <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}href='/ShelterHome'>Login</Button>
+              <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick} disabled={!this.isEnable()} >Login</Button>
             </Col>
             <Col lg>
-              <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick}href='/ShelterRegister'>Register</Button>
+              <Button className='w-50 m-2' variant='primary' href='/ShelterRegister'>Register</Button>
             </Col>
           </Row>
         </Container>
-        <PetFooter />
       </>
     )
   }
 }
 
-export default ShelterRegister
-
+export default ShelterLogin

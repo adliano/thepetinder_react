@@ -1,0 +1,43 @@
+`const _strategy = new LocalStrategy(  
+  function (name, password, done) {
+
+  }....`
+
+When Passport authenticates a request, it parses the credentials contained in the request. 
+It then invokes the verify callback with those credentials as arguments, 
+in this case username and password. If the credentials are valid, 
+the verify callback invokes done to supply Passport with the user that authenticated.
+
+
+// Time are minutes x seconds x 1000 (milliseconds)
+const oneHour = 60 * 60 * 1000
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      secure: false,
+      maxAge: oneHour
+    }
+  })
+)
+
+
+Parameters
+
+By default, LocalStrategy expects to find credentials in parameters named username and password.
+ If your site prefers to name these fields differently, options are available to change the defaults.
+ `passport.use(new LocalStrategy({
+    usernameField: 'name',
+    passwordField: 'password'
+  },....`
+
+
+    /   Shelter.find({ email: username }) // , password: password})
+  //   .asCallback(function(err, users){
+  //     if(err) { return done(err) }
+  //     if(!users[0]) { return done(null, false) }
+  //     if(users[0].password !== password) { return done(null, false) }
+  //     return done(null,users[0])
+  //   })

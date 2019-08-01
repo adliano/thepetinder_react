@@ -1,64 +1,45 @@
 import React, { Component } from 'react'
-// Use Bootstrap Components
-import Container from 'react-bootstrap/Container'
-// import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import Card from 'react-bootstrap/Card'
-import Image from 'react-bootstrap/Image'
-
+import { Container, Button, Form, Card, Image } from 'react-bootstrap'
 import {
   CloudUpload as CloudUploadIcon,
   Assignment as AssignmentIcon
 } from '@material-ui/icons/'
-// Use Application Components
-import PetNavBar from '../components/PetNavBar'
-import PetinderLogo from '../components/PetinderLogo'
-import PetFooter from '../components/PetFooter'
 
 class AddPet extends Component {
   state = {
-    image: null,
+    image: null
   }
   /**
-   * 
-   * 
+   * onImageSelected(event)
    */
   onImageSelected = event => {
-    console.log(event.target.value);
-    this.setState({imagePreview: URL.createObjectURL(event.target.files[0])})
+    console.log(event.target.value)
+    this.setState({ imagePreview: URL.createObjectURL(event.target.files[0]) })
   }
   /**
-   * 
-   * 
+   * onInputChange(event)
    */
   onInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    },
-    () => console.log(this.state));
-  };
-
+    const { name, value } = event.target
+    this.setState({ [name]: value }, () => console.log(this.state))
+  }
   /**
-   *
    * Render
-   *
    */
   render () {
     return (
       <>
-        <PetNavBar />
-        <PetinderLogo />
         <Container className='my-5 p-5'>
           <Card>
             <Card.Header>
               <AssignmentIcon /> Add Pet
             </Card.Header>
             <Card.Body>
-              {/*<Form>*/}
-              <form encType="multipart/form-data" action="/api/addPet" method="POST">
-
+              <form
+                encType='multipart/form-data'
+                action='/api/addPet'
+                method='POST'
+              >
                 {/* Get Animal's name */}
                 <Form.Group controlId='exampleForm.ControlInput1'>
                   <Form.Control
@@ -77,7 +58,12 @@ class AddPet extends Component {
                     onChange={this.onInputChange}
                   />
                   {/* Get Animal's type */}
-                  <Form.Control name='type' className='my-2' as='select' onChange={this.onInputChange}>
+                  <Form.Control
+                    name='type'
+                    className='my-2'
+                    as='select'
+                    onChange={this.onInputChange}
+                  >
                     <option>Dog</option>
                     <option>Cat</option>
                     <option>Fish</option>
@@ -85,7 +71,12 @@ class AddPet extends Component {
                     <option>Horse</option>
                   </Form.Control>
                   {/* Get Animal's Attitude */}
-                  <Form.Control name='attitude' className='my-2' as='select' onChange={this.onInputChange}>
+                  <Form.Control
+                    name='attitude'
+                    className='my-2'
+                    as='select'
+                    onChange={this.onInputChange}
+                  >
                     <option>Frisky</option>
                     <option>Shy</option>
                     <option>Loud</option>
@@ -96,32 +87,22 @@ class AddPet extends Component {
                   <Form.Control
                     className='mb-3'
                     type='file'
-                    name="imgPath"
+                    name='imgPath'
                     accept='image/*'
-                    
-                    // onChange={this.onInputChange}
                     onChange={this.onImageSelected}
                   />
                   {/* Image Preview */}
                   <Image src={this.state.imagePreview} width={200} />
-                  <br/>
+                  <br />
                   {/* Upload Button */}
-                  <Button
-                    type='submit'
-                    className='px-5 mt-3'
-                    variant='primary'
-                    
-                    // onClick={this.onButtonClick}
-                  >
+                  <Button type='submit' className='px-5 mt-3' variant='primary'>
                     <CloudUploadIcon className='mx-2' /> Upload
                   </Button>
                 </Form.Group>
-    {/*</Form>*/}
-    </form>
+              </form>
             </Card.Body>
           </Card>
         </Container>
-        <PetFooter />
       </>
     )
   }

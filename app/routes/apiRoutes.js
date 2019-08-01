@@ -1,13 +1,16 @@
-//////// Dependencies /////////
+/// ///// Dependencies /////////
 const Pet = require('../models/pets')
 const Shelter = require('../models/shelters')
-/////////// Multer /////////
+/// //////// passport //////////
+const passport = require('../config/passport')
+const local = require('passport-local')
+/// //////// Multer /////////
 const multer = require('multer')
-/////////// Chalk /////////
-const chalk = require('chalk');
-/////////// Path /////////
+/// //////// Chalk /////////
+const chalk = require('chalk')
+/// //////// Path /////////
 const path = require('path')
-///// 🌏 GLOBALS Variables 🌍 /////
+/// // 🌏 GLOBALS Variables 🌍 /////
 let filePath = ''
 
 /*
@@ -21,12 +24,10 @@ let storage = multer.diskStorage({
   // Set Destination
   // Note: You are responsible for creating the directory when providing destination as a function.
   //  When passing a string, multer will make sure that the directory is created for you.
-  destination: 'client/public/uploads', 
+  destination: 'client/public/uploads',
   // Set File Name
   filename: function (req, file, cb) {
     // HERE is where we can decide the name of the file
-    // We will name as thepetinder + current time im miliseconds + minetype of original file
-    // filePath = `thepetinder${Date.now()}.${file.mimetype.split('/')[1]}`
     filePath = `thepetinder${Date.now()}${path.extname(file.originalname)}`
 
     cb(null, filePath)
@@ -109,52 +110,77 @@ module.exports = function (app) {
     })
   })
 
+  // TODO: Change this routes later
   // Register Shelter
   app.post('/api/register', function (req, res, next) {
-    
-    // Save Sheter info on database 
-    Shelter.create(req.body).then(function (dbExample) {
-      res.json(dbExample)
-    })
-    .catch(err => {
-      console.log(chalk.bgRed(err))
-      let errObject = {}
-      // Get sqlMessage error to send error back from API
-      // We have 2 unique col in MySQL and we will return 
-      // witch one its the duplicated
-      let sqlMsg =  err.sqlMessage.split(' ')
-      let _error = sqlMsg[sqlMsg.length - 1]
-      _error = _error.replace(/\'/g, '')
-      // Check for unique name error
-      if(_error === 'shelter_tb_name_unique'){
-        errObject = {error: `${req.body.name} has Been Taken`, ...err}
-      }
-      // Check for unique email error
-      else if(_error === 'shelter_tb_email_unique'){
-        errObject = {error: `${req.body.email} has Been Taken`, ...err}
-      }
-      // In case of another error
-      else{
-        errObject = {error: 'Unable to Complete Registration', ...err}
-      }
-      console.log(chalk.bgRed(_error))
-      res.json(errObject)
-    })
+    // Save Sheter info on database
+    Shelter.create(req.body)
+      .then(function (dbExample) {
+        res.json(dbExample)
+      })
+      .catch(err => {
+        console.log(chalk.bgRed(err))
+        let errObject = {}
+        // Get sqlMessage error to send error back from API
+        // We have 2 unique col in MySQL and we will return
+        // witch one its the duplicated
+        let sqlMsg = err.sqlMessage.split(' ')
+        let _error = sqlMsg[sqlMsg.length - 1]
+        _error = _error.replace(/\'/g, '')
+        // Check for unique name error
+        if (_error === 'shelter_tb_name_unique') {
+          errObject = { error: `${req.body.name} has Been Taken`, ...err }
+        }
+        // Check for unique email error
+        else if (_error === 'shelter_tb_email_unique') {
+          errObject = { error: `${req.body.email} has Been Taken`, ...err }
+        }
+        // In case of another error
+        else {
+          errObject = { error: 'Unable to Complete Registration', ...err }
+        }
+        console.log(chalk.bgRed(_error))
+        res.json(errObject)
+      })
   })
-}
+ 
+  /**
+   * loging route
+   */
+  app.post(
+    '/login',
+    // middleware
+    passport.authenticate('local'),
+    // callback
+    function (req, res) {
+      // Remove password from object befor send it back
+      const { password, ...userInfo } = req.user
+      res.json(userInfo)//.redirect('/')
+      // res.redirect('/ShelterHome')
+    }
+  )
+  /**
+   * 
+   */
+  app.get('/auth', function(req, res){
+    
+    console.log(chalk.bgBlue(JSON.stringify(req.session)))
+  
+    if(req.user){
+      const { password, ...userData } = req.user
+      res.json(userData)
+    } else {
+      res.json({msg: 'no user'})
+    }
+  })
+  /**
+   * 
+   */
+  app.get('/logout', function(req, res){
+    // if (req.isAuthenticated()){
+      req.logout();
+      res.redirect('/');
+    // }
+  });
 
-/*
-[Object: null prototype] {
-  animalName: '2wsx',
-  animalAge: '9876',
-  animalType: 'Lion',
-  animalAttitude: 'Playful' }
-{ fieldname: 'petPicture',
-  originalname: '20170526_191602.jpg',
-  encoding: '7bit',
-  mimetype: 'image/jpeg',
-  destination: 'app/public/uploads',
-  filename: 'thepetinder1560556105221.jpeg',
-  path: 'app/public/uploads/thepetinder1560556105221.jpeg',
-  size: 601159 }
-*/
+}
