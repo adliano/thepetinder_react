@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 
-import { Button } from 'react-bootstrap'
-
+import { Button, Row } from 'react-bootstrap'
 
 import PetNavBar from './components/PetNavBar'
 import LogoutButton from './components/LogoutButton'
@@ -28,7 +27,9 @@ class App extends Component {
     fetch('/auth', { method: 'GET' })
       .then(response => response.json())
       .then(results =>
-        this.setState({ user: results }, () => console.log(this.state))
+        // this.setState({ user: results }, () => console.log(this.state))
+        // FIXME: Remove it later
+        this.setState({ user: { id: 1 } })
       )
       .catch(err => console.log(err))
   }
@@ -39,24 +40,52 @@ class App extends Component {
     return (
       <>
         <BrowserRouter>
-          <PetNavBar actionButtons={
-            this.state.user.id ? 
-            <>
-            <LogoutButton/>
-            <Link to='/AddPet'><Button>Add Pet</Button></Link>
-            </> : 
-            <>
-            <Link to='/ShelterLogin'>Login</Link>
-            </>
-          }/>
+          <PetNavBar
+            actionButtons={
+              <Row>
+                {this.state.user.id ? (
+                  <>
+                    <LogoutButton />
+                    <Link to='/AddPet'>
+                      <Button>Add Pet</Button>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link to='/ShelterLogin'>Login</Link>
+                  </>
+                )}
+              </Row>
+            }
+          />
           <PetinderLogo />
           <div>
             <Switch>
               <Route exact path='/' component={SplashPage} />
-              <Route exact path='/ShelterRegister' component={ShelterRegister} />
-              <Route exact path='/AvaliablePetsPage' component={AvaliablePetsPage} />
-              <PrivateRoute exact redirect='/' path='/ShelterLogin' component={ShelterLogin} gotUser={!this.state.user.id} />
-              <PrivateRoute exact redirect='/ShelterLogin' path='/AddPet' component={AddPet} gotUser={this.state.user.id} />
+              <Route
+                exact
+                path='/ShelterRegister'
+                component={ShelterRegister}
+              />
+              <Route
+                exact
+                path='/AvaliablePetsPage'
+                component={AvaliablePetsPage}
+              />
+              <PrivateRoute
+                exact
+                redirect='/'
+                path='/ShelterLogin'
+                component={ShelterLogin}
+                gotUser={!this.state.user.id}
+              />
+              <PrivateRoute
+                exact
+                redirect='/ShelterLogin'
+                path='/AddPet'
+                component={AddPet}
+                gotUser={this.state.user.id}
+              />
             </Switch>
           </div>
         </BrowserRouter>
