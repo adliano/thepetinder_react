@@ -160,8 +160,6 @@ class ShelterRegister extends Component {
   render() {
     return (
       <>
-        {/* <PetNavBar /> */}
-        {/* <PetinderLogo /> */}
         <Container className='my-5 p-5 text-center'>
         {this.renderAlert()}
           <Card className=' my-3 text-center'>
@@ -286,7 +284,6 @@ class ShelterRegister extends Component {
             </Card.Body>
           </Card>
         </Container>
-        {/* <PetFooter /> */}
       </>
     )
   }
