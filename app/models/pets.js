@@ -21,7 +21,7 @@ class Pet {
 
   /**
    *
-   * Find all Examples in the table
+   * Find all Pets in the table
    * @returns Promise
    * @memberof Pet
    */
@@ -111,8 +111,8 @@ class Pet {
     return knex(this.table).truncate()
   }
   /**
-   * 
-   * @param {*} id 
+   * Finds all pets by `shelter_id`
+   * @param {int} id 
    */
   findPetByShelterId (id) {
     return knex

@@ -61,15 +61,15 @@ module.exports = function (app) {
 
   // TODO: need to implement
   app.get('/api/findAll/:shelterId', function (req, res) {
-    Pet.findPetByShelterId(req.params.shelterId).then(function (dbExamples) {
-      res.json(dbExamples)
+    Pet.findPetByShelterId(req.params.shelterId).then(function (pets) {
+      res.json(pets)
     })
   })
 
   // Get all Shelters
   app.get('/api/shelters', function (req, res) {
-    Shelter.findAll().then(function (dbExamples) {
-      res.json(dbExamples)
+    Shelter.findAll().then(function (shelters) {
+      res.json(shelters)
     })
   })
 
@@ -116,8 +116,6 @@ module.exports = function (app) {
       res.json(results)
     })
   })
-
-  // TODO: Change this routes later
   // Register Shelter
   app.post('/api/register', function (req, res, next) {
     // Save Sheter info on database
@@ -167,12 +165,10 @@ module.exports = function (app) {
     }
   )
   /**
-   * 
+   * Used for login with Pasport js
    */
   app.get('/auth', function(req, res){
-    
-    console.log(chalk.bgBlue(JSON.stringify(req.session)))
-  
+    //console.log(chalk.bgBlue(JSON.stringify(req.session)))
     if(req.user){
       const { password, ...userData } = req.user
       res.json(userData)
@@ -181,13 +177,10 @@ module.exports = function (app) {
     }
   })
   /**
-   * 
+   * Used to logout
    */
   app.get('/logout', function(req, res){
-    // if (req.isAuthenticated()){
       req.logout();
       res.redirect('/');
-    // }
   });
-
 }
