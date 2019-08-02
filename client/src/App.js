@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import {
   LoginButton,
   LogoutButton,
@@ -38,8 +38,8 @@ class App extends Component {
    * onLoginClickHandler
    * TODO:
    */
-  onLoginClickHandler = (data) => {
-    console.log('========== called ================')
+  onLoginClickHandler = data => {
+    this.setState({ user: data })
   }
   /**
    * Render
@@ -79,14 +79,24 @@ class App extends Component {
                 path='/AvaliablePetsPage'
                 component={AvaliablePetsPage}
               />
-              <PrivateRoute
+
+              <Route
+                exact
+                path='/ShelterLogin'
+                render={(props) =>
+                  this.state.user.id ? <Redirect to='/' /> : <ShelterLogin saveData={this.onLoginClickHandler} />
+                }
+              />
+
+              {/* <PrivateRoute
                 exact
                 redirect='/'
                 path='/ShelterLogin'
                 component={ShelterLogin}
                 gotUser={!this.state.user.id}
                 // saveData={this.onLoginClickHandler}
-              />
+              /> */}
+
               <PrivateRoute
                 exact
                 redirect='/ShelterLogin'
@@ -105,9 +115,7 @@ class App extends Component {
 
 export default App
 
-
-  /* <Route
+/* <Route
   path='/path'
   render={(props) => <Component {...props} isAuthed={true} />}
 /> */
-

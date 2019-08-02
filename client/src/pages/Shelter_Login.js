@@ -39,12 +39,12 @@ class ShelterLogin extends Component {
         console.log(response)
         return response.json()
       })
-      .then(results => this.props.saveData(results))
-      // .then(results => {
+      // .then(results => this.props.saveData(results))
+      .then(results => {
       //   console.log(results)
-      //   this.props.saveData(results)
+        this.props.saveData(results)
       //   // this.setState({ user: results }/*, () => console.log(this.state) */)
-      // })
+      })
       .catch(err => console.log(err))     
   }
   /**
