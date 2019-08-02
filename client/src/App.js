@@ -34,9 +34,9 @@ class App extends Component {
     fetch('/auth', { method: 'GET' })
       .then(response => response.json())
       .then(results =>
-        // this.setState({ user: results }, () => console.log(this.state))
+        this.setState({ user: results }, () => console.log(this.state))
         // FIXME: Remove it later
-        this.setState({ user: { id: 1 } })
+        // this.setState({ user: { id: 1 } })
       )
       .catch(err => console.log(err))
   }
