@@ -1,14 +1,10 @@
 /// ///// Dependencies /////////
 const Pet = require('../models/pets')
 const Shelter = require('../models/shelters')
-/// //////// passport //////////
 const passport = require('../config/passport')
 const local = require('passport-local')
-/// //////// Multer /////////
 const multer = require('multer')
-/// //////// Chalk /////////
 const chalk = require('chalk')
-/// //////// Path /////////
 const path = require('path')
 /// // 🌏 GLOBALS Variables 🌍 /////
 let filePath = ''
@@ -83,26 +79,15 @@ module.exports = function (app) {
       res.json(results)
     })
   })
-
-  // Create a new example ////////// ******* changed ******** \\\\\\
+  /**
+   * Add new pet to database
+   */
   app.post('/api/addPet', upload.single('imgPath'), function (req, res, next) {
-
-
-    console.log('='.repeat(80))
-    console.log(req.body)
-    console.log('='.repeat(80))
-
     const { host, ...petData } = req.body
-
     // Set img URL
-    // req.body.imgPath = `http://${req.get('host')}/uploads/${req.file.filename}`
     petData.imgPath = `${host}/uploads/${req.file.filename}`
-
-    // console.log(req.body)
-
     // Save animal info on database
-    // Pet.create(req.body).then(function (dbExample) {
-      Pet.create(petData).then(function (dbExample) {
+    Pet.create(petData).then(function (dbExample) {
       // res.json(dbExample)
     })
     res.redirect('/addPet')
@@ -156,7 +141,6 @@ module.exports = function (app) {
         res.json(errObject)
       })
   })
- 
   /**
    * loging route
    */
@@ -168,27 +152,27 @@ module.exports = function (app) {
     function (req, res) {
       // Remove password from object befor send it back
       const { password, ...userInfo } = req.user
-      res.json(userInfo)//.redirect('/')
+      res.json(userInfo) // .redirect('/')
       // res.redirect('/ShelterHome')
     }
   )
   /**
    * Used for login with Pasport js
    */
-  app.get('/auth', function(req, res){
-    //console.log(chalk.bgBlue(JSON.stringify(req.session)))
-    if(req.user){
+  app.get('/auth', function (req, res) {
+    // console.log(chalk.bgBlue(JSON.stringify(req.session)))
+    if (req.user) {
       const { password, ...userData } = req.user
       res.json(userData)
     } else {
-      res.json({msg: 'no user'})
+      res.json({ msg: 'no user' })
     }
   })
   /**
    * Used to logout
    */
-  app.get('/logout', function(req, res){
-      req.logout();
-      res.redirect('/');
-  });
+  app.get('/logout', function (req, res) {
+    req.logout()
+    res.redirect('/')
+  })
 }
