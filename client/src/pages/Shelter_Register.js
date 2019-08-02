@@ -28,8 +28,17 @@ class ShelterRegister extends Component {
       header: '',
       msg: '',
       color: ''
-    }
+    },
+    name: "",
+    email: "",
+    password: "",
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    phone: ""
   }
+
   /**
    * onButtonClick()
    * Event listener used for buttons
@@ -38,12 +47,12 @@ class ShelterRegister extends Component {
     const { viewPassword, alert, ...shelterData } = this.state
     const { password } = shelterData
     // Send Request to server
-    let hasHPassword = md5(password)
-    shelterData.password = hasHPassword
-
+    shelterData.password = md5(password)
     API.registerShelter(shelterData)
       .then(response => response.json())
       .then(results => {
+        console.log('---------------12')
+        console.log(results)
         // Check for error
         if (results.error) {
           // Error alert
@@ -53,7 +62,15 @@ class ShelterRegister extends Component {
               header: results.error,
               msg: 'Please Try Again',
               color: 'danger'
-            }
+            },
+            name: "",
+            email: "",
+            password: "",
+            address: "",
+            city: "",
+            state: "",
+            zipCode: "",
+            phone: ""
           })
         }
         // If no error display welcome message
@@ -65,26 +82,42 @@ class ShelterRegister extends Component {
                 header: 'Welcome!',
                 msg: `Registration Completed for ${this.state.name}`,
                 color: 'success'
-              },  
-                name: "",
-                email: "",
-                password: "",
-                address: "",
-                city: "",
-                state: "",
-                zipCode: "",
-                phone: ""
-            }) 
-            console.log(this.state)
+              },
+              name: "",
+              email: "",
+              password: "",
+              address: "",
+              city: "",
+              state: "",
+              zipCode: "",
+              phone: ""
+            })
+          console.log(this.state)
         }
       })
       .catch(err => console.log(err))
   }
+
+  isEnable = () => {
+    const { name, email, password, address, city, state, zipCode, phone } = this.state
+    return (
+      name.length > 0 &&
+      email.length > 0 &&
+      password.length > 0 &&
+      address.length > 0 &&
+      city.length > 0 &&
+      state.length > 0 &&
+      zipCode.length > 0 &&
+      phone.length > 0
+    )
+  }
+
   /**
    * onInputChange()
    * This will handle onChange event from
    * inputs
    */
+
   onInputChange = event => {
     const { name, value } = event.target
     this.setState({ [name]: value })
@@ -124,11 +157,9 @@ class ShelterRegister extends Component {
    * Render
    *
    */
-  render () {
+  render() {
     return (
       <>
-        {/* <PetNavBar /> */}
-        {/* <PetinderLogo /> */}
         <Container className='my-5 p-5 text-center'>
         {this.renderAlert()}
           <Card className=' my-3 text-center'>
@@ -174,8 +205,8 @@ class ShelterRegister extends Component {
                       {this.state.viewPassword ? (
                         <Visibility />
                       ) : (
-                        <VisibilityOff />
-                      )}
+                          <VisibilityOff />
+                        )}
                     </Button>
                   </InputGroup.Append>
                 </InputGroup>
@@ -246,13 +277,13 @@ class ShelterRegister extends Component {
                 className='w-50 m-2'
                 variant='primary'
                 onClick={this.onButtonClick}
+                disabled={!this.isEnable()}
               >
                 Register
               </Button>
             </Card.Body>
           </Card>
         </Container>
-        {/* <PetFooter /> */}
       </>
     )
   }
