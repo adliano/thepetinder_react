@@ -26,9 +26,9 @@ class AddPet extends Component {
    * onImageSelected(event)
    */
   onImageSelected = event => {
-    const { name, files } = event.target
+    const { files } = event.target
     this.setState({
-      imagePreview: URL.createObjectURL(event.target.files[0])
+      imagePreview: URL.createObjectURL(files[0])
     })
   }
   /**
