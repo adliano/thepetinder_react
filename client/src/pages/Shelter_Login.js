@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap/'
 import md5 from 'md5'
+import { Link } from 'react-router-dom'
 
 class ShelterLogin extends Component {
   state = {
@@ -85,7 +86,7 @@ class ShelterLogin extends Component {
               <Button className='w-50 m-2' variant='primary' onClick={this.onButtonClick} disabled={!this.isEnable()} >Login</Button>
             </Col>
             <Col lg>
-              <Button className='w-50 m-2' variant='primary' href='/ShelterRegister'>Register</Button>
+              <Link to='/ShelterRegister'><Button className='w-50 m-2' variant='primary'>Register</Button></Link>
             </Col>
           </Row>
         </Container>
