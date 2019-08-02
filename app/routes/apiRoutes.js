@@ -59,6 +59,7 @@ module.exports = function (app) {
     })
   })
 
+  // TODO: need to implement
   app.get('/api/findAll/:shelterId', function (req, res) {
     Pet.findPetByShelterId(req.params.shelterId).then(function (dbExamples) {
       res.json(dbExamples)

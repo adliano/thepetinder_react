@@ -26,7 +26,23 @@ class Pet {
    * @memberof Pet
    */
   findAll () {
-    return knex.select().table(this.table)
+    // return knex.select().table(this.table)
+    return knex
+      .select(
+        'petName',
+        'type',
+        'attitude',
+        'age',
+        'imgPath',
+        'name',
+        'address',
+        'phone',
+        'city',
+        'state',
+        'zipCode'
+      )
+      .from(this.table)
+      .innerJoin('shelter_tb', 'pets_tb.shelter_id', 'shelter_tb.id')
   }
 
   /**
@@ -94,8 +110,10 @@ class Pet {
     console.log('Hola')
     return knex(this.table).truncate()
   }
-
-  /// //////////////////////////////////////////////////////////////////
+  /**
+   * 
+   * @param {*} id 
+   */
   findPetByShelterId (id) {
     return knex
       .select(
@@ -111,23 +129,11 @@ class Pet {
         'state',
         'zipCode'
       )
+      .where({shelter_id: id})
       .from(this.table)
-      // .innerJoin('shelter_tb', 'pets_tb.shelter_id', 'shelter_tb.id')
       .innerJoin('shelter_tb', 'pets_tb.shelter_id', 'shelter_tb.id')
   }
-  /// //////////////////////////////////////////////////////////////////
 }
 
 module.exports = new Pet()
 
-/*
-knex.from('pets_tb').innerJoin('shelter_tb', 'pets_tb.shelter_id', 'shelter_tb.id')
-Outputs:
-select * from `pets_tb` inner join `shelter_tb` on `pets_tb`.`shelter_id` = `shelter_tb`.`id`
-
-SELECT column_name(s)
-FROM table1
-INNER JOIN table2
-ON table1.column_name = table2.column_name;
-
-*/
