@@ -34,10 +34,16 @@ gettingData = () => {fetch('/api/findAll')
       // Destructing object
       const {
         id,
-        name,
+        petName,
         type,
         attitude,
-        imgPath
+        imgPath,
+        name,
+        address,
+        phone,
+        shelterName='bob\'s place',
+        addressTest='144 AwesomePants Rd',
+        shelterPhoneTest='925-444-4332'
       } = petInfo
       console.log(petInfo)
       // each Pet available in the JSON will be
@@ -46,10 +52,16 @@ gettingData = () => {fetch('/api/findAll')
         <PetCard
           key={id}
           id={id}
-          name={name}
+          petName={petName}
           type={type}
           attitude={attitude}
           imgPath={imgPath}
+          name= {name}
+          shelterName={shelterName}
+          address={address}
+          addressTest={addressTest}
+          shelterPhone={phone}
+          shelterPhone={shelterPhoneTest}
         />
       )
     })
