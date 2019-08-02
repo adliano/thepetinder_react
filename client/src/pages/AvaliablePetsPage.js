@@ -34,7 +34,7 @@ gettingData = () => {fetch('/api/findAll')
       // Destructing object
       const {
         id,
-        petName,
+        name,
         type,
         attitude,
         imgPath
@@ -46,7 +46,7 @@ gettingData = () => {fetch('/api/findAll')
         <PetCard
           key={id}
           id={id}
-          petName={petName}
+          name={name}
           type={type}
           attitude={attitude}
           imgPath={imgPath}
