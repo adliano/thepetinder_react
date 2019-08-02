@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 import { Button, Row } from 'react-bootstrap'
 
 import PetNavBar from './components/PetNavBar'
-import LogoutButton from './components/LogoutButton'
+// import LogoutButton from './components/LogoutButton'
 import PetinderLogo from './components/PetinderLogo'
 import PetFooter from './components/PetFooter'
 import SplashPage from './pages/SplashPage'
@@ -13,6 +13,13 @@ import AvaliablePetsPage from './pages/AvaliablePetsPage'
 import ShelterLogin from './pages/Shelter_Login'
 import AddPet from './pages/AddPet'
 import PrivateRoute from './components/PrivateRoute'
+
+
+
+import { LoginButton, LogoutButton, AddPetButton, HomieButton } from './components/Buttons'
+
+
+
 
 class App extends Component {
   state = {
@@ -46,15 +53,17 @@ class App extends Component {
                 {this.state.user.id ? (
                   <>
                     <LogoutButton />
-                    <Link to='/AddPet'>
+                    <AddPetButton />
+                    {/* <Link to='/AddPet'>
                       <Button>Add Pet</Button>
-                    </Link>
+                    </Link> */}
                   </>
                 ) : (
                   <>
-                    <Link to='/ShelterLogin'>Login</Link>
+                    <LoginButton/>
                   </>
                 )}
+                <HomieButton/>
               </Row>
             }
           />
