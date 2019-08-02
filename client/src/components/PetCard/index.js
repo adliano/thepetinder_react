@@ -12,12 +12,8 @@ function PetCard (props) {
         <p className='card-text text-center'>Type: {props.type}</p>
         <p className='card-text text-center'>Temperment: {props.attitude}</p>
         <p className='card-text text-center'>Shelter: {props.name}</p>
-        <p className='card-text text-center'>Shelter test: {props.shelterName}</p>
-        <p className='card-text text-center'>Address: {props.adress}</p>
-        <p className='card-text text-center'>Address Test: {props.addressTest}</p>
+        <p className='card-text text-center'>Address: {props.address}</p>
         <p className='card-text text-center'>Phone: {props.phone}</p>
-
-        <p className='card-text text-center'>Phone Test: {props.shelterPhone}</p>
       </div>
     </div>
   )

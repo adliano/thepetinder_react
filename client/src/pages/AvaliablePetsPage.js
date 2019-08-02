@@ -38,12 +38,10 @@ gettingData = () => {fetch('/api/findAll')
         type,
         attitude,
         imgPath,
-        name,
-        address,
-        phone,
-        shelterName='bob\'s place',
-        addressTest='144 AwesomePants Rd',
-        shelterPhoneTest='925-444-4332'
+        name='bob\'s place',
+        phone='925-444-4332',
+        address='144 AwesomePants Rd',
+      
       } = petInfo
       console.log(petInfo)
       // each Pet available in the JSON will be
@@ -57,11 +55,9 @@ gettingData = () => {fetch('/api/findAll')
           attitude={attitude}
           imgPath={imgPath}
           name= {name}
-          shelterName={shelterName}
           address={address}
-          addressTest={addressTest}
-          shelterPhone={phone}
-          shelterPhone={shelterPhoneTest}
+          phone={phone}
+
         />
       )
     })
