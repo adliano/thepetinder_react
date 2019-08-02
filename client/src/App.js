@@ -43,9 +43,6 @@ class App extends Component {
                   <>
                     <LogoutButton />
                     <AddPetButton />
-                    {/* <Link to='/AddPet'>
-                      <Button>Add Pet</Button>
-                    </Link> */}
                   </>
                 ) : (
                   <>

@@ -1,7 +1,7 @@
 /* eslint-disable semi, no-unreachable */
 exports.up = function (knex, Promise) {
   return knex.schema.createTable('shelter_tb', table =>{
-    table.increments('id');
+    table.increments('id').primary();
     table.string('name').unique().notNullable();
     table.string('email').unique().notNullable();
     table.string('password').notNullable();
@@ -12,14 +12,14 @@ exports.up = function (knex, Promise) {
     table.string('zipCode');
   }).then(function(){
       return knex.schema.createTable('pets_tb', table => {
-        table.increments('id');
-        table.string('name');
+        table.increments('petId').primary();
+        table.string('petName');
         table.string('type');
         table.string('attitude').notNullable();
         table.boolean('isAdopted').defaultTo(false);
         table.integer('age').notNullable();
         table.string('imgPath');
-        table.integer('shelter_id',).unsigned();
+        table.integer('shelter_id').unsigned()
         table.foreign('shelter_id').references('shelter_tb.id');
     })
   })

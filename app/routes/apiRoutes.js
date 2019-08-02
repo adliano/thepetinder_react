@@ -52,9 +52,15 @@ let upload = multer({ storage: storage })
  *
  */
 module.exports = function (app) {
-  // Get all Pets
+  // Get all Pets findPetByShelterId
   app.get('/api/findAll', function (req, res) {
     Pet.findAll().then(function (dbExamples) {
+      res.json(dbExamples)
+    })
+  })
+
+  app.get('/api/findAll/:shelterId', function (req, res) {
+    Pet.findPetByShelterId(req.params.shelterId).then(function (dbExamples) {
       res.json(dbExamples)
     })
   })

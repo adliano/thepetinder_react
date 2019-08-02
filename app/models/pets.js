@@ -97,8 +97,8 @@ class Pet {
   }
 
   /////////////////////////////////////////////////////////////////////
-  findByShelterId (id){
-    return knex(this.table)
+  findPetByShelterId (id){
+    return knex.select().from(this.table)
     .innerJoin('shelter_tb','pets_tb.shelter_id', 'shelter_tb.id')
   }
   /////////////////////////////////////////////////////////////////////
@@ -107,9 +107,9 @@ class Pet {
 module.exports = new Pet()
 
 /*
-knex.from('users').innerJoin('accounts', 'users.id', 'accounts.user_id')
+knex.from('pets_tb').innerJoin('shelter_tb', 'pets_tb.shelter_id', 'shelter_tb.id')
 Outputs:
-select * from `users` inner join `accounts` on `users`.`id` = `accounts`.`user_id`
+select * from `pets_tb` inner join `shelter_tb` on `pets_tb`.`shelter_id` = `shelter_tb`.`id`
 
 
 SELECT column_name(s)
