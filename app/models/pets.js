@@ -95,6 +95,19 @@ class Pet {
     console.log('Hola')
     return knex(this.table).truncate()
   }
+
+  /////////////////////////////////////////////////////////////////////
+  findByShelterId (id){
+    return knex(this.table)
+    .innerJoin('shelter_tb','pets_tb.shelter_id', 'shelter_tb.id')
+  }
+  /////////////////////////////////////////////////////////////////////
 }
 
 module.exports = new Pet()
+
+/*
+knex.from('users').innerJoin('accounts', 'users.id', 'accounts.user_id')
+Outputs:
+select * from `users` inner join `accounts` on `users`.`id` = `accounts`.`user_id`
+*/
