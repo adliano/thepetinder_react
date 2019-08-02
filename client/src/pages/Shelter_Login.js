@@ -12,10 +12,9 @@ class ShelterLogin extends Component {
    * This will handle onChange event from
    * inputs
    */
-  // TODO: remove the console log
   onInputChange = event => {
     const { name, value } = event.target
-    this.setState({ [name]: value },() => console.log(this.state))
+    this.setState({ [name]: value })
   }
   /**
    * validate forms
@@ -24,19 +23,13 @@ class ShelterLogin extends Component {
     const { email, password } = this.state
     return (email.length > 0 && password.length > 0)
   }
-  /////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////
   /**
      * onButtonClick()
      * Event listener used for buttons
      */
     onButtonClick = (event) => {
-
+      event.preventDefault()
       const { email, password } = this.state
-
       fetch('/login',{
         method: 'POST',
         headers: {'Content-Type':'application/json'},
@@ -46,20 +39,14 @@ class ShelterLogin extends Component {
         console.log(response)
         return response.json()
       })
-      .then(results => {
-        console.log(results)
-        // TODO: remove the alert
-        // alert(`Welcome ${results.name} your id is ${results.id}`)
-        this.setState({ user: results }/*, () => console.log(this.state) */)
-      })
+      .then(results => this.props.saveData(results))
+      // .then(results => {
+      //   console.log(results)
+      //   this.props.saveData(results)
+      //   // this.setState({ user: results }/*, () => console.log(this.state) */)
+      // })
       .catch(err => console.log(err))     
   }
-  /////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////
-
   /**
   *   
   * Render
