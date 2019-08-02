@@ -5,7 +5,7 @@ function PetCard (props) {
   return (
     <div className='card cardDimensions col p-0 '>
       <div className='card-header w-100 text-center'>
-        <h4 className='card-title w-100'>My Name: {props.petName}</h4>
+        <h4 className='card-title w-100'>My Name: {props.name}</h4>
       </div>
       <img className='card-img-top imgSize ' src={props.imgPath} alt='' />
       <div className='card-body'>
