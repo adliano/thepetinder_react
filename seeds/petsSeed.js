@@ -4,7 +4,7 @@ exports.seed = function (knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('pets_tb').insert([{
-        name: 'abc',
+        petName: 'abc',
         type: 'abd',
         attitude: 'abd',
         isAdopted: true,
@@ -12,7 +12,7 @@ exports.seed = function (knex, Promise) {
         imgPath: 'https://5.imimg.com/data5/NQ/PJ/MY-37341530/beagle-dog-puppy-250x250.jpg'
       },
       {
-        name: 'ddd',
+        petName: 'ddd',
         type: 'abd',
         attitude: 'abd',
         isAdopted: true,
@@ -20,14 +20,14 @@ exports.seed = function (knex, Promise) {
         imgPath: 'https://data.whicdn.com/images/302795711/large.jpg'
       },
       {
-        name: 'ccc',
+        petName: 'ccc',
         type: 'abd',
         attitude: 'abd',
         age: 11,
         imgPath: 'https://www.k9web.com/wp-content/uploads/2019/03/Pocket-Pitbull-3.jpg'
       },
       {
-        name: 'ggg',
+        petName: 'ggg',
         type: 'abd',
         attitude: 'abd',
         isAdopted: true,
@@ -35,7 +35,7 @@ exports.seed = function (knex, Promise) {
         imgPath: 'https://mymodernmet.com/wp/wp-content/uploads/2019/07/russian-blue-cats-17.jpg'
       },
       {
-        name: 'fff',
+        petName: 'fff',
         type: 'abd',
         attitude: 'abd',
         age: 11,
