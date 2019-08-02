@@ -26,17 +26,16 @@ class Pet {
    * @memberof Pet
    */
   findAll () {
-    return knex.select()
-      .table(this.table)
+    return knex.select().table(this.table)
   }
 
   /**
- * create a new record
- *
- * @param {Object} values The values to insert in the form of {column: value}
- * @returns Promise
- * @memberof Pet
- */
+   * create a new record
+   *
+   * @param {Object} values The values to insert in the form of {column: value}
+   * @returns Promise
+   * @memberof Pet
+   */
   create (values) {
     return knex(this.table)
       .returning('id')
@@ -90,18 +89,33 @@ class Pet {
    *
    * @returns Promise
    * @memberof Pet
-  */
+   */
   reset () {
     console.log('Hola')
     return knex(this.table).truncate()
   }
 
-  /////////////////////////////////////////////////////////////////////
-  findPetByShelterId (id){
-    return knex.select().from(this.table)
-    .innerJoin('shelter_tb','pets_tb.shelter_id', 'shelter_tb.id')
+  /// //////////////////////////////////////////////////////////////////
+  findPetByShelterId (id) {
+    return knex
+      .select(
+        'petName',
+        'type',
+        'attitude',
+        'age',
+        'imgPath',
+        'name',
+        'address',
+        'phone',
+        'city',
+        'state',
+        'zipCode'
+      )
+      .from(this.table)
+      // .innerJoin('shelter_tb', 'pets_tb.shelter_id', 'shelter_tb.id')
+      .innerJoin('shelter_tb', 'pets_tb.shelter_id', 'shelter_tb.id')
   }
-  /////////////////////////////////////////////////////////////////////
+  /// //////////////////////////////////////////////////////////////////
 }
 
 module.exports = new Pet()
@@ -111,13 +125,9 @@ knex.from('pets_tb').innerJoin('shelter_tb', 'pets_tb.shelter_id', 'shelter_tb.i
 Outputs:
 select * from `pets_tb` inner join `shelter_tb` on `pets_tb`.`shelter_id` = `shelter_tb`.`id`
 
-
 SELECT column_name(s)
 FROM table1
 INNER JOIN table2
 ON table1.column_name = table2.column_name;
-
-
-
 
 */

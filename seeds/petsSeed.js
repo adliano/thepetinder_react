@@ -4,22 +4,23 @@ exports.seed = function (knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('shelter_tb').insert([
-        {name:'abc', email:'abc@edf.com', password: 'xxxxxxxxxxx', address:'rainbow',phone:'17', city:'ramon', state:'AL', zipCode:'98'}
+        {name:'FirstShelter', email:'FirstShelter@mail.com', password: 'xxxxxxxxxxx', address:'rainbowSix',phone:'17', city:'ramon', state:'AL', zipCode:'98'},
+        {name:'SecondShelter', email:'SecondShelter@mail.com', password: 'xxxxxxxxxxx', address:'rainbow',phone:'17', city:'ramon', state:'AL', zipCode:'98'},
       ]);
     })
     .then(function(){
       // Inserts seed entries
       return knex('pets_tb').insert([{
-        petName: 'abc',
+        petName: 'pet on 2',
         type: 'abd',
         attitude: 'abd',
         isAdopted: true,
         age: 11,
         imgPath: 'https://5.imimg.com/data5/NQ/PJ/MY-37341530/beagle-dog-puppy-250x250.jpg',
-        shelter_id: 1
+        shelter_id: 2
       },
       {
-        petName: 'ddd',
+        petName: 'ddd 1',
         type: 'abd',
         attitude: 'abd',
         isAdopted: true,
@@ -45,12 +46,12 @@ exports.seed = function (knex, Promise) {
         shelter_id: 1
       },
       {
-        petName: 'fff',
+        petName: 'fff 2',
         type: 'abd',
         attitude: 'abd',
         age: 11,
         imgPath: 'https://opimedia.azureedge.net/-/media/images/grt/editorial/articles/magazine-articles/2016/07-01/bald-eagles-and-golden-eagles/bald-eagle-square-jpg.jpg',
-        shelter_id: 1
+        shelter_id: 2
       }
       ])
     });
