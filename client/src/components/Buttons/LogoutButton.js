@@ -1,7 +1,9 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
+import { ExitToAppRounded } from '@material-ui/icons'
 
-function LogoutButton () {
+
+export function LogoutButton () {
     /**
      * onLogoutClick()
      * @param { event} event 
@@ -14,11 +16,9 @@ function LogoutButton () {
    */
   return (
     <div>
-      <Button className='mx-1' onClick={onLogoutClick}>
-        logout
+      <Button className='mx-1 bg-dark btn-outline-secondary text-light' onClick={onLogoutClick}>
+        <ExitToAppRounded/>
       </Button>
     </div>
   )
 }
-
-export default LogoutButton
