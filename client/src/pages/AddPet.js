@@ -26,27 +26,19 @@ class AddPet extends Component {
    * onImageSelected(event)
    */
   onImageSelected = event => {
-    console.log(event.target.value)
-    this.setState({ imagePreview: URL.createObjectURL(event.target.files[0]) })
+    const { name, files } = event.target
+    this.setState({
+      imagePreview: URL.createObjectURL(event.target.files[0])
+    })
   }
   /**
    * onInputChange(event)
    */
   onInputChange = event => {
     console.log(window.location.origin)
-
     const { name, value } = event.target
     this.setState({ [name]: value }, () => console.log(this.state))
   }
-  ///////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////
-  uploadData = () => {
-
-  }
-  ///////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////
   /**
    * Render
    */
@@ -69,7 +61,7 @@ class AddPet extends Component {
                     name='shelter_id'
                     value={this.state.shelter.id}
                     style={{ display: 'none' }}
-                    onChange={()=>{}}
+                    onChange={() => {}}
                   />
                   <Form.Control
                   name='host'

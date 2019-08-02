@@ -92,13 +92,17 @@ module.exports = function (app) {
     console.log(req.body)
     console.log('='.repeat(80))
 
+    const { host, ...petData } = req.body
+
     // Set img URL
-    req.body.imgPath = `http://${req.get('host')}/uploads/${req.file.filename}`
+    // req.body.imgPath = `http://${req.get('host')}/uploads/${req.file.filename}`
+    petData.imgPath = `${host}/uploads/${req.file.filename}`
 
     // console.log(req.body)
 
     // Save animal info on database
-    Pet.create(req.body).then(function (dbExample) {
+    // Pet.create(req.body).then(function (dbExample) {
+      Pet.create(petData).then(function (dbExample) {
       // res.json(dbExample)
     })
     res.redirect('/addPet')

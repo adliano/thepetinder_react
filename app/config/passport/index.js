@@ -32,7 +32,7 @@ passport.use(
         //console.log(chalk.bgRed(`Error: if (err) ${JSON.stringify(err)}`))
         return done(err)
       }
-      if (!user) {
+      if (!user[0]) {
         //console.log(chalk.bgRed(`Error: !user`))
         return done(null, false)
       }
