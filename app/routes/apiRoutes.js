@@ -86,12 +86,16 @@ module.exports = function (app) {
 
   // Create a new example ////////// ******* changed ******** \\\\\\
   app.post('/api/addPet', upload.single('imgPath'), function (req, res, next) {
-    // Set img URL
-    req.body.imgPath = `http://${req.get('host')}/uploads/${req.file.filename}`
+
 
     console.log('='.repeat(80))
     console.log(req.body)
     console.log('='.repeat(80))
+
+    // Set img URL
+    req.body.imgPath = `http://${req.get('host')}/uploads/${req.file.filename}`
+
+    // console.log(req.body)
 
     // Save animal info on database
     Pet.create(req.body).then(function (dbExample) {
