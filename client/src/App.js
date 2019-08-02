@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-
+import { LoginButton, LogoutButton, AddPetButton, HomieButton } from './components/Buttons'
 import { Row } from 'react-bootstrap'
-
 import PetNavBar from './components/PetNavBar'
 import PetinderLogo from './components/PetinderLogo'
 import PetFooter from './components/PetFooter'
@@ -12,13 +11,6 @@ import AvaliablePetsPage from './pages/AvaliablePetsPage'
 import ShelterLogin from './pages/Shelter_Login'
 import AddPet from './pages/AddPet'
 import PrivateRoute from './components/PrivateRoute'
-
-
-
-import { LoginButton, LogoutButton, AddPetButton, HomieButton } from './components/Buttons'
-
-
-
 
 class App extends Component {
   state = {
@@ -34,8 +26,6 @@ class App extends Component {
       .then(response => response.json())
       .then(results =>
         this.setState({ user: results }, () => console.log(this.state))
-        // FIXME: Remove it later
-        // this.setState({ user: { id: 1 } })
       )
       .catch(err => console.log(err))
   }
