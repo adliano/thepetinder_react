@@ -29,7 +29,7 @@ class App extends Component {
     fetch('/auth', { method: 'GET' })
       .then(response => response.json())
       .then(results =>
-        this.setState({ user: results }, () => console.log(this.state))
+        this.setState({ user: results })
       )
       .catch(err => console.log(err))
   }
@@ -44,12 +44,13 @@ class App extends Component {
    */
   onLogoutClick = event => {
     fetch('/logout').then(result => {
-      // TODO: Create bootstrap alert to warning user logout
       this.setState({ user: result })
     })
   }
   /**
+   * 
    * Render
+   * 
    */
   render () {
     return (
@@ -86,7 +87,6 @@ class App extends Component {
                 path='/AvaliablePetsPage'
                 component={AvaliablePetsPage}
               />
-
               <Route
                 exact
                 path='/ShelterLogin'

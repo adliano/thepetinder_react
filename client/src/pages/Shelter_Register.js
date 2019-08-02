@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-/// ///// Use Bootstrap Components //////
 import {
   Container,
   Col,
@@ -9,15 +8,12 @@ import {
   InputGroup,
   Alert
 } from 'react-bootstrap'
-/// /// Material UI Icons //////
 import {
   Assignment as AssignmentIcon,
   Visibility,
   VisibilityOff
 } from '@material-ui/icons/'
-/// ///// MD5 //////
 import md5 from 'md5'
-/// //// API Utilities ///////
 import API from '../utils/API'
 
 class ShelterRegister extends Component {
@@ -29,14 +25,14 @@ class ShelterRegister extends Component {
       msg: '',
       color: ''
     },
-    name: "",
-    email: "",
-    password: "",
-    address: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    phone: ""
+    name: '',
+    email: '',
+    password: '',
+    address: '',
+    city: '',
+    state: '',
+    zipCode: '',
+    phone: ''
   }
 
   /**
@@ -51,7 +47,6 @@ class ShelterRegister extends Component {
     API.registerShelter(shelterData)
       .then(response => response.json())
       .then(results => {
-        console.log('---------------12')
         console.log(results)
         // Check for error
         if (results.error) {
@@ -63,43 +58,54 @@ class ShelterRegister extends Component {
               msg: 'Please Try Again',
               color: 'danger'
             },
-            name: "",
-            email: "",
-            password: "",
-            address: "",
-            city: "",
-            state: "",
-            zipCode: "",
-            phone: ""
+            name: '',
+            email: '',
+            password: '',
+            address: '',
+            city: '',
+            state: '',
+            zipCode: '',
+            phone: ''
           })
         }
         // If no error display welcome message
         else {
-          this.setState(
-            {
-              alert: {
-                visible: true,
-                header: 'Welcome!',
-                msg: `Registration Completed for ${this.state.name}`,
-                color: 'success'
-              },
-              name: "",
-              email: "",
-              password: "",
-              address: "",
-              city: "",
-              state: "",
-              zipCode: "",
-              phone: ""
-            })
+          this.setState({
+            alert: {
+              visible: true,
+              header: 'Welcome!',
+              msg: `Registration Completed for ${this.state.name}`,
+              color: 'success'
+            },
+            name: '',
+            email: '',
+            password: '',
+            address: '',
+            city: '',
+            state: '',
+            zipCode: '',
+            phone: ''
+          })
           console.log(this.state)
         }
       })
       .catch(err => console.log(err))
   }
-
+  /**
+   * isEnable()
+   * Used to keep button disable until all fields are completed
+   */
   isEnable = () => {
-    const { name, email, password, address, city, state, zipCode, phone } = this.state
+    const {
+      name,
+      email,
+      password,
+      address,
+      city,
+      state,
+      zipCode,
+      phone
+    } = this.state
     return (
       name.length > 0 &&
       email.length > 0 &&
@@ -111,13 +117,11 @@ class ShelterRegister extends Component {
       phone.length > 0
     )
   }
-
   /**
    * onInputChange()
    * This will handle onChange event from
    * inputs
    */
-
   onInputChange = event => {
     const { name, value } = event.target
     this.setState({ [name]: value })
@@ -157,11 +161,11 @@ class ShelterRegister extends Component {
    * Render
    *
    */
-  render() {
+  render () {
     return (
       <>
         <Container className='my-5 p-5 text-center'>
-        {this.renderAlert()}
+          {this.renderAlert()}
           <Card className=' my-3 text-center'>
             <Card.Header className='text-left'>
               <AssignmentIcon /> Register
@@ -205,20 +209,11 @@ class ShelterRegister extends Component {
                       {this.state.viewPassword ? (
                         <Visibility />
                       ) : (
-                          <VisibilityOff />
-                        )}
+                        <VisibilityOff />
+                      )}
                     </Button>
                   </InputGroup.Append>
                 </InputGroup>
-
-                {/* <Form.Control
-                  name='passwordConfirm'
-                  className='my-2'
-                  size='lg'
-                  type='password'
-                  placeholder='Confirm Password'
-                  autoComplete='password'
-                /> */}
                 <Form.Control
                   name='address'
                   className='my-2'

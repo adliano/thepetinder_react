@@ -3,7 +3,7 @@ import './style.css'
 
 function PetCard (props) {
   return (
-    <div className='card cardDimensions col p-0 m-2'>
+    <div className='card cardDimensions col p-0 mx-auto my-1'>
       <div className='card-header w-100 text-center'>
         <h4 className='card-title w-100'>My Name: {props.petName}</h4>
       </div>
