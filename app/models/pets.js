@@ -29,6 +29,7 @@ class Pet {
     // return knex.select().table(this.table)
     return knex
       .select(
+        'petId',
         'petName',
         'type',
         'attitude',
