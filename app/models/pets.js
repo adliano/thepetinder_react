@@ -110,4 +110,14 @@ module.exports = new Pet()
 knex.from('users').innerJoin('accounts', 'users.id', 'accounts.user_id')
 Outputs:
 select * from `users` inner join `accounts` on `users`.`id` = `accounts`.`user_id`
+
+
+SELECT column_name(s)
+FROM table1
+INNER JOIN table2
+ON table1.column_name = table2.column_name;
+
+
+
+
 */
