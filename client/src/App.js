@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { LoginButton, LogoutButton, AddPetButton, HomieButton } from './components/Buttons'
+import {
+  LoginButton,
+  LogoutButton,
+  AddPetButton,
+  HomieButton
+} from './components/Buttons'
 import { Row } from 'react-bootstrap'
 import PetNavBar from './components/PetNavBar'
 import PetinderLogo from './components/PetinderLogo'
@@ -30,6 +35,13 @@ class App extends Component {
       .catch(err => console.log(err))
   }
   /**
+   * onLoginClickHandler
+   * TODO:
+   */
+  onLoginClickHandler = (data) => {
+    console.log('========== called ================')
+  }
+  /**
    * Render
    */
   render () {
@@ -43,16 +55,13 @@ class App extends Component {
                   <>
                     <LogoutButton />
                     <AddPetButton />
-                    {/* <Link to='/AddPet'>
-                      <Button>Add Pet</Button>
-                    </Link> */}
                   </>
                 ) : (
                   <>
-                    <LoginButton/>
+                    <LoginButton />
                   </>
                 )}
-                <HomieButton/>
+                <HomieButton />
               </Row>
             }
           />
@@ -76,6 +85,7 @@ class App extends Component {
                 path='/ShelterLogin'
                 component={ShelterLogin}
                 gotUser={!this.state.user.id}
+                // saveData={this.onLoginClickHandler}
               />
               <PrivateRoute
                 exact
@@ -94,3 +104,10 @@ class App extends Component {
 }
 
 export default App
+
+
+  /* <Route
+  path='/path'
+  render={(props) => <Component {...props} isAuthed={true} />}
+/> */
+

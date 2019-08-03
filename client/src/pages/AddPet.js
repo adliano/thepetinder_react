@@ -7,19 +7,35 @@ import {
 
 class AddPet extends Component {
   state = {
-    image: null
+    image: null,
+    shelter: { id: '' }
+  }
+  /**
+   * componentDidMount()
+   * Get the sehlter id to save with the pet info
+   */
+  componentDidMount () {
+    fetch('/auth', { method: 'GET' })
+      .then(response => response.json())
+      .then(results =>
+        this.setState({ shelter: results }, () => console.log(this.state))
+      )
+      .catch(err => console.log(err))
   }
   /**
    * onImageSelected(event)
    */
   onImageSelected = event => {
-    console.log(event.target.value)
-    this.setState({ imagePreview: URL.createObjectURL(event.target.files[0]) })
+    const { files } = event.target
+    this.setState({
+      imagePreview: URL.createObjectURL(files[0])
+    })
   }
   /**
    * onInputChange(event)
    */
   onInputChange = event => {
+    console.log(window.location.origin)
     const { name, value } = event.target
     this.setState({ [name]: value }, () => console.log(this.state))
   }
@@ -40,13 +56,25 @@ class AddPet extends Component {
                 action='/api/addPet'
                 method='POST'
               >
-                {/* Get Animal's name */}
                 <Form.Group controlId='exampleForm.ControlInput1'>
+                  <Form.Control
+                    name='shelter_id'
+                    value={this.state.shelter.id}
+                    style={{ display: 'none' }}
+                    onChange={() => {}}
+                  />
+                  <Form.Control
+                  name='host'
+                    value={window.location.origin}
+                    style={{ display: 'none' }}
+                    onChange={()=>{}}
+                  />
+                  {/* Get Animal's name */}
                   <Form.Control
                     className='my-2'
                     type='text'
                     placeholder='Name'
-                    name='name'
+                    name='petName'
                     onChange={this.onInputChange}
                   />
                   {/* Get Animal's age */}

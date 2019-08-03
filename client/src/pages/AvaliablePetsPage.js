@@ -33,31 +33,35 @@ gettingData = () => {fetch('/api/findAll')
     let _petsElements = petsArray.map(petInfo => {
       // Destructing object
       const {
-        id,
+        petId,
         petName,
         type,
         attitude,
         imgPath,
-        name='bob\'s place',
-        phone='925-444-4332',
-        address='144 AwesomePants Rd',
-      
+        name,
+        phone,
+        address,
+        city,
+        state,
+        zipCode,      
       } = petInfo
-      console.log(petInfo)
+      // console.log(petInfo)
       // each Pet available in the JSON will be
       // Added as <PetCard> element in _booksElements array
       return (
         <PetCard
-          key={id}
-          id={id}
+          key={petId}
+          id={petId}
           petName={petName}
           type={type}
           attitude={attitude}
           imgPath={imgPath}
           name= {name}
           address={address}
+          city={city}
+          state={state}
+          zipCode={zipCode}
           phone={phone}
-
         />
       )
     })
@@ -68,7 +72,7 @@ gettingData = () => {fetch('/api/findAll')
     return (
       <>
       <h1 className='text-center my-5'>Available Pets</h1>
-        <Container className='my-2 p-2 container'>
+        <Container className='my-2 mb-5 p-2 pb-5 container'>
           {this.renderPets(this.state.pets)}
         </Container>
       </>
