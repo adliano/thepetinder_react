@@ -6,6 +6,9 @@ exports.seed = function (knex, Promise) {
       return knex('shelter_tb').insert([
         {name:'FirstShelter', email:'FirstShelter@mail.com', password: 'xxxxxxxxxxx', address:'rainbowSix',phone:'17', city:'ramon', state:'AL', zipCode:'98'},
         {name:'SecondShelter', email:'SecondShelter@mail.com', password: 'xxxxxxxxxxx', address:'rainbow',phone:'17', city:'ramon', state:'AL', zipCode:'98'},
+        {name:'ThirdShelter', email:'ThirdShelter@mail.com', password: 'xxxxxxxxxxx', address:'rainbow',phone:'17', city:'ramon', state:'AL', zipCode:'98'},
+        {name:'FourthShelter', email:'FourthShelter@mail.com', password: 'xxxxxxxxxxx', address:'rainbow',phone:'17', city:'ramon', state:'AL', zipCode:'98'},
+        {name:'FifthShelter', email:'FifthShelter@mail.com', password: 'xxxxxxxxxxx', address:'rainbow',phone:'17', city:'ramon', state:'AL', zipCode:'98'}
       ]);
     })
     .then(function(){
