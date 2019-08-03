@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import {
   LoginButton,
   LogoutButton,
@@ -15,7 +15,6 @@ import ShelterRegister from './pages/Shelter_Register'
 import AvaliablePetsPage from './pages/AvaliablePetsPage'
 import ShelterLogin from './pages/Shelter_Login'
 import AddPet from './pages/AddPet'
-import PrivateRoute from './components/PrivateRoute'
 
 class App extends Component {
   state = {
@@ -36,10 +35,18 @@ class App extends Component {
   }
   /**
    * onLoginClickHandler
-   * TODO:
    */
-  onLoginClickHandler = (data) => {
-    console.log('========== called ================')
+  onLoginClickHandler = data => {
+    this.setState({ user: data })
+  }
+  /**
+   * onLogoutClick()
+   */
+  onLogoutClick = event => {
+    fetch('/logout').then(result => {
+      // TODO: Create bootstrap alert to warning user logout
+      this.setState({ user: result })
+    })
   }
   /**
    * Render
@@ -53,7 +60,7 @@ class App extends Component {
               <Row>
                 {this.state.user.id ? (
                   <>
-                    <LogoutButton />
+                    <LogoutButton onLogoutClick={this.onLogoutClick} />
                     <AddPetButton />
                   </>
                 ) : (
@@ -79,20 +86,28 @@ class App extends Component {
                 path='/AvaliablePetsPage'
                 component={AvaliablePetsPage}
               />
-              <PrivateRoute
+
+              <Route
                 exact
-                redirect='/'
                 path='/ShelterLogin'
-                component={ShelterLogin}
-                gotUser={!this.state.user.id}
-                // saveData={this.onLoginClickHandler}
+                render={props =>
+                  this.state.user.id ? (
+                    <Redirect to='/' />
+                  ) : (
+                    <ShelterLogin saveData={this.onLoginClickHandler} />
+                  )
+                }
               />
-              <PrivateRoute
+              <Route
                 exact
-                redirect='/ShelterLogin'
                 path='/AddPet'
-                component={AddPet}
-                gotUser={this.state.user.id}
+                render={props =>
+                  !this.state.user.id ? (
+                    <Redirect to='/ShelterLogin' />
+                  ) : (
+                    <AddPet />
+                  )
+                }
               />
             </Switch>
           </div>
@@ -104,10 +119,3 @@ class App extends Component {
 }
 
 export default App
-
-
-  /* <Route
-  path='/path'
-  render={(props) => <Component {...props} isAuthed={true} />}
-/> */
-
