@@ -1,8 +1,6 @@
 const express = require('express')
 // Session used to save user's info on cookie
 const session = require('express-session')
-// Used for flash message
-// const flash = require('connect-flash')
 const morgan = require('morgan')
 const app = express()
 
@@ -21,11 +19,6 @@ if (process.env.NODE_ENV === 'production') {
 // because my server does not have any SSL set yet
 app.use(express.json())
 app.use(morgan('dev'))
-// used for passport
-// This will allow the passport to use
-// the message set on app/config/passport
-// app.use(flash()) removed
-// app.use(session({secret: process.env.SECRET, resave: false, saveUninitialized: false,cookie: { maxAge: 60 * 60 * 1000 }}))
 app.use(session({secret: process.env.SECRET, resave: false, saveUninitialized: false}))
 // This object will contain key-value pairs, where the value can be a string or array (when extended is false), or any type (when extended is true).
 // This middleware is available in Express v4.16.0 onwards
@@ -54,9 +47,3 @@ app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`)
 })
 
-/*
-use to logout
-req.session.destroy(function(err) {
-  // cannot access session here
-})
-*/

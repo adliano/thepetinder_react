@@ -18,7 +18,7 @@ class AddPet extends Component {
     fetch('/auth', { method: 'GET' })
       .then(response => response.json())
       .then(results =>
-        this.setState({ shelter: results }, () => console.log(this.state))
+        this.setState({ shelter: results })
       )
       .catch(err => console.log(err))
   }
@@ -35,9 +35,8 @@ class AddPet extends Component {
    * onInputChange(event)
    */
   onInputChange = event => {
-    console.log(window.location.origin)
     const { name, value } = event.target
-    this.setState({ [name]: value }, () => console.log(this.state))
+    this.setState({ [name]: value })
   }
   /**
    * Render

@@ -11,11 +11,6 @@ const mysql = require('mysql')
 
 // Creates mySQL connection using Knex.js
 const Knex = require('knex')(require('../../knexfile')[ENV])
-// const knex = require('knex')('production')
-
-// const Knex = require('knex')(require('../models/knexfile'))
-
 /* eslint-enable, no-undef */
-
 // Exports the connection for other files to use
 module.exports = Knex

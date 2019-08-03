@@ -39,7 +39,7 @@ class ShelterRegister extends Component {
    * onButtonClick()
    * Event listener used for buttons
    */
-  onButtonClick = event => {
+  onButtonClick = () => {
     const { viewPassword, alert, ...shelterData } = this.state
     const { password } = shelterData
     // Send Request to server
@@ -47,7 +47,7 @@ class ShelterRegister extends Component {
     API.registerShelter(shelterData)
       .then(response => response.json())
       .then(results => {
-        console.log(results)
+        // console.log(results)
         // Check for error
         if (results.error) {
           // Error alert
@@ -86,7 +86,7 @@ class ShelterRegister extends Component {
             zipCode: '',
             phone: ''
           })
-          console.log(this.state)
+          
         }
       })
       .catch(err => console.log(err))
@@ -126,7 +126,7 @@ class ShelterRegister extends Component {
     const { name, value } = event.target
     this.setState({ [name]: value })
 
-    console.log(this.state)
+    // console.log(this.state)
   }
   /**
    * togglePasswordView()
