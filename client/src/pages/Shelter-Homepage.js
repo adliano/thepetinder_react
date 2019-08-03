@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
-// Use Bootstrap Components
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
-// Use Application Components
-// import PetNavbar from '../components/PetNavBar'
-// import PetFooter from '../components/PetFooter'
-// import PetinderLogo from '../components/PetinderLogo'
 
 /**
  * Page used for splash, it will have two buttons to 
@@ -25,12 +20,9 @@ class ShelterHome extends Component {
   }
   // Logout if close window
   componentWillUnmount(){
-    // this.state({user: null})
     console.log('will unmount called');
     
   }
-
-
     /**
      * onButtonClick()
      * Event listener used for buttons
@@ -41,11 +33,9 @@ class ShelterHome extends Component {
         
         if(_element.textContent === 'User'){
             console.log('send user to user home page')
-            //Place logic here later
         }
         else{
             console.log('send Shelter to shelter home page')
-            //Place logic here later
         }
     }
   /**
@@ -56,8 +46,6 @@ class ShelterHome extends Component {
   render () {
     return (
       <>
-        {/* <PetNavbar /> */}
-        {/* <PetinderLogo /> */}
         <Container className='my-2 p-2 text-center'>
           <Row>
             <h1 className='p-2 row mt-3 mx-auto text-center mx-3'>
@@ -83,7 +71,6 @@ class ShelterHome extends Component {
               </Col>
           </Row>
         </Container>
-        {/* <PetFooter /> */}
       </>
     )
   }

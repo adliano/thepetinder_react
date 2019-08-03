@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
  * Page used for Home, it will have two buttons to
  * route user || shelter to espesific page
  */
-function SplashPage (props) {
+function SplashPage () {
   return (
     <div>
       <Container className='my-2 p-2 text-center'>
@@ -34,11 +34,6 @@ function SplashPage (props) {
               </Button>
             </Link>
           </Col>
-          {/* <Col md> */}
-            {/* <Button className='w-25 m-2' variant='primary' href='/ShelterLogin'>
-              Shelter
-            </Button> */}
-          {/* </Col> */}
         </Row>
       </Container>
     </div>

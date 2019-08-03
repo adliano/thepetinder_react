@@ -26,18 +26,14 @@ passport.deserializeUser((id, done) => {
  */
 passport.use(
   new LocalStrategy({ usernameField: 'email' }, function (username,password,done) {
-    //console.log(chalk.bgYellow(`inside LocalStrategy`))
     Shelter.find({ email: username }).then((user, err) => {
       if (err) {
-        //console.log(chalk.bgRed(`Error: if (err) ${JSON.stringify(err)}`))
         return done(err)
       }
       if (!user[0]) {
-        //console.log(chalk.bgRed(`Error: !user`))
         return done(null, false)
       }
       if (user[0].password !== password) {
-        //console.log(chalk.bgRed(`Error: ${user.password} !== ${password}`))
         return done(null, false)
       }
       return done(null, user[0])

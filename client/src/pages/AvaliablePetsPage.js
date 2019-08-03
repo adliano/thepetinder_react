@@ -16,7 +16,7 @@ state= {
  */
 gettingData = () => {fetch('/api/findAll')
   .then(response => response.json())
-  .then (data => this.setState({pets:data},()=>console.log(this.state)))
+  .then (data => this.setState({pets:data}))
   }
   /**
    * componentDidMount()
@@ -45,7 +45,6 @@ gettingData = () => {fetch('/api/findAll')
         state,
         zipCode,      
       } = petInfo
-      // console.log(petInfo)
       // each Pet available in the JSON will be
       // Added as <PetCard> element in _booksElements array
       return (
