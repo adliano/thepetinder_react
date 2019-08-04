@@ -71,7 +71,7 @@ gettingData = () => {fetch('/api/findAll')
     return (
       <>
       <h1 className='text-center my-5'>Available Pets</h1>
-        <Container className='my-2 mb-5 p-2 pb-5 container'>
+        <Container className='my-5 mb-0 p-0 pb-0 container'>
           {this.renderPets(this.state.pets)}
         </Container>
       </>
