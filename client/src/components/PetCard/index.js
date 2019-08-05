@@ -4,7 +4,7 @@ import './style.css'
 
 function PetCard (props) {
   return (
-    <Card border="secondary" style={{ width: '18rem' }} className='mx-auto my-1 bg-light'>
+    <Card border="secondary" className='mx-auto my-1 bg-light'>
       <Card.Header as='h3' className='mx-auto bg-light'>{props.petName}</Card.Header>
       <Card.Img variant='top' src={props.imgPath} />
       <ListGroup variant='flush'>
