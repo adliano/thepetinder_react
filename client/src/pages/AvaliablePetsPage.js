@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Container from 'react-bootstrap/Container'
+import { CardColumns, Container, Row } from 'react-bootstrap'
 
 import PetCard from '../components/PetCard'
 
@@ -8,15 +8,16 @@ import PetCard from '../components/PetCard'
  * route user || shelter to espesific page
  */
 class AvaliablePetsPage extends Component {
-state= {
-  pets: []
-}
-/**
- * gettingData()
- */
-gettingData = () => {fetch('/api/findAll')
-  .then(response => response.json())
-  .then (data => this.setState({pets:data}))
+  state = {
+    pets: []
+  }
+  /**
+   * gettingData()
+   */
+  gettingData = () => {
+    fetch('/api/findAll')
+      .then(response => response.json())
+      .then(data => this.setState({ pets: data }))
   }
   /**
    * componentDidMount()
@@ -31,49 +32,38 @@ gettingData = () => {fetch('/api/findAll')
    */
   renderPets = petsArray => {
     let _petsElements = petsArray.map(petInfo => {
-      // Destructing object
-      const {
-        petId,
-        petName,
-        type,
-        attitude,
-        imgPath,
-        name,
-        phone,
-        address,
-        city,
-        state,
-        zipCode,      
-      } = petInfo
-      // each Pet available in the JSON will be
+      // Each Pet available in the JSON will be
       // Added as <PetCard> element in _booksElements array
       return (
         <PetCard
-          key={petId}
-          id={petId}
-          petName={petName}
-          type={type}
-          attitude={attitude}
-          imgPath={imgPath}
-          name= {name}
-          address={address}
-          city={city}
-          state={state}
-          zipCode={zipCode}
-          phone={phone}
+          key={petInfo.petId}
+          id={petInfo.petId}
+          petName={petInfo.petName}
+          type={petInfo.type}
+          age={petInfo.age}
+          attitude={petInfo.attitude}
+          imgPath={petInfo.imgPath}
+          name={petInfo.name}
+          address={petInfo.address}
+          city={petInfo.city}
+          state={petInfo.state}
+          zipCode={petInfo.zipCode}
+          phone={petInfo.phone}
         />
       )
     })
     // Return Array of <PetCard> elements
     return _petsElements
-  }  
+  }
   render () {
     return (
       <>
-      <h1 className='text-center my-5'>Available Pets</h1>
-        <Container className='my-5 mb-0 p-0 pb-0 container'>
-          {this.renderPets(this.state.pets)}
-        </Container>
+        <h1 className='text-center my-5'>Available Pets</h1>
+        <Row className='mb-5'>
+          <Container className='container-fluid mb-5'>
+            <CardColumns>{this.renderPets(this.state.pets)}</CardColumns>
+          </Container>
+        </Row>
       </>
     )
   }
