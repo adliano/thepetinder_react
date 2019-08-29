@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button'
  */
 function PetFooter () {
   return (
-    <Navbar bg='light' variant='dark' fixed='bottom'>
+    <Navbar bg='light' variant='dark' fixed='bottom' >
       <Button
         variant='outline-secondary'
         className='mx-auto'
@@ -17,11 +17,11 @@ function PetFooter () {
         target='_blank'
       >
         <img
-          className='d-inline-block'
+          className='d-inline-block p-0'
           alt=''
           src={process.env.PUBLIC_URL + '/assets/images/github.svg'}
-          width='30'
-          height='30'
+          width='15'
+          height='15'
         />
       </Button>
     </Navbar>

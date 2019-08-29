@@ -5,8 +5,8 @@
     width: 100%;
 }
 .cardDimensions{
-    max-width: 275px;
-    max-height: 750px;
+    max-width: 300px;
+    /* max-height: 750px; */
     float: left;
     /*margin-top: 10px;*/
     /*padding-top: 5px;*/

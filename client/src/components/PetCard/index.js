@@ -1,24 +1,24 @@
 import React from 'react'
+import { Card, ListGroup } from 'react-bootstrap'
 import './style.css'
 
 function PetCard (props) {
   return (
-    <div className='card cardDimensions col p-0 mx-auto my-1'>
-      <div className='card-header w-100 text-center'>
-        <h4 className='card-title w-100'>My Name: {props.petName}</h4>
-      </div>
-      <img className='card-img-top imgSize mt-2' src={props.imgPath} alt='' />
-      <div className='card-body'>
-        <p className='card-text text-center'>Type: {props.type}</p>
-        <p className='card-text text-center'>Temperment: {props.attitude}</p>
-        <p className='card-text text-center'>Shelter: {props.name}</p>
-        <p className='card-text text-center'>Address: {props.address}</p>
-        <p className='card-text text-center'>City: {props.city}</p>
-        <p className='card-text text-center'>State: {props.state}</p>
-        <p className='card-text text-center'>Zip Code: {props.zipCode}</p>
-        <p className='card-text text-center'>Phone: {props.phone}</p>
-      </div>
-    </div>
+    <Card border="secondary" className='mx-auto my-1 bg-light'>
+      <Card.Header as='h3' className='mx-auto bg-primary text-center text-light'>{props.petName}</Card.Header>
+      <Card.Img variant='top' className='p-2 bg-light' src={props.imgPath} />
+      <ListGroup className='p-2 bg-light' variant='flush'>
+        <ListGroup.Item>Type: {props.type}</ListGroup.Item>
+        <ListGroup.Item>Age: {props.age}</ListGroup.Item>
+        <ListGroup.Item>Temperment: {props.attitude}</ListGroup.Item>
+        <ListGroup.Item>Shelter: {props.name}</ListGroup.Item>
+        <ListGroup.Item>Address: {props.address}</ListGroup.Item>
+        <ListGroup.Item>City: {props.city}</ListGroup.Item>
+        <ListGroup.Item>State: {props.state}</ListGroup.Item>
+        <ListGroup.Item>Zip Code: {props.zipCode}</ListGroup.Item>
+        <ListGroup.Item>Phone: {props.phone}</ListGroup.Item>
+      </ListGroup>
+    </Card>
   )
 }
 

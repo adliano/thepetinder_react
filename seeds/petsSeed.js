@@ -4,54 +4,53 @@ exports.seed = function (knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('shelter_tb').insert([
-        {name:'FirstShelter', email:'FirstShelter@mail.com', password: 'xxxxxxxxxxx', address:'rainbowSix',phone:'17', city:'ramon', state:'AL', zipCode:'98'},
-        {name:'SecondShelter', email:'SecondShelter@mail.com', password: 'xxxxxxxxxxx', address:'rainbow',phone:'17', city:'ramon', state:'AL', zipCode:'98'},
-        {name:'ThirdShelter', email:'ThirdShelter@mail.com', password: 'xxxxxxxxxxx', address:'rainbow',phone:'17', city:'ramon', state:'AL', zipCode:'98'},
-        {name:'FourthShelter', email:'FourthShelter@mail.com', password: 'xxxxxxxxxxx', address:'rainbow',phone:'17', city:'ramon', state:'AL', zipCode:'98'},
-        {name:'FifthShelter', email:'FifthShelter@mail.com', password: 'xxxxxxxxxxx', address:'rainbow',phone:'17', city:'ramon', state:'AL', zipCode:'98'}
+        {name:'FirstShelter', email:'1@mail.com', password: '202cb962ac59075b964b07152d234b70', address:'123 Somewhere rd',phone:'5102224444', city:'San Ramon', state:'CA', zipCode:'94333'},
+        {name:'SecondShelter', email:'2@mail.com', password: '202cb962ac59075b964b07152d234b70', address:'825 Somewhere rd',phone:'4153334844', city:'San Francisco', state:'CA', zipCode:'94123'},
+        {name:'ThirdShelter', email:'3@mail.com', password: '202cb962ac59075b964b07152d234b70', address:'99 Somewhere rd',phone:'5101114447', city:'San Mateo', state:'CA', zipCode:'94333'},
+        {name:'FourthShelter', email:'4@mail.com', password: '202cb962ac59075b964b07152d234b70', address:'1 Somewhere rd',phone:'9259994554', city:'Richmond', state:'CA', zipCode:'94333'},
+        {name:'FifthShelter', email:'5@mail.com', password: '202cb962ac59075b964b07152d234b70', address:'1230 Somewhere rd',phone:'510222111', city:'Concord', state:'CA', zipCode:'94333'},
       ]);
     })
     .then(function(){
       // Inserts seed entries
       return knex('pets_tb').insert([{
-        petName: 'pet on 2',
-        type: 'abd',
-        attitude: 'abd',
+        petName: 'Bred',
+        type: 'Dog',
+        attitude: 'Crazy',
         isAdopted: true,
         age: 11,
         imgPath: 'https://5.imimg.com/data5/NQ/PJ/MY-37341530/beagle-dog-puppy-250x250.jpg',
         shelter_id: 1
       },
       {
-        petName: 'ddd 1',
-        type: 'abd',
-        attitude: 'abd',
+        petName: 'Joseph',
+        type: 'Dog',
+        attitude: 'Funny',
         isAdopted: true,
         age: 11,
         imgPath: 'https://data.whicdn.com/images/302795711/large.jpg',
         shelter_id: 2
       },
       {
-        petName: 'ccc',
-        type: 'abd',
-        attitude: 'abd',
+        petName: 'Gaga',
+        type: 'Dog',
+        attitude: 'Loud',
         age: 11,
         imgPath: 'https://www.k9web.com/wp-content/uploads/2019/03/Pocket-Pitbull-3.jpg',
         shelter_id: 3
       },
       {
-        petName: 'ggg',
-        type: 'abd',
-        attitude: 'abd',
-        isAdopted: true,
+        petName: 'Vamp',
+        type: 'Cat',
+        attitude: 'Loud',
         age: 11,
         imgPath: 'https://mymodernmet.com/wp/wp-content/uploads/2019/07/russian-blue-cats-17.jpg',
         shelter_id: 4
       },
       {
-        petName: 'fff 2',
-        type: 'abd',
-        attitude: 'abd',
+        petName: 'Wayne',
+        type: 'Bird',
+        attitude: 'Loud',
         age: 11,
         imgPath: 'https://opimedia.azureedge.net/-/media/images/grt/editorial/articles/magazine-articles/2016/07-01/bald-eagles-and-golden-eagles/bald-eagle-square-jpg.jpg',
         shelter_id: 5
