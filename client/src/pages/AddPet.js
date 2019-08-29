@@ -7,8 +7,16 @@ import {
 
 class AddPet extends Component {
   state = {
+    shelter: { id: '' },
     image: null,
-    shelter: { id: '' }
+    imagePreview: '',
+    petName: '',
+    age: '',
+    type: '',
+    attitude: '',
+    imgPath: '',
+    attitudeDisabled: false,
+    typeDisabled: false,
   }
   /**
    * componentDidMount()
@@ -17,9 +25,7 @@ class AddPet extends Component {
   componentDidMount () {
     fetch('/auth', { method: 'GET' })
       .then(response => response.json())
-      .then(results =>
-        this.setState({ shelter: results })
-      )
+      .then(results => this.setState({ shelter: results }))
       .catch(err => console.log(err))
   }
   /**
@@ -27,16 +33,46 @@ class AddPet extends Component {
    */
   onImageSelected = event => {
     const { files } = event.target
-    this.setState({
-      imagePreview: URL.createObjectURL(files[0])
-    })
+    if (files.length > 0) {
+      this.setState({
+        imagePreview: URL.createObjectURL(files[0])
+      })
+    }
+    else{
+      this.setState({
+        imagePreview: '',
+      })
+    }
   }
   /**
    * onInputChange(event)
    */
   onInputChange = event => {
     const { name, value } = event.target
-    this.setState({ [name]: value })
+    // Void user to select attitude or type after selection was made
+    if(name === 'attitude'){
+      this.setState({ [name]: value, attitudeDisabled: true })
+    }
+    else if(name === 'type'){
+      this.setState({ [name]: value, typeDisabled: true })
+    }
+    else{
+      this.setState({ [name]: value })
+    }
+  }
+  /**
+   * isEnable()
+   * Used to keep button disable until all fields are completed
+   */
+  isEnable = () => {
+    const { petName, age, type, attitude, imagePreview } = this.state
+    return (
+      petName.length > 0 &&
+      age.length > 0 &&
+      type.length > 0 &&
+      attitude.length > 0 &&
+      imagePreview.length > 0
+    )
   }
   /**
    * Render
@@ -63,10 +99,10 @@ class AddPet extends Component {
                     onChange={() => {}}
                   />
                   <Form.Control
-                  name='host'
+                    name='host'
                     value={window.location.origin}
                     style={{ display: 'none' }}
-                    onChange={()=>{}}
+                    onChange={() => {}}
                   />
                   {/* Get Animal's name */}
                   <Form.Control
@@ -91,6 +127,7 @@ class AddPet extends Component {
                     as='select'
                     onChange={this.onInputChange}
                   >
+                    <option disabled={this.state.typeDisabled}>Type..</option>
                     <option>Dog</option>
                     <option>Cat</option>
                     <option>Fish</option>
@@ -103,7 +140,9 @@ class AddPet extends Component {
                     className='my-2'
                     as='select'
                     onChange={this.onInputChange}
+                    placeholder="select"
                   >
+                    <option disabled={this.state.attitudeDisabled}>Attitude..</option>
                     <option>Frisky</option>
                     <option>Shy</option>
                     <option>Loud</option>
@@ -122,7 +161,12 @@ class AddPet extends Component {
                   <Image src={this.state.imagePreview} width={200} />
                   <br />
                   {/* Upload Button */}
-                  <Button type='submit' className='px-5 mt-3' variant='primary'>
+                  <Button
+                    type='submit'
+                    className='px-5 mt-3'
+                    variant='primary'
+                    disabled={!this.isEnable()}
+                  >
                     <CloudUploadIcon className='mx-2' /> Upload
                   </Button>
                 </Form.Group>
