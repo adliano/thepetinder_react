@@ -14,7 +14,9 @@ class AddPet extends Component {
     age: '',
     type: '',
     attitude: '',
-    imgPath: ''
+    imgPath: '',
+    attitudeDisabled: false,
+    typeDisabled: false,
   }
   /**
    * componentDidMount()
@@ -47,7 +49,16 @@ class AddPet extends Component {
    */
   onInputChange = event => {
     const { name, value } = event.target
-    this.setState({ [name]: value })
+    // Void user to select attitude or type after selection was made
+    if(name === 'attitude'){
+      this.setState({ [name]: value, attitudeDisabled: true })
+    }
+    else if(name === 'type'){
+      this.setState({ [name]: value, typeDisabled: true })
+    }
+    else{
+      this.setState({ [name]: value })
+    }
   }
   /**
    * isEnable()
@@ -116,6 +127,7 @@ class AddPet extends Component {
                     as='select'
                     onChange={this.onInputChange}
                   >
+                    <option disabled={this.state.typeDisabled}>Type..</option>
                     <option>Dog</option>
                     <option>Cat</option>
                     <option>Fish</option>
@@ -128,7 +140,9 @@ class AddPet extends Component {
                     className='my-2'
                     as='select'
                     onChange={this.onInputChange}
+                    placeholder="select"
                   >
+                    <option disabled={this.state.attitudeDisabled}>Attitude..</option>
                     <option>Frisky</option>
                     <option>Shy</option>
                     <option>Loud</option>
