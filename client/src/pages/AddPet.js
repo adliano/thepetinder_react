@@ -7,8 +7,14 @@ import {
 
 class AddPet extends Component {
   state = {
+    shelter: { id: '' },
     image: null,
-    shelter: { id: '' }
+    imagePreview: '',
+    petName: '',
+    age: '',
+    type: '',
+    attitude: '',
+    imgPath: ''
   }
   /**
    * componentDidMount()
@@ -17,9 +23,7 @@ class AddPet extends Component {
   componentDidMount () {
     fetch('/auth', { method: 'GET' })
       .then(response => response.json())
-      .then(results =>
-        this.setState({ shelter: results })
-      )
+      .then(results => this.setState({ shelter: results }))
       .catch(err => console.log(err))
   }
   /**
@@ -27,9 +31,16 @@ class AddPet extends Component {
    */
   onImageSelected = event => {
     const { files } = event.target
-    this.setState({
-      imagePreview: URL.createObjectURL(files[0])
-    })
+    if (files.length > 0) {
+      this.setState({
+        imagePreview: URL.createObjectURL(files[0])
+      })
+    }
+    else{
+      this.setState({
+        imagePreview: '',
+      })
+    }
   }
   /**
    * onInputChange(event)
@@ -37,6 +48,20 @@ class AddPet extends Component {
   onInputChange = event => {
     const { name, value } = event.target
     this.setState({ [name]: value })
+  }
+  /**
+   * isEnable()
+   * Used to keep button disable until all fields are completed
+   */
+  isEnable = () => {
+    const { petName, age, type, attitude, imagePreview } = this.state
+    return (
+      petName.length > 0 &&
+      age.length > 0 &&
+      type.length > 0 &&
+      attitude.length > 0 &&
+      imagePreview.length > 0
+    )
   }
   /**
    * Render
@@ -63,10 +88,10 @@ class AddPet extends Component {
                     onChange={() => {}}
                   />
                   <Form.Control
-                  name='host'
+                    name='host'
                     value={window.location.origin}
                     style={{ display: 'none' }}
-                    onChange={()=>{}}
+                    onChange={() => {}}
                   />
                   {/* Get Animal's name */}
                   <Form.Control
@@ -122,7 +147,12 @@ class AddPet extends Component {
                   <Image src={this.state.imagePreview} width={200} />
                   <br />
                   {/* Upload Button */}
-                  <Button type='submit' className='px-5 mt-3' variant='primary'>
+                  <Button
+                    type='submit'
+                    className='px-5 mt-3'
+                    variant='primary'
+                    disabled={!this.isEnable()}
+                  >
                     <CloudUploadIcon className='mx-2' /> Upload
                   </Button>
                 </Form.Group>
